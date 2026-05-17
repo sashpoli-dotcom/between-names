@@ -650,21 +650,12 @@ h2.section-title em {
 }
 
 /* ================================================================
-   MORPH — реорганизован как «архивная карточка»
+   MORPH
 ================================================================ */
 .morph-section {
   padding: clamp(100px, 18vh, 220px) var(--gutter);
-  text-align: center;
   max-width: var(--max);
   margin: 0 auto;
-}
-.morph-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 40px;
 }
 .morph-wrap {
   font-family: var(--display);
@@ -673,6 +664,7 @@ h2.section-title em {
   line-height: 1.05;
   letter-spacing: -0.02em;
   font-variation-settings: "opsz" 144;
+  margin-top: 40px;
 }
 .morph-line {
   display: block;
@@ -710,48 +702,25 @@ h2.section-title em {
   transform: translateX(-50%) translateY(0);
   transition-delay: .4s;
 }
-/* архивная карточка под морфом — это и серьёзно, и информативно */
-.morph-card {
+.morph-text {
+  max-width: 64ch;
   margin: 80px auto 0;
-  max-width: 560px;
-  border: 1px solid var(--line);
-  padding: 28px 36px;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--ink-dark-dim);
   text-align: left;
-  font-family: var(--mono);
-  font-size: 11px;
-  line-height: 2;
-  letter-spacing: 0.06em;
-  color: var(--ink-dim);
   opacity: 0;
   transition: opacity 1s ease 1.6s, transform 1s var(--ease) 1.6s;
   transform: translateY(20px);
 }
-.morph-section.in-view .morph-card {
+.morph-section.in-view .morph-text {
   opacity: 1;
   transform: translateY(0);
 }
-.morph-card-row {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 16px;
-  padding: 6px 0;
-  border-bottom: 1px solid var(--line);
-}
-.morph-card-row:last-child { border-bottom: 0; }
-.morph-card-key {
-  color: var(--ink-muted);
-  text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-}
-.morph-card-val {
-  color: var(--ink);
-  font-family: var(--mono);
-}
-.morph-card-val em {
-  color: var(--gold);
-  font-style: normal;
-}
+/* morph колорится для светлого фона */
+.light-band .morph-from { color: var(--ink-dark-muted); }
+.light-band .morph-to   { color: var(--ink-dark); }
+.light-band .morph-to em { color: var(--gold-dark); }
 
 /* ================================================================
    CONCEPT (на бумажном фоне)
@@ -870,73 +839,38 @@ h2.section-title em {
 }
 
 /* ================================================================
-   THE OBJECT
+   COVERS — две обложки альбома, без заголовков
 ================================================================ */
-.object-section {
+.covers-section {
   padding: clamp(80px, 14vh, 180px) var(--gutter);
   max-width: var(--max);
   margin: 0 auto;
 }
-.object-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 40px;
-  flex-wrap: wrap;
-  margin-bottom: 80px;
-}
-.object-head .head-left { flex: 1; min-width: 280px; }
-.object-head .head-right {
-  max-width: 380px;
-  color: var(--ink-dim);
-  font-size: 16px;
-  line-height: 1.7;
-}
-.object-grid {
+.covers-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
 @media (max-width: 760px) {
-  .object-grid { grid-template-columns: 1fr; }
+  .covers-grid { grid-template-columns: 1fr; }
 }
-.object-card {
+.cover {
   position: relative;
   overflow: hidden;
   background: var(--bg-soft);
   border: 1px solid var(--line);
   aspect-ratio: 4 / 3;
 }
-.object-card img {
+.cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 1.6s var(--ease), filter 1s ease;
   filter: brightness(0.92);
 }
-.object-card:hover img {
+.cover:hover img {
   transform: scale(1.04);
   filter: brightness(1);
-}
-.object-card .object-meta {
-  position: absolute;
-  left: 0; bottom: 0;
-  padding: 24px 28px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink);
-  background: linear-gradient(0deg, rgba(20,17,15,0.85) 0%, transparent 100%);
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 16px;
-  pointer-events: none;
-}
-.object-card .object-meta .label-num {
-  color: var(--gold);
 }
 
 /* ================================================================
@@ -967,10 +901,16 @@ h2.section-title em {
 ================================================================ */
 .program-narrative {
   max-width: 64ch;
+  margin-bottom: 60px;
+}
+.program-narrative p {
   font-size: 18px;
   line-height: 1.8;
   color: var(--ink-dark-dim);
-  margin-bottom: 60px;
+  margin-bottom: 0.6em;
+}
+.program-narrative p.program-intro {
+  margin-bottom: 1.4em;
 }
 .program-narrative strong {
   font-family: var(--mono);
@@ -1380,10 +1320,9 @@ footer a:hover { color: var(--gold); }
     <div class="nav-links">
       <a href="#concept" data-ru>Концепция</a><a href="#concept" data-en>Concept</a>
       <a href="#composers" data-ru>Композиторы</a><a href="#composers" data-en>Composers</a>
-      <a href="#object" data-ru>Объект</a><a href="#object" data-en>The object</a>
       <a href="#program" data-ru>Программа</a><a href="#program" data-en>Program</a>
       <a href="#artist" data-ru>Артист</a><a href="#artist" data-en>Artist</a>
-      <a href="#beyond" data-ru>Программа концертов</a><a href="#beyond" data-en>Beyond the record</a>
+      <a href="#beyond" data-ru>Концерты</a><a href="#beyond" data-en>Concerts</a>
       <a href="#support" data-ru>Поддержка</a><a href="#support" data-en>Support</a>
     </div>
     <div class="lang-switch" id="langSwitch">
@@ -1477,104 +1416,71 @@ footer a:hover { color: var(--gold); }
 </header>
 
 <!-- ============================================================ -->
-<!-- MORPH + ARCHIVE CARD                                          -->
+<!-- NAME (morph)                                                  -->
 <!-- ============================================================ -->
-<div class="morph-section reveal">
-  <div class="morph-label">
-    <span data-ru>Документ</span><span data-en>The record</span>
-  </div>
-  <div class="morph-wrap">
-    <span class="morph-line">
-      <span class="morph-from">Алексей Пудинов</span>
-      <span class="morph-to">Alex <em>Pudmann</em></span>
-    </span>
-  </div>
+<div class="light-band">
+  <div class="morph-section reveal">
+    <div class="section-label">
+      <span data-ru>Имя</span><span data-en>Name</span>
+    </div>
+    <div class="morph-wrap">
+      <span class="morph-line">
+        <span class="morph-from">Алексей Пудинов</span>
+        <span class="morph-to">Alex <em>Pudmann</em></span>
+      </span>
+    </div>
 
-  <div class="morph-card mono">
-    <div class="morph-card-row">
-      <span class="morph-card-key">
-        <span data-ru>Прежнее имя</span><span data-en>Former name</span>
-      </span>
-      <span class="morph-card-val">Алексей Пудинов / Alexey Pudinov</span>
-    </div>
-    <div class="morph-card-row">
-      <span class="morph-card-key">
-        <span data-ru>Новое имя</span><span data-en>New name</span>
-      </span>
-      <span class="morph-card-val"><em>Alex Pudmann</em></span>
-    </div>
-    <div class="morph-card-row">
-      <span class="morph-card-key">
-        <span data-ru>Юрисдикция</span><span data-en>Jurisdiction</span>
-      </span>
-      <span class="morph-card-val">
-        <span data-ru>Германия</span><span data-en>Germany</span>
-      </span>
-    </div>
-    <div class="morph-card-row">
-      <span class="morph-card-key">
-        <span data-ru>Документ</span><span data-en>Document</span>
-      </span>
-      <span class="morph-card-val">
-        <span data-ru>Свидетельство о смене имени, 2025</span>
-        <span data-en>Certificate of name change, 2025</span>
-      </span>
-    </div>
-    <div class="morph-card-row">
-      <span class="morph-card-key">
-        <span data-ru>Музыкальная запись</span><span data-en>Musical record</span>
-      </span>
-      <span class="morph-card-val">Between Names · 2 LP &amp; CD · 2027</span>
+    <div class="morph-text">
+      <p data-ru>Когда музыкант покидает родину, меняется не только его адрес. Меняется язык. Меняется мышление. Иногда меняется и имя. Эмиграция — это не географическое событие, а длинный внутренний процесс, и каждый музыкант проходит его по-своему.</p>
+      <p data-en>When a musician leaves home, more than the address changes. Language changes. Thinking changes. Sometimes even the name. Emigration is not a geographical event but a slow inner process, and each musician lives through it differently.</p>
     </div>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- CONCEPT (на бумажном фоне)                                    -->
+<!-- CONCEPT (dark)                                                -->
 <!-- ============================================================ -->
-<div class="light-band" id="concept">
-  <div class="light-band-inner">
-    <div class="section-label reveal">
-      <span data-ru>Концепция</span><span data-en>The concept</span>
+<section id="concept">
+  <div class="section-label reveal">
+    <span data-ru>Концепция</span><span data-en>The concept</span>
+  </div>
+  <h2 class="section-title reveal">
+    <span data-ru>Альбом о том, как <em>эмиграция меняет</em> музыканта изнутри.</span>
+    <span data-en>A recording about how emigration <em>changes a musician</em> from within.</span>
+  </h2>
+
+  <div class="concept reveal-stagger">
+    <div class="concept-text">
+      <p data-ru>
+        В декабре 1917 года Сергей Рахманинов уехал из России и почти на четырнадцать лет перестал писать сольную фортепианную музыку. Тринадцатилетний Лев Орнштейн из Кременчуга оказался в Нью-Йорке около 1907 года и постепенно превратился в Leo Ornstein. В 1916-м Эрнест Блох, женевский композитор, приехал в США на гастроли с танцевальной труппой Мод Аллан; компания распалась, и он остался в Огайо — сначала на сезон, потом до конца жизни.
+      </p>
+      <p data-ru>
+        Три биографии — три разных ответа на один и тот же вопрос: что делает музыкант, когда у него больше нет родины. Каждый из них в итоге обрёл вторую: Швейцарию, Америку, новую Америку. Программа альбома — пять глав об этом нахождении.
+      </p>
+      <p data-ru>
+        Алексей Пудинов прожил в Германии двадцать лет. В 2025 году он сменил имя на Alex Pudmann — сначала артистически, потом в документах. <strong>Between Names</strong> — его первый сольный альбом и публичное оформление этого решения. Альбом не объясняет это решение, а проживает его.
+      </p>
+
+      <p data-en>
+        In December 1917, Sergei Rachmaninoff left Russia and stopped writing solo piano music for almost fourteen years. The thirteen-year-old Lev Ornshteyn arrived in New York from Kremenchuk around 1907 and slowly became Leo Ornstein. In 1916, Ernest Bloch, a composer from Geneva, came to the United States to conduct a tour with Maud Allan's dance company; the company collapsed, and he stayed in Ohio — first for a season, then for the rest of his life.
+      </p>
+      <p data-en>
+        Three biographies, three different answers to the same question: what does a musician do when he no longer has a homeland. Each of them eventually found a second one: Switzerland, America, a new America. The five chapters of this album are about that finding.
+      </p>
+      <p data-en>
+        Alexey Pudinov has lived in Germany for twenty years. In 2025 he changed his name to Alex Pudmann — first as an artist, then on his passport. <strong>Between Names</strong> is his first solo album and the public form of that decision. The album does not explain the decision; it lives it.
+      </p>
     </div>
-    <h2 class="section-title reveal">
-      <span data-ru>Альбом о том, что происходит <em>между двумя версиями</em> одного музыканта.</span>
-      <span data-en>A recording about <em>what happens</em> between two versions of the same musician.</span>
-    </h2>
-
-    <div class="concept reveal-stagger">
-      <div class="concept-text">
-        <p data-ru>
-          В декабре 1917 года Сергей Рахманинов уехал из России и почти на четырнадцать лет перестал писать сольную фортепианную музыку. Тринадцатилетний Лев Орнштейн из Кременчуга оказался в Нью-Йорке около 1907 года и постепенно превратился в Leo Ornstein. В 1916-м Эрнест Блох, женевский композитор, приехал в США на гастроли с танцевальной труппой Мод Аллан; компания распалась, и он остался в Огайо — сначала на сезон, потом до конца жизни.
-        </p>
-        <p data-ru>
-          Три биографии — три разных ответа на один и тот же вопрос: что делает музыкант, когда у него больше нет родины. Каждый из них в итоге обрёл вторую: Швейцарию, Америку, новую Америку. Программа альбома — пять глав об этом нахождении.
-        </p>
-        <p data-ru>
-          Алексей Пудинов прожил в Германии двадцать лет. В 2025 году он сменил имя на Alex Pudmann — сначала артистически, потом в документах. <strong>Between Names</strong> — его первый сольный альбом и публичное оформление этого решения. Альбом не объясняет это решение, а проживает его.
-        </p>
-
-        <p data-en>
-          In December 1917, Sergei Rachmaninoff left Russia and stopped writing solo piano music for almost fourteen years. The thirteen-year-old Lev Ornshteyn arrived in New York from Kremenchuk around 1907 and slowly became Leo Ornstein. In 1916, Ernest Bloch, a composer from Geneva, came to the United States to conduct a tour with Maud Allan's dance company; the company collapsed, and he stayed in Ohio — first for a season, then for the rest of his life.
-        </p>
-        <p data-en>
-          Three biographies, three different answers to the same question: what does a musician do when he no longer has a homeland. Each of them eventually found a second one: Switzerland, America, a new America. The five chapters of this album are about that finding.
-        </p>
-        <p data-en>
-          Alexey Pudinov has lived in Germany for twenty years. In 2025 he changed his name to Alex Pudmann — first as an artist, then on his passport. <strong>Between Names</strong> is his first solo album and the public form of that decision. The album does not explain the decision; it lives it.
-        </p>
-      </div>
-      <div class="concept-text">
-        <blockquote class="quote">
-          <span data-ru>«Сменить имя — значит на секунду замолчать. Этот альбом — пять секунд молчания, которые до меня прожили Рахманинов, Орнштейн, Блох».</span>
-          <span data-en>"To change a name is to fall silent for a moment. This album is five moments of silence — the ones Rachmaninoff, Ornstein and Bloch lived before me."</span>
-          <span class="quote-caption" data-ru>Из заявления артиста</span>
-          <span class="quote-caption" data-en>Artist statement</span>
-        </blockquote>
-      </div>
+    <div class="concept-text">
+      <blockquote class="quote">
+        <span data-ru>«Сменить имя — значит на время замолчать. Этот альбом — способ понять себя через эмиграцию Рахманинова, Блоха и Орнштейна».</span>
+        <span data-en>"To change a name is to fall silent for a while. This album is a way of understanding myself through the emigrations of Rachmaninoff, Bloch, and Ornstein."</span>
+        <span class="quote-caption" data-ru>Алекс Пудманн</span>
+        <span class="quote-caption" data-en>Alex Pudmann</span>
+      </blockquote>
     </div>
   </div>
-</div>
+</section>
 
 <!-- ============================================================ -->
 <!-- THREE COMPOSERS (на бумажном фоне)                            -->
@@ -1586,8 +1492,8 @@ footer a:hover { color: var(--gold); }
         <span data-ru>Три композитора</span><span data-en>Three composers</span>
       </div>
       <h2 class="section-title reveal">
-        <span data-ru>Каждый из них прошёл <em>свою границу</em>.</span>
-        <span data-en>Each of them crossed <em>a border of his own</em>.</span>
+        <span data-ru>Каждый из них изменился <em>по-своему</em>.</span>
+        <span data-en>Each of them changed in <em>his own way</em>.</span>
       </h2>
       <p class="composers-intro reveal">
         <span data-ru>Три композитора, на музыке которых построен альбом, прожили разные эмиграции в разное время и в разные страны. Их жизни — три варианта эмиграции, которая для большинства превращается в долгий разрыв, а для музыканта — в творческое перерождение.</span>
@@ -1665,39 +1571,15 @@ footer a:hover { color: var(--gold); }
 </div>
 
 <!-- ============================================================ -->
-<!-- THE OBJECT (dark)                                              -->
+<!-- COVERS (dark, no headings)                                     -->
 <!-- ============================================================ -->
-<section id="object" class="object-section">
-  <div class="object-head">
-    <div class="head-left">
-      <div class="section-label reveal">
-        <span data-ru>Объект</span><span data-en>The object</span>
-      </div>
-      <h2 class="section-title reveal">
-        <span data-ru>Физический <em>артефакт</em>.</span>
-        <span data-en>A physical <em>artefact</em>.</span>
-      </h2>
-    </div>
-    <div class="head-right reveal">
-      <p data-ru>Альбом выходит на двойном виниле и CD: разворотный конверт, авторский рисунок на внутреннем развороте, печатный буклет с эссе. Сделан как вещь, которую можно держать в руках.</p>
-      <p data-en>The album is released on double LP and CD: gatefold sleeve, hand‑drawn inner art, printed liner essay. Designed as a piece of music you can hold.</p>
-    </div>
-  </div>
-
-  <div class="object-grid reveal-stagger">
-    <div class="object-card">
+<section class="covers-section">
+  <div class="covers-grid reveal-stagger">
+    <div class="cover">
       <img src="images/lp1.png" alt="Between Names — Cover and double LP" loading="lazy" />
-      <div class="object-meta">
-        <span><span class="label-num">01</span>&nbsp;·&nbsp;LP 1</span>
-        <span>33⅓ rpm</span>
-      </div>
     </div>
-    <div class="object-card">
-      <img src="images/lp2.png" alt="Between Names — Gatefold inner with artist statement" loading="lazy" />
-      <div class="object-meta">
-        <span><span class="label-num">02</span>&nbsp;·&nbsp;LP 2</span>
-        <span>33⅓ rpm</span>
-      </div>
+    <div class="cover">
+      <img src="images/lp2.png" alt="Between Names — Gatefold inner" loading="lazy" />
     </div>
   </div>
 </section>
@@ -1716,27 +1598,28 @@ footer a:hover { color: var(--gold); }
       <span data-ru>Программа</span><span data-en>Program</span>
     </div>
     <h2 class="section-title reveal">
-      <span data-ru>Пять глав. <em>Одна история.</em></span>
-      <span data-en>Five chapters. <em>One story.</em></span>
+      <span data-ru>Композиция <em>альбома</em>.</span>
+      <span data-en>The <em>composition</em> of the album.</span>
     </h2>
 
-    <p class="program-narrative reveal" data-ru>
-      Альбом построен как последовательность из пяти глав.
-      <strong>До</strong> — последний русский год Рахманинова, ещё до отъезда.
-      <strong>Разрыв</strong> — первое крупное высказывание уже в эмиграции, написанное человеком, который точно знает, что обратной дороги не будет.
-      <strong>Память</strong> — миниатюры, написанные эмигрантом в новой стране для его собственных детей, которые этой страны уже не помнят чужой.
-      <strong>Возвращение</strong> — голос, который снова находит себя после многолетнего молчания, в доме, специально построенном так, чтобы напоминать утраченный.
-      <strong>Растворение</strong> — финал, в котором перестают звучать сразу обе идентичности.
-    </p>
-
-    <p class="program-narrative reveal" data-en>
-      The album moves through five chapters.
-      <strong>Before</strong> — Rachmaninoff's last year in Russia, before he left.
-      <strong>Rupture</strong> — the first major statement made in exile, by someone who already knows there is no way back.
-      <strong>Memory</strong> — miniatures written by an emigrant in his new country for his own children, who no longer remember that country as foreign.
-      <strong>Return</strong> — a voice that finds itself again after years of silence, in a house specifically built to resemble the one that was lost.
-      <strong>Dissolution</strong> — the ending, in which both identities fall silent at once.
-    </p>
+    <div class="program-narrative reveal">
+      <div data-ru>
+        <p class="program-intro">Альбом построен как последовательность из пяти частей.</p>
+        <p><strong>До</strong> — последний русский год, ещё до отъезда.</p>
+        <p><strong>Растворение</strong> — потеря ориентации в эмиграции.</p>
+        <p><strong>Разрыв</strong> — первое крупное высказывание уже в эмиграции, написанное человеком, который точно знает, что обратной дороги не будет.</p>
+        <p><strong>Возвращение</strong> — голос, который снова находит себя после многолетнего молчания.</p>
+        <p><strong>Память</strong> — миниатюры, написанные эмигрантом в новой стране для его собственных детей, как воспоминание о жизни, которой больше не существует.</p>
+      </div>
+      <div data-en>
+        <p class="program-intro">The album moves through five parts.</p>
+        <p><strong>Before</strong> — the last Russian year, just before the departure.</p>
+        <p><strong>Dissolution</strong> — the loss of bearings in emigration.</p>
+        <p><strong>Rupture</strong> — the first major statement made in exile, by someone who already knows there is no way back.</p>
+        <p><strong>Return</strong> — a voice that finds itself again after years of silence.</p>
+        <p><strong>Memory</strong> — miniatures written by an emigrant in his new country for his own children, as memories of a life that no longer exists.</p>
+      </div>
+    </div>
 
     <div class="program-meta reveal">
       <span>
@@ -1744,8 +1627,8 @@ footer a:hover { color: var(--gold); }
         <span data-en><strong>Total running time</strong> &nbsp; about 67 minutes</span>
       </span>
       <span>
-        <span data-ru>Произведения объявляются ближе к релизу</span>
-        <span data-en>The individual works will be announced closer to the release</span>
+        <span data-ru>Произведения будут объявлены вместе с релизом альбома</span>
+        <span data-en>The individual works will be announced with the release of the album</span>
       </span>
     </div>
   </div>
@@ -1762,11 +1645,11 @@ footer a:hover { color: var(--gold); }
       </div>
       <h2 class="section-title">Alex <em>Pudmann</em></h2>
       <p data-ru>Алекс Пудман — пианист, живущий во Франкфурте-на-Майне. Родился в России, учился в Германии, Великобритании и России. До 2025 года выступал под именем Алексей Пудинов.</p>
-      <p data-ru>Первый педагог в России — Владимир Шаклеин (имя нужно подтвердить). В Европе и США среди его педагогов — Норма Фишер, Элизабет Леонская, Леон Флейшер, Ханс-Петер Штенцль, Бернхард Вец, Ангелика Меркле, Херберт Зайдель, Пауль Шенли. Solo-альбомы выходили на Kaleidos и Naxos. Среди ансамблевых проектов — TWO4PIANO и Frankfurt Piano Trio; среди партнёров по камерной музыке — Йоханнес Мозер, Бенедикт Клёкнер, Мишель Канн, Eliot Quartet, Malion Quartet.</p>
+      <p data-ru>Первый педагог в России — Людмила Зельмановна Смелянская (Уральский музыкальный колледж имени П. И. Чайковского, Екатеринбург). В Европе и США среди его педагогов — Норма Фишер, Элизабет Леонская, Леон Флейшер, Ханс-Петер Штенцль, Бернхард Вец, Ангелика Меркле, Херберт Зайдель, Пауль Шенли. Solo-альбомы выходили на Kaleidos и Naxos. Среди ансамблевых проектов — TWO4PIANO и Frankfurt Piano Trio; среди партнёров по камерной музыке — Йоханнес Мозер, Бенедикт Клёкнер, Мишель Канн, Eliot Quartet, Malion Quartet.</p>
       <p data-ru>Регулярные выступления — Rheingau Musik Festival, Pianofest in the Hamptons (artist in residence с 2022), Toronto Summer Music, Thüringer Bachwochen, Musikfestspiele Sanssouci. Концерты с BBC Philharmonic, Sinfonieorchester Gießen, RTV Slovenia Symphony Orchestra. После переименования эта биография остаётся той же; новое имя — обозначение точки, с которой пианист начинает новую запись и новую сценическую жизнь.</p>
 
       <p data-en>Alex Pudmann is a pianist based in Frankfurt am Main. Born in Russia, he studied in Germany, the United Kingdom and Russia. Until 2025 he performed under the name Alexey Pudinov.</p>
-      <p data-en>His first teacher in Russia was Vladimir Shaklein (name to be confirmed). In Europe and the United States his teachers have included Norma Fisher, Elisabeth Leonskaja, Leon Fleisher, Hans‑Peter Stenzl, Bernhard Wetz, Angelika Merkle, Herbert Seidel and Paul Schenly. His solo albums have appeared on Kaleidos and Naxos. Ensemble projects include TWO4PIANO and the Frankfurt Piano Trio; chamber partners include Johannes Moser, Benedict Klöckner, Michel Kann, Eliot Quartet and Malion Quartet.</p>
+      <p data-en>His first teacher in Russia was Lyudmila Zelmanovna Smelyanskaya (Ural Music College, Yekaterinburg). In Europe and the United States his teachers have included Norma Fisher, Elisabeth Leonskaja, Leon Fleisher, Hans‑Peter Stenzl, Bernhard Wetz, Angelika Merkle, Herbert Seidel and Paul Schenly. His solo albums have appeared on Kaleidos and Naxos. Ensemble projects include TWO4PIANO and the Frankfurt Piano Trio; chamber partners include Johannes Moser, Benedict Klöckner, Michel Kann, Eliot Quartet and Malion Quartet.</p>
       <p data-en>Recurring appearances at Rheingau Musik Festival, Pianofest in the Hamptons (artist in residence since 2022), Toronto Summer Music, Thüringer Bachwochen and Musikfestspiele Sanssouci. Performances with BBC Philharmonic, Sinfonieorchester Gießen and RTV Slovenia Symphony Orchestra. The biography remains the same after the name change; the new name marks a point of departure for a new recording and a new chapter of concert life.</p>
     </div>
     <div class="two-col-image reveal">
@@ -1786,7 +1669,7 @@ footer a:hover { color: var(--gold); }
 <div class="light-band" id="beyond">
   <div class="light-band-inner">
     <div class="section-label reveal">
-      <span data-ru>Программа концертов</span><span data-en>Beyond the record</span>
+      <span data-ru>Концерты и дискуссии</span><span data-en>Concerts and talks</span>
     </div>
     <h2 class="section-title reveal">
       <span data-ru>Не запись, <em>а программа</em>.</span>
@@ -1841,10 +1724,10 @@ footer a:hover { color: var(--gold); }
       </div>
       <div class="mie-credit-body">
         <p data-ru>
-          <strong>Саша Поливанов</strong> — куратор и главный редактор независимого онлайн‑медиа <a href="https://musicinemigration.com/about" target="_blank" rel="noopener">Music in Emigration</a>, посвящённого музыкальной эмиграции. <strong>Between Names</strong> — один из проектов «Музыки в эмиграции», на этот раз в формате альбома, концертной серии и печатного буклета.
+          <strong>Саша Поливанов</strong> — куратор и главный редактор независимого онлайн‑медиа <a href="https://musicinemigration.com/about" target="_blank" rel="noopener">Music in Emigration</a>, посвящённого музыкальной эмиграции.
         </p>
         <p data-en>
-          <strong>Sasha Polivanov</strong> is curator and editor‑in‑chief of <a href="https://musicinemigration.com/about" target="_blank" rel="noopener">Music in Emigration</a>, an independent online publication on musical emigration. <strong>Between Names</strong> is one of the projects of Music in Emigration, this time in the form of an album, a concert series and a printed booklet.
+          <strong>Sasha Polivanov</strong> is curator and editor‑in‑chief of <a href="https://musicinemigration.com/about" target="_blank" rel="noopener">Music in Emigration</a>, an independent online publication on musical emigration.
         </p>
       </div>
     </div>
