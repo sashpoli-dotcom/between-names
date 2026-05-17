@@ -87,16 +87,13 @@ a { color: inherit; text-decoration: none; }
   margin-left: calc(50% - 50vw);  /* break out of any parent max-width */
   position: relative;
 }
-/* плавный переход dark → light над каждой светлой полосой */
-.light-band::before {
+/* плавный переход dark → light — только для первой светлой полосы */
+.light-band--fade::before {
   content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  right: 0;
-  height: 140px;
+  display: block;
+  width: 100%;
+  height: 180px;
   background: linear-gradient(to bottom, var(--bg) 0%, var(--paper) 100%);
-  pointer-events: none;
 }
 .light-band-inner {
   max-width: var(--max);
@@ -1414,7 +1411,7 @@ footer a:hover { color: var(--gold); }
 <!-- ============================================================ -->
 <!-- NAME                                                          -->
 <!-- ============================================================ -->
-<div class="light-band">
+<div class="light-band light-band--fade">
   <section class="name-section reveal">
     <div class="section-label">
       <span data-ru>Имя</span><span data-en>Name</span>
@@ -1431,6 +1428,9 @@ footer a:hover { color: var(--gold); }
       </div>
     </div>
   </section>
+  <div class="portrait-full reveal">
+    <img src="images/photo-01.jpg" alt="Alex Pudmann at the piano" loading="lazy" />
+  </div>
 </div>
 
 <!-- ============================================================ -->
@@ -1564,11 +1564,6 @@ footer a:hover { color: var(--gold); }
 
     </div>
   </div>
-</div>
-
-<!-- portrait band 1 (Alex at the piano) -->
-<div class="portrait-full reveal">
-  <img src="images/photo-01.jpg" alt="Alex Pudmann at the piano" loading="lazy" />
 </div>
 
 <!-- ============================================================ -->
