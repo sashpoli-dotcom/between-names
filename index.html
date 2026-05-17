@@ -1,0 +1,2288 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Between Names — Alex Pudmann</title>
+<meta name="description" content="Between Names — a solo piano album by Alex Pudmann. An album about identity, emigration, and the music a pianist makes in his second country." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  /* dark palette (default / hero / portraits / object / contact) */
+  --bg: #14110f;
+  --bg-soft: #1c1815;
+  --bg-elev: #221d1a;
+  --ink: #f4ede2;
+  --ink-dim: #a69f94;
+  --ink-muted: #6b655d;
+  --gold: #c9a86a;
+  --gold-soft: #8a7548;
+  --line: #2e2823;
+
+  /* light palette (concept / composers / program / beyond — bumagas style) */
+  --paper: #ebe1d0;
+  --paper-soft: #e3d8c2;
+  --paper-line: #cbbfa6;
+  --ink-dark: #1a1612;
+  --ink-dark-dim: #5f574c;
+  --ink-dark-muted: #8a8273;
+  --gold-dark: #8a6a2c;
+
+  --display: 'Fraunces', 'Times New Roman', serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  --max: 1380px;
+  --gutter: clamp(20px, 4vw, 56px);
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(1200px 600px at 80% -10%, rgba(201,168,106,0.08), transparent 60%),
+    radial-gradient(900px 500px at -10% 60%, rgba(201,168,106,0.04), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* grain overlay over EVERYTHING incl. light sections */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/></svg>");
+  mix-blend-mode: overlay;
+}
+
+.mono { font-family: var(--mono); font-weight: 300; letter-spacing: 0.04em; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+
+/* ================================================================
+   LIGHT-SECTION BLOCK
+   Бумажный фон между тёмными блоками. Ломает контейнерную сетку
+   секций — растягивается на всю ширину окна, чтобы быть «полем».
+================================================================ */
+.light-band {
+  background: var(--paper);
+  color: var(--ink-dark);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);  /* break out of any parent max-width */
+  position: relative;
+}
+.light-band-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(80px, 14vh, 180px) var(--gutter);
+}
+.light-band .section-label { color: var(--gold-dark); }
+.light-band .section-label::before { background: var(--gold-dark); opacity: 0.5; }
+.light-band h2.section-title em { color: var(--gold-dark); }
+.light-band .concept-text p { color: var(--ink-dark-dim); }
+.light-band .concept-text p strong { color: var(--ink-dark); }
+.light-band .quote { color: var(--ink-dark); border-left-color: var(--gold-dark); }
+.light-band .quote-caption { color: var(--ink-dark-muted); }
+.light-band .program-row > div { border-bottom-color: var(--paper-line); }
+.light-band .program-num { color: var(--ink-dark-muted); }
+.light-band .program-work .composer { color: var(--gold-dark); }
+.light-band .program-work .note { color: var(--ink-dark-dim); }
+.light-band .program-time { color: var(--ink-dark-dim); }
+.light-band .program-total { color: var(--ink-dark-dim); border-bottom-color: var(--paper-line); }
+.light-band .program-total span:last-child { color: var(--ink-dark); }
+
+/* ================================================================
+   NAVIGATION + lang switcher
+================================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  padding: 22px var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: linear-gradient(180deg, rgba(20,17,15,0.92) 0%, rgba(20,17,15,0.6) 60%, transparent 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.nav-brand {
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.nav-vinyl {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, var(--gold) 0 12%, transparent 13%),
+    repeating-radial-gradient(circle at center, #0a0907 0px, #0a0907 1px, #1a1614 1px, #1a1614 2px);
+  border: 1px solid var(--line);
+  animation: spin 8s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { transition: color .3s ease; position: relative; }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 100%; height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .4s var(--ease);
+}
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* language switcher */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.lang-switch button {
+  background: transparent;
+  border: 0;
+  color: var(--ink-muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0;
+  transition: color .3s ease;
+}
+.lang-switch button:hover { color: var(--ink); }
+.lang-switch button.active { color: var(--gold); }
+.lang-switch .lang-sep {
+  color: var(--ink-muted);
+  opacity: 0.5;
+}
+
+@media (max-width: 760px) {
+  .nav-links { display: none; }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold-soft), var(--gold));
+  z-index: 101;
+  transition: width .1s linear;
+}
+
+/* ================================================================
+   HERO (без изменений визуально)
+================================================================ */
+.hero {
+  min-height: 100svh;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr auto;
+  align-items: center;
+  gap: clamp(20px, 3vw, 40px);
+  position: relative;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-top: 140px;
+  padding-bottom: 100px;
+}
+@media (max-width: 960px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 110px;
+    padding-bottom: 80px;
+  }
+}
+
+.hero-text { position: relative; z-index: 2; }
+
+.hero-meta {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: 24px;
+  color: var(--ink-muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 1s ease .2s forwards;
+}
+.hero-meta span::before {
+  content: "—";
+  margin-right: 10px;
+  color: var(--gold-soft);
+}
+.hero-meta span:first-child::before { display: none; }
+
+.hero-title {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(56px, 9vw, 140px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+  margin-bottom: 0.3em;
+}
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+.hero-title .word {
+  display: inline-block;
+  transform: translateY(120%);
+  animation: wordUp 1.1s var(--ease) forwards;
+}
+.hero-title .line:nth-child(1) .word { animation-delay: .15s; }
+.hero-title .line:nth-child(2) .word { animation-delay: .3s; }
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+
+.hero-sub {
+  margin-top: clamp(28px, 4vw, 44px);
+  max-width: 460px;
+  opacity: 0;
+  animation: fadeUp 1s ease .9s forwards;
+}
+.hero-sub-by {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 14px;
+}
+.hero-sub-by strong {
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  margin-left: 10px;
+}
+.hero-sub-desc {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}
+
+.hero-cta {
+  margin-top: 40px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 1s ease 1.2s forwards;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 28px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .4s var(--ease);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: translateX(-101%);
+  transition: transform .5s var(--ease);
+  z-index: -1;
+}
+.btn:hover { color: var(--bg); }
+.btn:hover::before { transform: translateX(0); }
+.btn--gold { border-color: var(--gold); color: var(--gold); }
+.btn--gold::before { background: var(--gold); }
+.btn--ghost { border-color: var(--ink-muted); color: var(--ink-dim); }
+.btn--ghost::before { background: var(--ink-dim); }
+
+/* hero audio panel — без изменений */
+.hero-audio-panel {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--mono);
+  color: var(--ink-muted);
+  align-self: start;
+  margin-top: 210px;
+  justify-self: center;
+  opacity: 0;
+  animation: heroArtIn 1.4s var(--ease) .7s forwards;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.hero-audio-panel-label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  text-align: center;
+  margin-bottom: 14px;
+  transition: color .4s ease;
+}
+.hero-audio-panel.is-on .hero-audio-panel-label {
+  color: var(--gold);
+}
+.hero-audio-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.hero-audio-toggle-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color .4s ease;
+}
+.hero-audio-toggle-label.lbl-off { color: var(--ink); }
+.hero-audio-toggle-label.lbl-on  { color: var(--ink-muted); }
+.hero-audio-panel.is-on .hero-audio-toggle-label.lbl-off { color: var(--ink-muted); }
+.hero-audio-panel.is-on .hero-audio-toggle-label.lbl-on  { color: var(--ink); }
+.hero-audio-toggle-track {
+  width: 36px;
+  height: 16px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  position: relative;
+  background: rgba(0,0,0,0.2);
+  transition: border-color .4s ease;
+}
+.hero-audio-toggle-knob {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--ink-muted);
+  transition: left .35s var(--ease), background .35s ease;
+}
+.hero-audio-panel.is-on .hero-audio-toggle-track {
+  border-color: var(--gold-soft);
+}
+.hero-audio-panel.is-on .hero-audio-toggle-knob {
+  left: calc(100% - 14px);
+  background: var(--gold);
+}
+.hero-audio-wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 14px;
+  margin-top: 16px;
+}
+.hero-audio-wave i {
+  display: block;
+  width: 2px;
+  height: 1px;
+  background: #3a342e;
+  transition: background .4s ease;
+}
+.hero-audio-panel.is-playing .hero-audio-wave i {
+  background: var(--gold);
+  animation: wfpulse 1.2s ease-in-out infinite;
+}
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(1)  { animation-delay: 0s;    }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(2)  { animation-delay: .08s;  }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(3)  { animation-delay: .16s;  }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(4)  { animation-delay: .24s;  }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(5)  { animation-delay: .32s;  }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(6)  { animation-delay: .4s;   }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(7)  { animation-delay: .48s;  }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(8)  { animation-delay: .56s;  }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(9)  { animation-delay: .64s;  }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(10) { animation-delay: .72s;  }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(11) { animation-delay: .8s;   }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(12) { animation-delay: .88s;  }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(13) { animation-delay: .96s;  }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(14) { animation-delay: 1.04s; }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(15) { animation-delay: 1.12s; }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(16) { animation-delay: 1.2s;  }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(17) { animation-delay: 1.28s; }
+.hero-audio-panel.is-playing .hero-audio-wave i:nth-child(18) { animation-delay: 1.36s; }
+
+@keyframes wfpulse {
+  0%, 100% { height: 2px; }
+  50%      { height: 12px; }
+}
+
+@media (max-width: 960px) {
+  .hero-audio-panel {
+    justify-self: center;
+    align-self: center;
+    margin: 12px auto 0;
+  }
+}
+
+.hero-audio-disc-wrap {
+  position: relative;
+  width: min(38vw, 500px);
+  aspect-ratio: 1 / 1;
+  justify-self: end;
+  align-self: start;
+  margin-top: 20px;
+  cursor: pointer;
+  opacity: 0;
+  animation: heroArtIn 1.4s var(--ease) .5s forwards;
+  pointer-events: none;
+}
+@media (max-width: 960px) {
+  .hero-audio-disc-wrap {
+    width: min(72vw, 440px);
+    margin: 20px auto 0;
+    justify-self: center;
+    transform: none;
+  }
+}
+@keyframes heroArtIn {
+  from { opacity: 0; transform: translateY(40px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+.hero-audio-disc {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-image: url("images/audio-disc.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: 50% 50%;
+  opacity: 0.4;
+  transition:
+    opacity .9s var(--ease),
+    filter .9s var(--ease),
+    box-shadow .9s var(--ease);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.55);
+  pointer-events: auto;
+}
+.hero-audio-disc::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center,
+    transparent 0 58%,
+    rgba(20,17,15,0.18) 100%
+  );
+}
+.hero-audio-disc-wrap:hover .hero-audio-disc,
+.hero-audio-disc-wrap.is-playing .hero-audio-disc {
+  opacity: 1;
+  filter: brightness(1.04);
+  box-shadow: 0 36px 70px rgba(0,0,0,0.6);
+}
+.hero-audio-disc-wrap:focus,
+.hero-audio-disc-wrap:focus-visible,
+.hero-audio-disc:focus,
+.hero-audio-disc:focus-visible {
+  outline: none;
+}
+.hero-audio-caption {
+  position: absolute;
+  left: 50%;
+  bottom: -32px;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  transition: color .4s ease, opacity .4s ease;
+  pointer-events: auto;
+}
+.hero-audio-disc-wrap:hover .hero-audio-caption,
+.hero-audio-disc-wrap.is-playing .hero-audio-caption {
+  color: var(--gold);
+}
+.hero-audio-caption::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--ink-muted);
+  margin-right: 10px;
+  vertical-align: 1px;
+  transition: background .4s ease, box-shadow .4s ease;
+}
+.hero-audio-disc-wrap.is-playing .hero-audio-caption::before {
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: var(--gutter);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeUp 1s ease 1.5s forwards;
+  z-index: 3;
+}
+.hero-scroll::after {
+  content: "";
+  width: 40px; height: 1px;
+  background: var(--ink-muted);
+  animation: scrollLine 2s ease-in-out infinite;
+  transform-origin: left;
+}
+
+@keyframes wordUp { to { transform: translateY(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scrollLine { 0%,100% { transform: scaleX(0.3); } 50% { transform: scaleX(1); } }
+
+/* ================================================================
+   SECTIONS
+================================================================ */
+section {
+  padding: clamp(80px, 14vh, 180px) var(--gutter);
+  max-width: var(--max);
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-label::before {
+  content: "";
+  width: 40px;
+  height: 1px;
+  background: var(--gold-soft);
+}
+
+h2.section-title {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(40px, 6.5vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+  margin-bottom: 0.6em;
+  font-variation-settings: "opsz" 72;
+}
+h2.section-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* ================================================================
+   MORPH — реорганизован как «архивная карточка»
+================================================================ */
+.morph-section {
+  padding: clamp(100px, 18vh, 220px) var(--gutter);
+  text-align: center;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.morph-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 40px;
+}
+.morph-wrap {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(38px, 7vw, 96px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+}
+.morph-line {
+  display: block;
+  position: relative;
+  height: 1.2em;
+}
+.morph-from, .morph-to {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  transition: opacity 1.4s var(--ease), filter 1.4s var(--ease), transform 1.4s var(--ease);
+}
+.morph-from {
+  color: var(--ink-muted);
+  font-style: italic;
+  opacity: 1;
+  filter: blur(0);
+}
+.morph-to {
+  color: var(--ink);
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateX(-50%) translateY(20px);
+}
+.morph-to em { color: var(--gold); font-style: italic; }
+.morph-section.in-view .morph-from {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateX(-50%) translateY(-20px);
+}
+.morph-section.in-view .morph-to {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(-50%) translateY(0);
+  transition-delay: .4s;
+}
+/* архивная карточка под морфом — это и серьёзно, и информативно */
+.morph-card {
+  margin: 80px auto 0;
+  max-width: 560px;
+  border: 1px solid var(--line);
+  padding: 28px 36px;
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 2;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+  opacity: 0;
+  transition: opacity 1s ease 1.6s, transform 1s var(--ease) 1.6s;
+  transform: translateY(20px);
+}
+.morph-section.in-view .morph-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+.morph-card-row {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 16px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+.morph-card-row:last-child { border-bottom: 0; }
+.morph-card-key {
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+}
+.morph-card-val {
+  color: var(--ink);
+  font-family: var(--mono);
+}
+.morph-card-val em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+/* ================================================================
+   CONCEPT (на бумажном фоне)
+================================================================ */
+.concept {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 8vw, 140px);
+  align-items: start;
+}
+@media (max-width: 860px) { .concept { grid-template-columns: 1fr; } }
+
+.concept-text p {
+  color: var(--ink-dim);
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 1.4em;
+  max-width: 46ch;
+}
+.concept-text p strong {
+  color: var(--ink);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.quote {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.3;
+  color: var(--ink);
+  padding-left: 28px;
+  border-left: 1px solid var(--gold-soft);
+  margin-top: 40px;
+}
+.quote-caption {
+  display: block;
+  margin-top: 18px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-style: normal;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* ================================================================
+   THREE COMPOSERS — новая секция, на бумажном фоне
+================================================================ */
+.composers-head {
+  margin-bottom: 60px;
+}
+.composers-intro {
+  max-width: 64ch;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink-dark-dim);
+  margin-top: 0;
+}
+.composers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  margin-top: 60px;
+}
+@media (max-width: 860px) { .composers-grid { grid-template-columns: 1fr; } }
+
+.composer-card {
+  display: flex;
+  flex-direction: column;
+}
+.composer-card .composer-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--paper-soft);
+  margin-bottom: 24px;
+  position: relative;
+}
+.composer-card .composer-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+  transition: filter 1s ease, transform 1.6s var(--ease);
+}
+.composer-card:hover .composer-photo img {
+  filter: grayscale(0.85) contrast(1);
+  transform: scale(1.03);
+}
+.composer-name {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: var(--ink-dark);
+  margin-bottom: 4px;
+}
+.composer-dates {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 20px;
+}
+.composer-bio {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-dark-dim);
+}
+.composer-bio em {
+  color: var(--ink-dark);
+  font-style: italic;
+}
+
+/* ================================================================
+   THE OBJECT
+================================================================ */
+.object-section {
+  padding: clamp(80px, 14vh, 180px) var(--gutter);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.object-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+.object-head .head-left { flex: 1; min-width: 280px; }
+.object-head .head-right {
+  max-width: 380px;
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.object-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 760px) {
+  .object-grid { grid-template-columns: 1fr; }
+}
+.object-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  aspect-ratio: 4 / 3;
+}
+.object-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.6s var(--ease), filter 1s ease;
+  filter: brightness(0.92);
+}
+.object-card:hover img {
+  transform: scale(1.04);
+  filter: brightness(1);
+}
+.object-card .object-meta {
+  position: absolute;
+  left: 0; bottom: 0;
+  padding: 24px 28px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: linear-gradient(0deg, rgba(20,17,15,0.85) 0%, transparent 100%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+  pointer-events: none;
+}
+.object-card .object-meta .label-num {
+  color: var(--gold);
+}
+
+/* ================================================================
+   PORTRAIT BAND
+================================================================ */
+.portrait-full {
+  width: 100%;
+  padding: 0;
+  max-width: none;
+  margin: 0;
+  overflow: hidden;
+}
+.portrait-full img {
+  width: 100%;
+  object-fit: cover;
+  max-height: 88vh;
+  filter: brightness(0.82) contrast(1.05);
+  transition: transform 1.4s var(--ease), filter 1s ease;
+  transform: scale(1.06);
+}
+.portrait-full.in-view img {
+  filter: brightness(0.95) contrast(1);
+  transform: scale(1);
+}
+
+/* ================================================================
+   PROGRAM — на бумажном фоне
+================================================================ */
+.program-narrative {
+  max-width: 64ch;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--ink-dark-dim);
+  margin-bottom: 60px;
+}
+.program-narrative strong {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  font-weight: 500;
+  display: inline-block;
+  margin-right: 6px;
+}
+.program-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dark-muted);
+  border-top: 1px solid var(--paper-line);
+  border-bottom: 1px solid var(--paper-line);
+  padding: 28px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.program-meta strong {
+  color: var(--ink-dark);
+  font-weight: 500;
+}
+
+/* ================================================================
+   TWO-COL ARTIST
+================================================================ */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+@media (max-width: 860px) {
+  .two-col { grid-template-columns: 1fr; }
+}
+.two-col-image {
+  overflow: hidden;
+}
+.two-col-image img {
+  width: 100%;
+  filter: brightness(0.9) contrast(1.02);
+  transition: transform 1.6s var(--ease), filter 1s ease;
+}
+.two-col-image:hover img { transform: scale(1.04); }
+.two-col-body p {
+  color: var(--ink-dim);
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 1.2em;
+  max-width: 48ch;
+}
+
+/* ================================================================
+   BEYOND — за пределами диска (light band)
+================================================================ */
+.beyond-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: start;
+  margin-top: 40px;
+}
+@media (max-width: 860px) {
+  .beyond-grid { grid-template-columns: 1fr; }
+}
+.beyond-text p {
+  color: var(--ink-dark-dim);
+  font-size: 17px;
+  line-height: 1.75;
+  margin-bottom: 1.3em;
+  max-width: 56ch;
+}
+.beyond-text p strong {
+  color: var(--ink-dark);
+  font-weight: 400;
+}
+.beyond-text a {
+  color: var(--gold-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color .3s ease;
+}
+.beyond-text a:hover {
+  color: var(--ink-dark);
+}
+.beyond-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.beyond-card {
+  background: var(--paper-soft);
+  padding: 24px 26px;
+  border-left: 1px solid var(--gold-dark);
+}
+.beyond-card .num {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 10px;
+}
+.beyond-card h4 {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--ink-dark);
+  margin-bottom: 8px;
+}
+.beyond-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-dark-dim);
+  margin: 0;
+}
+
+/* mie-credit — кураторский кредит на бумажном фоне */
+.mie-credit {
+  margin-top: 60px;
+  padding-top: 32px;
+  border-top: 1px solid var(--paper-line);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .mie-credit { grid-template-columns: 1fr; }
+}
+.mie-credit-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+.mie-credit-body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-dark-dim);
+  max-width: 64ch;
+}
+.mie-credit-body strong {
+  color: var(--ink-dark);
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* ================================================================
+   SUPPORT
+================================================================ */
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 60px;
+}
+@media (max-width: 860px) { .support-grid { grid-template-columns: 1fr; } }
+
+.support-cell {
+  background: var(--bg);
+  padding: 44px 32px;
+  transition: background .4s ease;
+}
+.support-cell:hover { background: var(--bg-soft); }
+.support-cell .num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.support-cell h3 {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+.support-cell p {
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.support-bottom {
+  margin-top: 40px;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--ink-dim);
+}
+.support-bottom a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+/* ================================================================
+   CONTACT
+================================================================ */
+.contact {
+  background: var(--bg-soft);
+  max-width: none;
+  padding-left: 0; padding-right: 0;
+  border-top: 1px solid var(--line);
+}
+.contact-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(80px, 12vh, 140px) var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+}
+@media (max-width: 860px) { .contact-inner { grid-template-columns: 1fr; } }
+.contact-intro p {
+  color: var(--ink-dim);
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 1.2em;
+  max-width: 42ch;
+}
+.contact-details {
+  margin-top: 40px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  line-height: 2;
+}
+.contact-details strong {
+  display: block;
+  color: var(--ink-muted);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-top: 18px;
+}
+form.contact-form { display: grid; gap: 24px; }
+.field { position: relative; }
+.field label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 10px;
+}
+.field input, .field textarea, .field select {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color .3s ease;
+  border-radius: 0;
+}
+.field textarea {
+  resize: vertical;
+  min-height: 90px;
+  font-family: var(--display);
+}
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23a69f94' fill='none' stroke-width='1.2'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  padding-right: 28px;
+  cursor: pointer;
+}
+.field select option { background: var(--bg); color: var(--ink); }
+.field input:focus, .field textarea:focus, .field select:focus { border-color: var(--gold); }
+.field input::placeholder, .field textarea::placeholder { color: var(--ink-muted); font-style: italic; }
+.submit-btn {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  padding: 18px 32px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .4s var(--ease);
+  justify-self: start;
+  position: relative;
+  overflow: hidden;
+}
+.submit-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: translateX(-101%);
+  transition: transform .4s var(--ease);
+  z-index: -1;
+}
+.submit-btn:hover { color: var(--bg); }
+.submit-btn:hover::before { transform: translateX(0); }
+.submit-btn:disabled { opacity: 0.5; cursor: wait; }
+.form-status {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-top: 12px;
+  min-height: 16px;
+}
+
+/* ================================================================
+   FOOTER
+================================================================ */
+footer {
+  padding: 40px var(--gutter);
+  max-width: var(--max);
+  margin: 0 auto;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+footer a { color: var(--ink-dim); transition: color .3s ease; }
+footer a:hover { color: var(--gold); }
+.footer-brand { color: var(--ink); }
+
+/* ================================================================
+   REVEAL ON SCROLL
+================================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .9s ease, transform .9s var(--ease);
+}
+.reveal-stagger.in-view > * { opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(1) { transition-delay: .05s; }
+.reveal-stagger.in-view > *:nth-child(2) { transition-delay: .15s; }
+.reveal-stagger.in-view > *:nth-child(3) { transition-delay: .25s; }
+.reveal-stagger.in-view > *:nth-child(4) { transition-delay: .35s; }
+.reveal-stagger.in-view > *:nth-child(5) { transition-delay: .45s; }
+.reveal-stagger.in-view > *:nth-child(6) { transition-delay: .55s; }
+
+/* ================================================================
+   LANGUAGE — hide one or the other
+================================================================ */
+[data-lang="ru"] [data-en] { display: none; }
+[data-lang="en"] [data-ru] { display: none; }
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .nav-vinyl { animation: none !important; }
+}
+</style>
+</head>
+<body data-lang="ru">
+
+<div class="scroll-progress" id="progress"></div>
+
+<nav class="nav">
+  <div class="nav-brand mono">
+    <span class="nav-vinyl" aria-hidden="true"></span>
+    Between Names
+  </div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#concept" data-ru>Концепция</a><a href="#concept" data-en>Concept</a>
+      <a href="#composers" data-ru>Композиторы</a><a href="#composers" data-en>Composers</a>
+      <a href="#object" data-ru>Объект</a><a href="#object" data-en>The object</a>
+      <a href="#program" data-ru>Программа</a><a href="#program" data-en>Program</a>
+      <a href="#artist" data-ru>Артист</a><a href="#artist" data-en>Artist</a>
+      <a href="#beyond" data-ru>Программа концертов</a><a href="#beyond" data-en>Beyond the record</a>
+      <a href="#support" data-ru>Поддержка</a><a href="#support" data-en>Support</a>
+    </div>
+    <div class="lang-switch" id="langSwitch">
+      <button type="button" data-set-lang="ru" class="active">RU</button>
+      <span class="lang-sep">·</span>
+      <button type="button" data-set-lang="en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================ -->
+<!-- HERO                                                          -->
+<!-- ============================================================ -->
+<header class="hero">
+  <div class="hero-text">
+    <div class="hero-meta">
+      <span>
+        <span data-ru>Сольный фортепианный альбом</span>
+        <span data-en>Solo piano album</span>
+      </span>
+      <span>
+        <span data-ru>CD и двойной винил</span>
+        <span data-en>CD &amp; double LP</span>
+      </span>
+      <span>
+        <span data-ru>Выход 2027</span>
+        <span data-en>Release 2027</span>
+      </span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line"><span class="word">Between</span></span>
+      <span class="line"><span class="word"><em>Names</em></span></span>
+    </h1>
+
+    <div class="hero-sub">
+      <div class="hero-sub-by">
+        <span data-ru>Исполняет</span><span data-en>Performed by</span>
+        <strong>Alex Pudmann</strong>
+      </div>
+      <div class="hero-sub-desc">
+        <span data-ru>Сольная фортепианная запись о трёх композиторах, которые покинули родину и нашли голос на чужом языке, — и о пианисте, который, спустя двадцать лет в Германии, впервые выпускает диск под новым именем.</span>
+        <span data-en>A solo piano recording about three composers who left home and found a voice in a second country — and a pianist who, after twenty years in Germany, releases his first record under a new name.</span>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#support" class="btn btn--gold">
+        <span data-ru>Поддержать запись</span>
+        <span data-en>Support the recording</span>
+      </a>
+      <a href="#concept" class="btn btn--ghost">
+        <span data-ru>Концепция</span>
+        <span data-en>Read the concept</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-audio-panel" id="audioPanel">
+    <div class="hero-audio-panel-label">
+      <span data-ru>Звук</span><span data-en>Sound</span>
+    </div>
+    <div class="hero-audio-toggle" id="audioToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Sound on/off">
+      <span class="hero-audio-toggle-label lbl-off">
+        <span data-ru>Выкл</span><span data-en>Off</span>
+      </span>
+      <div class="hero-audio-toggle-track">
+        <div class="hero-audio-toggle-knob"></div>
+      </div>
+      <span class="hero-audio-toggle-label lbl-on">
+        <span data-ru>Вкл</span><span data-en>On</span>
+      </span>
+    </div>
+    <div class="hero-audio-wave" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+  </div>
+
+  <div class="hero-audio-disc-wrap" id="audioDisc" role="button" tabindex="0" aria-label="Play album preview">
+    <div class="hero-audio-disc" aria-hidden="true"></div>
+    <div class="hero-audio-caption" id="audioCaption">
+      <span data-ru>Наведите, чтобы послушать</span>
+      <span data-en>Hover to listen</span>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span data-ru>Прокрутить</span><span data-en>Scroll</span>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- MORPH + ARCHIVE CARD                                          -->
+<!-- ============================================================ -->
+<div class="morph-section reveal">
+  <div class="morph-label">
+    <span data-ru>Документ</span><span data-en>The record</span>
+  </div>
+  <div class="morph-wrap">
+    <span class="morph-line">
+      <span class="morph-from">Алексей Пудинов</span>
+      <span class="morph-to">Alex <em>Pudmann</em></span>
+    </span>
+  </div>
+
+  <div class="morph-card mono">
+    <div class="morph-card-row">
+      <span class="morph-card-key">
+        <span data-ru>Прежнее имя</span><span data-en>Former name</span>
+      </span>
+      <span class="morph-card-val">Алексей Пудинов / Alexey Pudinov</span>
+    </div>
+    <div class="morph-card-row">
+      <span class="morph-card-key">
+        <span data-ru>Новое имя</span><span data-en>New name</span>
+      </span>
+      <span class="morph-card-val"><em>Alex Pudmann</em></span>
+    </div>
+    <div class="morph-card-row">
+      <span class="morph-card-key">
+        <span data-ru>Юрисдикция</span><span data-en>Jurisdiction</span>
+      </span>
+      <span class="morph-card-val">
+        <span data-ru>Германия</span><span data-en>Germany</span>
+      </span>
+    </div>
+    <div class="morph-card-row">
+      <span class="morph-card-key">
+        <span data-ru>Документ</span><span data-en>Document</span>
+      </span>
+      <span class="morph-card-val">
+        <span data-ru>Свидетельство о смене имени, 2025</span>
+        <span data-en>Certificate of name change, 2025</span>
+      </span>
+    </div>
+    <div class="morph-card-row">
+      <span class="morph-card-key">
+        <span data-ru>Музыкальная запись</span><span data-en>Musical record</span>
+      </span>
+      <span class="morph-card-val">Between Names · 2 LP &amp; CD · 2027</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CONCEPT (на бумажном фоне)                                    -->
+<!-- ============================================================ -->
+<div class="light-band" id="concept">
+  <div class="light-band-inner">
+    <div class="section-label reveal">
+      <span data-ru>Концепция</span><span data-en>The concept</span>
+    </div>
+    <h2 class="section-title reveal">
+      <span data-ru>Альбом о том, что происходит <em>между двумя версиями</em> одного музыканта.</span>
+      <span data-en>A recording about <em>what happens</em> between two versions of the same musician.</span>
+    </h2>
+
+    <div class="concept reveal-stagger">
+      <div class="concept-text">
+        <p data-ru>
+          В декабре 1917 года Сергей Рахманинов уехал из России и почти на четырнадцать лет перестал писать сольную фортепианную музыку. Тринадцатилетний Лев Орнштейн из Кременчуга оказался в Нью-Йорке около 1907 года и постепенно превратился в Leo Ornstein. В 1916-м Эрнест Блох, женевский композитор, приехал в США на гастроли с танцевальной труппой Мод Аллан; компания распалась, и он остался в Огайо — сначала на сезон, потом до конца жизни.
+        </p>
+        <p data-ru>
+          Три биографии — три разных ответа на один и тот же вопрос: что делает музыкант, когда у него больше нет родины. Каждый из них в итоге обрёл вторую: Швейцарию, Америку, новую Америку. Программа альбома — пять глав об этом нахождении.
+        </p>
+        <p data-ru>
+          Алексей Пудинов прожил в Германии двадцать лет. В 2025 году он сменил имя на Alex Pudmann — сначала артистически, потом в документах. <strong>Between Names</strong> — его первый сольный альбом и публичное оформление этого решения. Альбом не объясняет это решение, а проживает его.
+        </p>
+
+        <p data-en>
+          In December 1917, Sergei Rachmaninoff left Russia and stopped writing solo piano music for almost fourteen years. The thirteen-year-old Lev Ornshteyn arrived in New York from Kremenchuk around 1907 and slowly became Leo Ornstein. In 1916, Ernest Bloch, a composer from Geneva, came to the United States to conduct a tour with Maud Allan's dance company; the company collapsed, and he stayed in Ohio — first for a season, then for the rest of his life.
+        </p>
+        <p data-en>
+          Three biographies, three different answers to the same question: what does a musician do when he no longer has a homeland. Each of them eventually found a second one: Switzerland, America, a new America. The five chapters of this album are about that finding.
+        </p>
+        <p data-en>
+          Alexey Pudinov has lived in Germany for twenty years. In 2025 he changed his name to Alex Pudmann — first as an artist, then on his passport. <strong>Between Names</strong> is his first solo album and the public form of that decision. The album does not explain the decision; it lives it.
+        </p>
+      </div>
+      <div class="concept-text">
+        <blockquote class="quote">
+          <span data-ru>«Сменить имя — значит на секунду замолчать. Этот альбом — пять секунд молчания, которые до меня прожили Рахманинов, Орнштейн, Блох».</span>
+          <span data-en>"To change a name is to fall silent for a moment. This album is five moments of silence — the ones Rachmaninoff, Ornstein and Bloch lived before me."</span>
+          <span class="quote-caption" data-ru>Из заявления артиста</span>
+          <span class="quote-caption" data-en>Artist statement</span>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- THREE COMPOSERS (на бумажном фоне)                            -->
+<!-- ============================================================ -->
+<div class="light-band" id="composers">
+  <div class="light-band-inner">
+    <div class="composers-head">
+      <div class="section-label reveal">
+        <span data-ru>Три композитора</span><span data-en>Three composers</span>
+      </div>
+      <h2 class="section-title reveal">
+        <span data-ru>Каждый из них прошёл <em>свою границу</em>.</span>
+        <span data-en>Each of them crossed <em>a border of his own</em>.</span>
+      </h2>
+      <p class="composers-intro reveal">
+        <span data-ru>Три композитора, на музыке которых построен альбом, прожили разные эмиграции в разное время и в разные страны. Их жизни — три варианта эмиграции, которая для большинства превращается в долгий разрыв, а для музыканта — в творческое перерождение.</span>
+        <span data-en>The three composers behind this album lived through different emigrations, in different times and to different countries. Their lives are three versions of an emigration that, for most people, becomes a long rupture — and, for a musician, a slow act of rebirth.</span>
+      </p>
+    </div>
+
+    <div class="composers-grid reveal-stagger">
+
+      <article class="composer-card">
+        <div class="composer-photo">
+          <img src="images/composer-rachmaninoff.jpg"
+               alt="Sergei Rachmaninoff"
+               data-replace="public-domain-portrait"
+               loading="lazy" />
+        </div>
+        <div class="composer-name">
+          <span data-ru>Сергей Рахманинов</span>
+          <span data-en>Sergei Rachmaninoff</span>
+        </div>
+        <div class="composer-dates">1873 — 1943</div>
+        <div class="composer-bio">
+          <p data-ru>
+            Уехал из России в декабре 1917-го уже мировой звездой — и как композитор, и как пианист-виртуоз. Следующие четырнадцать лет, с 1917-го по 1931-й, не написал ни одной сольной фортепианной пьесы; именно того жанра, в котором его узнавали залы по обе стороны океана. Молчание оборвалось летом 1931 года, на купленном участке у деревни Hertenstein, на берегу Люцернского озера. Виллу он назвал <em>Senar</em> — по первым буквам имён Сергей и Наталья и своей фамилии. На альбоме звучит и его последний год в России, и первое лето в Швейцарии.
+          </p>
+          <p data-en>
+            By the time he left Russia in December 1917, he was already a global figure — both as a composer and as a touring virtuoso. For the next fourteen years he wrote no solo piano music at all: not a single piece in the genre that had made him a household name on both sides of the Atlantic. The silence ended in the summer of 1931, on a piece of land he had bought near Hertenstein on Lake Lucerne. He named the villa <em>Senar</em>, from the first letters of Sergei, Natalia and Rachmaninoff. The album includes both his last year in Russia and his first summer in Switzerland.
+          </p>
+        </div>
+      </article>
+
+      <article class="composer-card">
+        <div class="composer-photo">
+          <img src="images/composer-ornstein.jpg"
+               alt="Leo Ornstein"
+               data-replace="public-domain-portrait"
+               loading="lazy" />
+        </div>
+        <div class="composer-name">Leo Ornstein</div>
+        <div class="composer-dates">
+          <span data-ru>ок. 1893 — 2002</span>
+          <span data-en>c. 1893 — 2002</span>
+        </div>
+        <div class="composer-bio">
+          <p data-ru>
+            Родился в Кременчуге Полтавской губернии, точный год рождения неизвестен (около 1893 года). Учился у Глазунова и Есиповой в Петербургской консерватории. Около 1907-го семья эмигрировала в США, спасаясь от погромов. Лев Орнштейн превратился в Leo Ornstein. К середине 1910-х — главный enfant terrible трансатлантического авангарда, тонкие кластеры за десятилетия до Кейджа; концерт в Лондоне в марте 1914 года едва не закончился беспорядками. К началу 1920-х Орнштейн делает обратный поворот — к плотному, романтическому, более внутреннему языку. К сорока годам уходит со сцены и продолжает сочинять до 1990 года. Прожил больше ста лет.
+          </p>
+          <p data-en>
+            Born in Kremenchuk, then in the Poltava Governorate of the Russian Empire. His exact birth year is not certain — likely around 1893. He studied with Glazunov and Yesipova at the Saint Petersburg Conservatory. Around 1907 his family emigrated to the United States, fleeing the pogroms. Lev Ornshteyn became Leo Ornstein. By the mid‑1910s he was the leading <em>enfant terrible</em> of the transatlantic avant‑garde — writing dense tone‑clusters decades before Cage. His March 1914 London concert nearly ended in a riot. In the early 1920s he turned in the opposite direction, toward a denser, more romantic, more interior language. He withdrew from the concert stage by forty, but kept composing until 1990. He lived for more than a hundred years.
+          </p>
+        </div>
+      </article>
+
+      <article class="composer-card">
+        <div class="composer-photo">
+          <img src="images/composer-bloch.jpg"
+               alt="Ernest Bloch"
+               data-replace="public-domain-portrait"
+               loading="lazy" />
+        </div>
+        <div class="composer-name">Ernest Bloch</div>
+        <div class="composer-dates">1880 — 1959</div>
+        <div class="composer-bio">
+          <p data-ru>
+            Родился в Женеве, учился у Жак-Далькроза, Изаи, во Франкфурте и Мюнхене. Профессор Женевской консерватории с 1911-го. В 1916-м приехал в США дирижировать гастролями танцевальной труппы Мод Аллан; труппа распалась, Блох остался в Огайо. В 1920-м возглавил Cleveland Institute of Music. 1923 год — творческий взрыв: одна за другой написаны крупные фортепианные пьесы, среди них десять миниатюр, посвящённых его дочерям Сюзанне и Люсьен и педагогам их кливлендской школы. В 1930-м Блох на несколько лет вернулся в Швейцарию и Францию, но из-за нацизма был вынужден снова уехать. С 1939-го окончательно жил в США.
+          </p>
+          <p data-en>
+            Born in Geneva. He studied with Jaques‑Dalcroze in Geneva, Ysaÿe in Brussels, and later in Frankfurt and Munich. Professor at the Geneva Conservatory from 1911. In 1916 he travelled to the United States to conduct Maud Allan's dance tour; the company fell apart, and Bloch stayed on in Ohio. In 1920 he took over the Cleveland Institute of Music. The year 1923 was a creative explosion — a series of major piano pieces, among them ten miniatures dedicated to his daughters Suzanne and Lucienne and to their Cleveland teachers. In 1930 Bloch returned to Switzerland and France for several years, but the rise of Nazism forced him back to the United States, where he lived from 1939 until his death.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- THE OBJECT (dark)                                              -->
+<!-- ============================================================ -->
+<section id="object" class="object-section">
+  <div class="object-head">
+    <div class="head-left">
+      <div class="section-label reveal">
+        <span data-ru>Объект</span><span data-en>The object</span>
+      </div>
+      <h2 class="section-title reveal">
+        <span data-ru>Физический <em>артефакт</em>.</span>
+        <span data-en>A physical <em>artefact</em>.</span>
+      </h2>
+    </div>
+    <div class="head-right reveal">
+      <p data-ru>Альбом выходит на двойном виниле и CD: разворотный конверт, авторский рисунок на внутреннем развороте, печатный буклет с эссе. Сделан как вещь, которую можно держать в руках.</p>
+      <p data-en>The album is released on double LP and CD: gatefold sleeve, hand‑drawn inner art, printed liner essay. Designed as a piece of music you can hold.</p>
+    </div>
+  </div>
+
+  <div class="object-grid reveal-stagger">
+    <div class="object-card">
+      <img src="images/lp1.png" alt="Between Names — Cover and double LP" loading="lazy" />
+      <div class="object-meta">
+        <span><span class="label-num">01</span>&nbsp;·&nbsp;LP 1</span>
+        <span>33⅓ rpm</span>
+      </div>
+    </div>
+    <div class="object-card">
+      <img src="images/lp2.png" alt="Between Names — Gatefold inner with artist statement" loading="lazy" />
+      <div class="object-meta">
+        <span><span class="label-num">02</span>&nbsp;·&nbsp;LP 2</span>
+        <span>33⅓ rpm</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- portrait band 1 -->
+<div class="portrait-full reveal">
+  <img src="images/photo-01.jpg" alt="Alex Pudmann at the piano" loading="lazy" />
+</div>
+
+<!-- ============================================================ -->
+<!-- PROGRAM (light band, text only)                                -->
+<!-- ============================================================ -->
+<div class="light-band" id="program">
+  <div class="light-band-inner">
+    <div class="section-label reveal">
+      <span data-ru>Программа</span><span data-en>Program</span>
+    </div>
+    <h2 class="section-title reveal">
+      <span data-ru>Пять глав. <em>Одна история.</em></span>
+      <span data-en>Five chapters. <em>One story.</em></span>
+    </h2>
+
+    <p class="program-narrative reveal" data-ru>
+      Альбом построен как последовательность из пяти глав.
+      <strong>До</strong> — последний русский год Рахманинова, ещё до отъезда.
+      <strong>Разрыв</strong> — первое крупное высказывание уже в эмиграции, написанное человеком, который точно знает, что обратной дороги не будет.
+      <strong>Память</strong> — миниатюры, написанные эмигрантом в новой стране для его собственных детей, которые этой страны уже не помнят чужой.
+      <strong>Возвращение</strong> — голос, который снова находит себя после многолетнего молчания, в доме, специально построенном так, чтобы напоминать утраченный.
+      <strong>Растворение</strong> — финал, в котором перестают звучать сразу обе идентичности.
+    </p>
+
+    <p class="program-narrative reveal" data-en>
+      The album moves through five chapters.
+      <strong>Before</strong> — Rachmaninoff's last year in Russia, before he left.
+      <strong>Rupture</strong> — the first major statement made in exile, by someone who already knows there is no way back.
+      <strong>Memory</strong> — miniatures written by an emigrant in his new country for his own children, who no longer remember that country as foreign.
+      <strong>Return</strong> — a voice that finds itself again after years of silence, in a house specifically built to resemble the one that was lost.
+      <strong>Dissolution</strong> — the ending, in which both identities fall silent at once.
+    </p>
+
+    <div class="program-meta reveal">
+      <span>
+        <span data-ru><strong>Общая длительность</strong> &nbsp; около 67 минут</span>
+        <span data-en><strong>Total running time</strong> &nbsp; about 67 minutes</span>
+      </span>
+      <span>
+        <span data-ru>Произведения объявляются ближе к релизу</span>
+        <span data-en>The individual works will be announced closer to the release</span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ARTIST (dark)                                                  -->
+<!-- ============================================================ -->
+<section id="artist">
+  <div class="two-col">
+    <div class="two-col-body reveal-stagger">
+      <div class="section-label">
+        <span data-ru>Артист</span><span data-en>The artist</span>
+      </div>
+      <h2 class="section-title">Alex <em>Pudmann</em></h2>
+      <p data-ru>Алекс Пудман — пианист, живущий во Франкфурте-на-Майне. Родился в России, учился в Германии, Великобритании и России. До 2025 года выступал под именем Алексей Пудинов.</p>
+      <p data-ru>Первый педагог в России — Владимир Шаклеин (имя нужно подтвердить). В Европе и США среди его педагогов — Норма Фишер, Элизабет Леонская, Леон Флейшер, Ханс-Петер Штенцль, Бернхард Вец, Ангелика Меркле, Херберт Зайдель, Пауль Шенли. Solo-альбомы выходили на Kaleidos и Naxos. Среди ансамблевых проектов — TWO4PIANO и Frankfurt Piano Trio; среди партнёров по камерной музыке — Йоханнес Мозер, Бенедикт Клёкнер, Мишель Канн, Eliot Quartet, Malion Quartet.</p>
+      <p data-ru>Регулярные выступления — Rheingau Musik Festival, Pianofest in the Hamptons (artist in residence с 2022), Toronto Summer Music, Thüringer Bachwochen, Musikfestspiele Sanssouci. Концерты с BBC Philharmonic, Sinfonieorchester Gießen, RTV Slovenia Symphony Orchestra. После переименования эта биография остаётся той же; новое имя — обозначение точки, с которой пианист начинает новую запись и новую сценическую жизнь.</p>
+
+      <p data-en>Alex Pudmann is a pianist based in Frankfurt am Main. Born in Russia, he studied in Germany, the United Kingdom and Russia. Until 2025 he performed under the name Alexey Pudinov.</p>
+      <p data-en>His first teacher in Russia was Vladimir Shaklein (name to be confirmed). In Europe and the United States his teachers have included Norma Fisher, Elisabeth Leonskaja, Leon Fleisher, Hans‑Peter Stenzl, Bernhard Wetz, Angelika Merkle, Herbert Seidel and Paul Schenly. His solo albums have appeared on Kaleidos and Naxos. Ensemble projects include TWO4PIANO and the Frankfurt Piano Trio; chamber partners include Johannes Moser, Benedict Klöckner, Michel Kann, Eliot Quartet and Malion Quartet.</p>
+      <p data-en>Recurring appearances at Rheingau Musik Festival, Pianofest in the Hamptons (artist in residence since 2022), Toronto Summer Music, Thüringer Bachwochen and Musikfestspiele Sanssouci. Performances with BBC Philharmonic, Sinfonieorchester Gießen and RTV Slovenia Symphony Orchestra. The biography remains the same after the name change; the new name marks a point of departure for a new recording and a new chapter of concert life.</p>
+    </div>
+    <div class="two-col-image reveal">
+      <img src="images/photo-03.jpg" alt="Portrait of Alex Pudmann" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- portrait band 2 -->
+<div class="portrait-full reveal">
+  <img src="images/photo-02.jpg" alt="Alex Pudmann portrait" loading="lazy" />
+</div>
+
+<!-- ============================================================ -->
+<!-- BEYOND THE RECORD (light band)                                 -->
+<!-- ============================================================ -->
+<div class="light-band" id="beyond">
+  <div class="light-band-inner">
+    <div class="section-label reveal">
+      <span data-ru>Программа концертов</span><span data-en>Beyond the record</span>
+    </div>
+    <h2 class="section-title reveal">
+      <span data-ru>Не запись, <em>а программа</em>.</span>
+      <span data-en>Not just a recording. <em>A programme</em>.</span>
+    </h2>
+
+    <div class="beyond-grid">
+      <div class="beyond-text reveal-stagger">
+        <p data-ru>
+          <strong>Between Names</strong> — не только альбом. Параллельно с выходом запланирована серия концертов в Германии, Швейцарии и Франции. Каждый концерт строится как разговор между музыкой и контекстом: перед концертом и после него — открытая дискуссия с приглашёнными музыковедами, историками культуры и музыкантами-эмигрантами разных поколений. К серии выйдет печатный буклет с эссе о композиторах программы и пианисте.
+        </p>
+        <p data-ru>
+          Тема концертов и дискуссий — не одна конкретная биография, а сама фигура музыкальной эмиграции: что значит сменить страну, язык, иногда имя — и продолжать делать то же дело. Между залами и эпохами эта фигура возвращается так часто, что её невозможно списать на политическую конъюнктуру.
+        </p>
+
+        <p data-en>
+          <strong>Between Names</strong> is not only a record. Alongside the release, a series of concerts is planned in Germany, Switzerland and France. Each concert is built as a conversation between the music and its context: before and after the performance, an open discussion with invited musicologists, cultural historians and emigrant musicians of different generations. The series will be accompanied by a printed booklet with essays on the composers of the programme and the pianist.
+        </p>
+        <p data-en>
+          The subject of these concerts and discussions is not any single biography, but the figure of musical emigration itself — what it means to change country, language, sometimes a name, and to keep doing the same work. Across halls and centuries this figure recurs too often to be reduced to a single political moment.
+        </p>
+      </div>
+
+      <div class="beyond-cards reveal-stagger">
+        <div class="beyond-card">
+          <div class="num">01</div>
+          <h4 data-ru>Концерты</h4>
+          <h4 data-en>Concerts</h4>
+          <p data-ru>Германия, Швейцария, Франция · сезон 2027/28</p>
+          <p data-en>Germany, Switzerland, France · season 2027/28</p>
+        </div>
+        <div class="beyond-card">
+          <div class="num">02</div>
+          <h4 data-ru>Дискуссии</h4>
+          <h4 data-en>Discussions</h4>
+          <p data-ru>Приглашённые эксперты до и после программы</p>
+          <p data-en>Invited experts before and after the programme</p>
+        </div>
+        <div class="beyond-card">
+          <div class="num">03</div>
+          <h4 data-ru>Печатный буклет</h4>
+          <h4 data-en>Printed booklet</h4>
+          <p data-ru>Эссе о композиторах и пианисте</p>
+          <p data-en>Essays on the composers and the pianist</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mie-credit">
+      <div class="mie-credit-label">
+        <span data-ru>Куратор</span><span data-en>Curator</span>
+      </div>
+      <div class="mie-credit-body">
+        <p data-ru>
+          <strong>Саша Поливанов</strong> — куратор и главный редактор независимого онлайн‑медиа <a href="https://musicinemigration.com/about" target="_blank" rel="noopener">Music in Emigration</a>, посвящённого музыкальной эмиграции. <strong>Between Names</strong> — один из проектов «Музыки в эмиграции», на этот раз в формате альбома, концертной серии и печатного буклета.
+        </p>
+        <p data-en>
+          <strong>Sasha Polivanov</strong> is curator and editor‑in‑chief of <a href="https://musicinemigration.com/about" target="_blank" rel="noopener">Music in Emigration</a>, an independent online publication on musical emigration. <strong>Between Names</strong> is one of the projects of Music in Emigration, this time in the form of an album, a concert series and a printed booklet.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SUPPORT (dark)                                                 -->
+<!-- ============================================================ -->
+<section id="support">
+  <div class="section-label reveal">
+    <span data-ru>Поддержка</span><span data-en>Production &amp; Support</span>
+  </div>
+  <h2 class="section-title reveal">
+    <span data-ru>Независимое производство <em>в поиске партнёров</em>.</span>
+    <span data-en>An independent recording <em>seeking partners</em>.</span>
+  </h2>
+
+  <div class="concept reveal-stagger" style="margin-top: 40px;">
+    <div class="concept-text">
+      <p data-ru style="color: var(--ink-dim);">«Between Names» — независимый альбом и независимая программа. Мы открыты к разговору с фондами, частными меценатами и лейблами.</p>
+      <p data-en style="color: var(--ink-dim);">Between Names is an independent album and an independent programme. We are open to conversation with foundations, private patrons and labels.</p>
+    </div>
+    <div class="concept-text">
+      <p data-ru style="color: var(--ink-dim);">Мы рассматриваем партнёрство как длительные отношения, выходящие за рамки одного альбома и одной концертной серии.</p>
+      <p data-en style="color: var(--ink-dim);">We see partnership as a long‑term relationship that goes beyond a single album and a single concert series.</p>
+    </div>
+  </div>
+
+  <div class="support-grid reveal-stagger">
+    <div class="support-cell">
+      <div class="num">
+        <span data-ru>01 · Фонды</span><span data-en>01 · Foundations</span>
+      </div>
+      <h3 data-ru>Институциональные гранты</h3>
+      <h3 data-en>Institutional grants</h3>
+      <p data-ru>Открыты к диалогу с культурными фондами Германии, Швейцарии и Франции, для которых тематика проекта совпадает с собственным фокусом.</p>
+      <p data-en>We are open to conversations with cultural foundations in Germany, Switzerland and France whose thematic focus aligns with the project.</p>
+    </div>
+    <div class="support-cell">
+      <div class="num">
+        <span data-ru>02 · Меценаты</span><span data-en>02 · Patrons</span>
+      </div>
+      <h3 data-ru>Частная поддержка</h3>
+      <h3 data-en>Private support</h3>
+      <p data-ru>Один благотворитель или небольшой круг покрывает определённую часть производства. Благодарность — в сопроводительных материалах: внутреннем буклете, на сайте проекта, в программках концертной серии.</p>
+      <p data-en>A single benefactor or a small circle covers a defined part of the production. Acknowledgement appears in the accompanying materials — the inner booklet, the project website and the printed programmes of the concert series.</p>
+    </div>
+    <div class="support-cell">
+      <div class="num">
+        <span data-ru>03 · Лейблы</span><span data-en>03 · Labels</span>
+      </div>
+      <h3 data-ru>Ко-продукция</h3>
+      <h3 data-en>Co-production</h3>
+      <p data-ru>Открыты к партнёрству с классическим лейблом по мастерингу, художественному оформлению, тиражу и международной дистрибуции физического издания.</p>
+      <p data-en>Open to a classical label partnership for mastering, artwork, pressing and international distribution of the physical edition.</p>
+    </div>
+  </div>
+
+  <div class="support-bottom reveal">
+    <span data-ru>По всем вопросам — <a href="mailto:polivanov.projects@gmail.com">polivanov.projects@gmail.com</a></span>
+    <span data-en>For enquiries — <a href="mailto:polivanov.projects@gmail.com">polivanov.projects@gmail.com</a></span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CONTACT (dark)                                                 -->
+<!-- ============================================================ -->
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="contact-intro reveal-stagger">
+      <div class="section-label">
+        <span data-ru>Связь</span><span data-en>Get in touch</span>
+      </div>
+      <h2 class="section-title" style="font-size: clamp(34px, 5vw, 64px);">
+        <span data-ru>Напишите <em>нам</em>.</span>
+        <span data-en>Write to <em>us</em>.</span>
+      </h2>
+      <div class="contact-details">
+        <strong data-ru>Продакшн</strong>
+        <strong data-en>Production</strong>
+        Polivanov Projects · polivanov.projects@gmail.com
+        <strong data-ru>Куратор</strong>
+        <strong data-en>Curator</strong>
+        <span data-ru>Саша Поливанов · Music in Emigration · Берлин</span>
+        <span data-en>Sasha Polivanov · Music in Emigration · Berlin</span>
+        <strong data-ru>Пианист</strong>
+        <strong data-en>Pianist</strong>
+        <span data-ru>Alex Pudmann · Франкфурт-на-Майне</span>
+        <span data-en>Alex Pudmann · Frankfurt am Main</span>
+      </div>
+    </div>
+
+    <form class="contact-form reveal-stagger" id="form" novalidate>
+      <div class="field">
+        <label for="name">
+          <span data-ru>Ваше имя</span><span data-en>Your name</span>
+        </label>
+        <input id="name" name="name" type="text" required />
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+      </div>
+      <div class="field">
+        <label for="role">
+          <span data-ru>Кто вы</span><span data-en>Writing as</span>
+        </label>
+        <select id="role" name="role">
+          <option value="">—</option>
+          <option value="foundation" data-label-ru="Фонд / институция" data-label-en="Foundation / institution">Фонд / институция</option>
+          <option value="patron" data-label-ru="Меценат" data-label-en="Private patron">Меценат</option>
+          <option value="label" data-label-ru="Лейбл / издатель" data-label-en="Label / publisher">Лейбл / издатель</option>
+          <option value="press" data-label-ru="Пресса / медиа" data-label-en="Press / media">Пресса / медиа</option>
+          <option value="programmer" data-label-ru="Концертный директор" data-label-en="Concert programmer">Концертный директор</option>
+          <option value="other" data-label-ru="Другое" data-label-en="Other">Другое</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">
+          <span data-ru>Сообщение</span><span data-en>Message</span>
+        </label>
+        <textarea id="message" name="message" rows="4"></textarea>
+      </div>
+      <button type="button" class="submit-btn" id="submit">
+        <span data-ru>Отправить</span><span data-en>Send message</span>
+      </button>
+      <div class="form-status" id="status"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Polivanov Projects</div>
+  <div>polivanov.projects@gmail.com</div>
+  <div>© 2026 · Between Names</div>
+</footer>
+
+<script>
+/* ============================================================
+   LANGUAGE SWITCH
+============================================================ */
+(function initLang() {
+  const body = document.body;
+  const buttons = document.querySelectorAll('[data-set-lang]');
+  const STORAGE_KEY = 'between-names-lang';
+
+  function applyLang(lang) {
+    if (lang !== 'ru' && lang !== 'en') lang = 'ru';
+    body.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+    buttons.forEach(b => {
+      b.classList.toggle('active', b.dataset.setLang === lang);
+    });
+    // update select option labels (browsers ignore display:none on <option>)
+    document.querySelectorAll('option[data-label-ru]').forEach(opt => {
+      const txt = opt.getAttribute('data-label-' + lang);
+      if (txt) opt.textContent = txt;
+    });
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+  }
+
+  // initial
+  let initial = 'ru';
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) initial = saved;
+  } catch(e) {}
+  applyLang(initial);
+
+  buttons.forEach(b => {
+    b.addEventListener('click', () => applyLang(b.dataset.setLang));
+  });
+})();
+
+/* ============================================================
+   1. SCROLL PROGRESS
+============================================================ */
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const pct = (h.scrollTop / max) * 100;
+  progress.style.width = pct + '%';
+}, { passive: true });
+
+/* ============================================================
+   2. REVEAL ON SCROLL
+============================================================ */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-stagger, .portrait-full, .morph-section')
+  .forEach(el => io.observe(el));
+
+/* ============================================================
+   3. PARALLAX ON PORTRAITS
+============================================================ */
+const portraits = document.querySelectorAll('.portrait-full img');
+window.addEventListener('scroll', () => {
+  portraits.forEach(img => {
+    const rect = img.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+      const p = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+      img.style.transform = `scale(1.05) translateY(${(p - 0.5) * -30}px)`;
+    }
+  });
+}, { passive: true });
+
+/* ============================================================
+   3b. HERO AUDIO DISC — unchanged
+============================================================ */
+(function initAudioDisc() {
+  const wrap = document.getElementById('audioDisc');
+  const caption = document.getElementById('audioCaption');
+  if (!wrap) return;
+
+  const disc = wrap.querySelector('.hero-audio-disc');
+  const audio = new Audio('audio/between-names-preview.mp3');
+  audio.loop = true;
+  audio.volume = 0;
+  audio.preload = 'auto';
+
+  const TARGET_VOLUME = 0.7;
+  const FADE_IN = 800;
+  const FADE_OUT = 1000;
+
+  let fadeTimer = null;
+  let isPlaying = false;
+  let audioOn = false;
+  const isCoarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+  const panel  = document.getElementById('audioPanel');
+  const toggle = document.getElementById('audioToggle');
+
+  const SPEED_IDLE  = 360 / 22;
+  const SPEED_HOVER = 360 / 9;
+
+  let angle = 0;
+  let currentSpeed = SPEED_IDLE;
+  let targetSpeed  = SPEED_IDLE;
+  let lastTs = null;
+
+  function tick(ts) {
+    if (lastTs === null) lastTs = ts;
+    const dt = (ts - lastTs) / 1000;
+    lastTs = ts;
+    const SMOOTH = 1 - Math.exp(-dt / 0.5);
+    currentSpeed += (targetSpeed - currentSpeed) * SMOOTH;
+    angle = (angle + currentSpeed * dt) % 360;
+    disc.style.transform = 'rotate(' + angle + 'deg)';
+    requestAnimationFrame(tick);
+  }
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) requestAnimationFrame(tick);
+
+  function fadeTo(target, duration) {
+    const start = audio.volume;
+    const diff = target - start;
+    const steps = 24;
+    let i = 0;
+    clearInterval(fadeTimer);
+    fadeTimer = setInterval(() => {
+      i++;
+      audio.volume = Math.max(0, Math.min(1, start + diff * (i / steps)));
+      if (i >= steps) {
+        clearInterval(fadeTimer);
+        if (target === 0) audio.pause();
+      }
+    }, duration / steps);
+  }
+
+  function getCaption(state) {
+    const lang = document.body.getAttribute('data-lang') || 'ru';
+    const captions = {
+      ru: { off: 'Звук выключен — переключите тумблер', hover: 'Наведите, чтобы послушать', tap: 'Нажмите, чтобы послушать', play: 'Превью играет' },
+      en: { off: 'Audio off — flip the switch', hover: 'Hover to listen', tap: 'Tap to listen', play: 'Preview playing' }
+    };
+    return captions[lang][state];
+  }
+
+  function refreshCaption() {
+    let state;
+    if (isPlaying) state = 'play';
+    else if (!audioOn) state = 'off';
+    else state = isCoarse ? 'tap' : 'hover';
+    caption.textContent = getCaption(state);
+  }
+
+  function playPreview() {
+    targetSpeed = SPEED_HOVER;
+    if (!audioOn) { refreshCaption(); return; }
+    if (isPlaying) return;
+    isPlaying = true;
+    wrap.classList.add('is-playing');
+    panel.classList.add('is-playing');
+    refreshCaption();
+    const p = audio.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+    fadeTo(TARGET_VOLUME, FADE_IN);
+  }
+
+  function stopPreview() {
+    targetSpeed = SPEED_IDLE;
+    if (!isPlaying) { refreshCaption(); return; }
+    isPlaying = false;
+    wrap.classList.remove('is-playing');
+    panel.classList.remove('is-playing');
+    refreshCaption();
+    fadeTo(0, FADE_OUT);
+  }
+
+  function setAudioOn(on) {
+    audioOn = on;
+    panel.classList.toggle('is-on', on);
+    toggle.setAttribute('aria-checked', on ? 'true' : 'false');
+    if (!on && isPlaying) {
+      isPlaying = false;
+      wrap.classList.remove('is-playing');
+      panel.classList.remove('is-playing');
+      fadeTo(0, FADE_OUT);
+    } else if (on && wrap.matches(':hover') && !isCoarse) {
+      playPreview();
+    }
+    refreshCaption();
+  }
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setAudioOn(!audioOn);
+  });
+  toggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setAudioOn(!audioOn);
+    }
+  });
+
+  // refresh caption when language changes
+  const langObserver = new MutationObserver(refreshCaption);
+  langObserver.observe(document.body, { attributes: true, attributeFilter: ['data-lang'] });
+
+  refreshCaption();
+
+  if (!isCoarse) {
+    wrap.addEventListener('mouseenter', playPreview);
+    wrap.addEventListener('mouseleave', stopPreview);
+  }
+  wrap.addEventListener('click', () => {
+    if (!audioOn) {
+      setAudioOn(true);
+      if (isCoarse) playPreview();
+      return;
+    }
+    if (isPlaying) stopPreview();
+    else playPreview();
+  });
+  wrap.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (!audioOn) { setAudioOn(true); playPreview(); return; }
+      if (isPlaying) stopPreview(); else playPreview();
+    }
+  });
+  audio.addEventListener('error', () => { caption.style.display = 'none'; });
+})();
+
+/* ============================================================
+   4. MAGNETIC BUTTONS
+============================================================ */
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+/* ============================================================
+   5. FORM
+============================================================ */
+const form = document.getElementById('form');
+const statusEl = document.getElementById('status');
+const submitBtn = document.getElementById('submit');
+
+submitBtn.addEventListener('click', () => {
+  const lang = document.body.getAttribute('data-lang') || 'ru';
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const role = form.role.value;
+  const msg = form.message.value.trim();
+
+  if (!name || !email) {
+    statusEl.style.color = '#c98a6a';
+    statusEl.textContent = lang === 'ru'
+      ? 'Заполните имя и email.'
+      : 'Please fill in your name and email.';
+    return;
+  }
+
+  submitBtn.disabled = true;
+  statusEl.style.color = 'var(--gold)';
+  statusEl.textContent = lang === 'ru' ? 'Открываем почтовый клиент…' : 'Opening your email client…';
+
+  const subject = encodeURIComponent(`[Between Names] Enquiry — ${role || 'general'}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nRole: ${role}\n\n${msg}`);
+  window.location.href = `mailto:polivanov.projects@gmail.com?subject=${subject}&body=${body}`;
+
+  setTimeout(() => {
+    submitBtn.disabled = false;
+    statusEl.textContent = lang === 'ru'
+      ? 'Если ничего не произошло — пишите на polivanov.projects@gmail.com'
+      : 'If nothing happened, write to polivanov.projects@gmail.com directly.';
+  }, 1200);
+});
+
+/* ============================================================
+   6. SMOOTH SCROLL
+============================================================ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if (id.length > 1) {
+      const el = document.querySelector(id);
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }
+  });
+});
+</script>
+
+</body>
+</html>
