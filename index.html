@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Between Names — Alex Pudmann</title>
 <meta name="description" content="Between Names — a solo piano album by Alex Pudmann. An album about identity, emigration, and the music a pianist makes in his second country." />
+<link rel="icon" href="images/audio-disc.png" />
+<link rel="apple-touch-icon" href="images/audio-disc.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -2113,7 +2115,9 @@ const form = document.getElementById('form');
 const statusEl = document.getElementById('status');
 const submitBtn = document.getElementById('submit');
 
-submitBtn.addEventListener('click', () => {
+const WEB3FORMS_KEY = '98181e7d-3689-4237-9743-618f87192dd2';
+
+submitBtn.addEventListener('click', async () => {
   const lang = document.body.getAttribute('data-lang') || 'ru';
   const name = form.name.value.trim();
   const email = form.email.value.trim();
@@ -2130,18 +2134,44 @@ submitBtn.addEventListener('click', () => {
 
   submitBtn.disabled = true;
   statusEl.style.color = 'var(--gold)';
-  statusEl.textContent = lang === 'ru' ? 'Открываем почтовый клиент…' : 'Opening your email client…';
+  statusEl.textContent = lang === 'ru' ? 'Отправляем…' : 'Sending…';
 
-  const subject = encodeURIComponent(`[Between Names] Enquiry — ${role || 'general'}`);
-  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nRole: ${role}\n\n${msg}`);
-  window.location.href = `mailto:polivanov.projects@gmail.com?subject=${subject}&body=${body}`;
-
-  setTimeout(() => {
-    submitBtn.disabled = false;
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: `[Between Names] ${role || 'general'} — ${name}`,
+        from_name: `Between Names site — ${name}`,
+        replyto: email,
+        name: name,
+        email: email,
+        role: role || '—',
+        message: msg || '(no message)',
+      })
+    });
+    const data = await response.json();
+    if (data.success) {
+      statusEl.style.color = 'var(--gold)';
+      statusEl.textContent = lang === 'ru'
+        ? 'Сообщение отправлено. Мы свяжемся с вами.'
+        : 'Message sent. We will be in touch.';
+      form.reset();
+    } else {
+      throw new Error(data.message || 'Submit failed');
+    }
+  } catch (err) {
+    statusEl.style.color = '#c98a6a';
     statusEl.textContent = lang === 'ru'
-      ? 'Если ничего не произошло — пишите на polivanov.projects@gmail.com'
-      : 'If nothing happened, write to polivanov.projects@gmail.com directly.';
-  }, 1200);
+      ? 'Не удалось отправить. Напишите на polivanov.projects@gmail.com'
+      : 'Could not send. Please write to polivanov.projects@gmail.com';
+  } finally {
+    submitBtn.disabled = false;
+  }
 });
 
 /* ============================================================
