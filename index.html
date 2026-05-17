@@ -87,6 +87,17 @@ a { color: inherit; text-decoration: none; }
   margin-left: calc(50% - 50vw);  /* break out of any parent max-width */
   position: relative;
 }
+/* плавный переход dark → light над каждой светлой полосой */
+.light-band::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(to bottom, var(--bg) 0%, var(--paper) 100%);
+  pointer-events: none;
+}
 .light-band-inner {
   max-width: var(--max);
   margin: 0 auto;
@@ -650,77 +661,62 @@ h2.section-title em {
 }
 
 /* ================================================================
-   MORPH
+   NAME — двухколонный блок с именем и абзацем
 ================================================================ */
-.morph-section {
+.name-section {
   padding: clamp(100px, 18vh, 220px) var(--gutter);
   max-width: var(--max);
   margin: 0 auto;
 }
-.morph-wrap {
+.name-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: start;
+  margin-top: 48px;
+}
+@media (max-width: 860px) {
+  .name-grid { grid-template-columns: 1fr; gap: 56px; }
+}
+.name-display {
   font-family: var(--display);
   font-weight: 300;
-  font-size: clamp(38px, 7vw, 96px);
-  line-height: 1.05;
+  line-height: 1;
   letter-spacing: -0.02em;
   font-variation-settings: "opsz" 144;
-  margin-top: 40px;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: clamp(14px, 2vw, 28px);
 }
-.morph-line {
-  display: block;
-  position: relative;
-  height: 1.2em;
-}
-.morph-from, .morph-to {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  transition: opacity 1.4s var(--ease), filter 1.4s var(--ease), transform 1.4s var(--ease);
-}
-.morph-from {
-  color: var(--ink-muted);
+.name-from {
+  font-size: clamp(20px, 2.6vw, 34px);
+  color: var(--ink-dark-muted);
   font-style: italic;
-  opacity: 1;
-  filter: blur(0);
 }
-.morph-to {
-  color: var(--ink);
-  opacity: 0;
-  filter: blur(8px);
-  transform: translateX(-50%) translateY(20px);
+.name-arrow {
+  font-family: var(--mono);
+  font-size: clamp(22px, 2.8vw, 36px);
+  color: var(--gold-dark);
+  opacity: 0.7;
+  font-weight: 300;
+  line-height: 1;
 }
-.morph-to em { color: var(--gold); font-style: italic; }
-.morph-section.in-view .morph-from {
-  opacity: 0;
-  filter: blur(8px);
-  transform: translateX(-50%) translateY(-20px);
+.name-to {
+  font-size: clamp(48px, 8vw, 104px);
+  color: var(--ink-dark);
+  font-weight: 300;
 }
-.morph-section.in-view .morph-to {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateX(-50%) translateY(0);
-  transition-delay: .4s;
+.name-to em {
+  font-style: italic;
+  color: var(--gold-dark);
 }
-.morph-text {
-  max-width: 64ch;
-  margin: 80px auto 0;
-  font-size: 18px;
+.name-text p {
+  font-size: 17px;
   line-height: 1.75;
   color: var(--ink-dark-dim);
-  text-align: left;
-  opacity: 0;
-  transition: opacity 1s ease 1.6s, transform 1s var(--ease) 1.6s;
-  transform: translateY(20px);
+  max-width: 42ch;
 }
-.morph-section.in-view .morph-text {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* morph колорится для светлого фона */
-.light-band .morph-from { color: var(--ink-dark-muted); }
-.light-band .morph-to   { color: var(--ink-dark); }
-.light-band .morph-to em { color: var(--gold-dark); }
 
 /* ================================================================
    CONCEPT (на бумажном фоне)
@@ -1416,25 +1412,25 @@ footer a:hover { color: var(--gold); }
 </header>
 
 <!-- ============================================================ -->
-<!-- NAME (morph)                                                  -->
+<!-- NAME                                                          -->
 <!-- ============================================================ -->
 <div class="light-band">
-  <div class="morph-section reveal">
+  <section class="name-section reveal">
     <div class="section-label">
       <span data-ru>Имя</span><span data-en>Name</span>
     </div>
-    <div class="morph-wrap">
-      <span class="morph-line">
-        <span class="morph-from">Алексей Пудинов</span>
-        <span class="morph-to">Alex <em>Pudmann</em></span>
-      </span>
+    <div class="name-grid">
+      <div class="name-display">
+        <span class="name-from">Алексей Пудинов</span>
+        <span class="name-arrow" aria-hidden="true">→</span>
+        <span class="name-to">Alex <em>Pudmann</em></span>
+      </div>
+      <div class="name-text">
+        <p data-ru>Когда музыкант покидает родину, меняется не только его адрес. Меняется язык. Меняется мышление. Иногда меняется и имя. Эмиграция — это не географическое событие, а длинный внутренний процесс, и каждый музыкант проходит его по-своему.</p>
+        <p data-en>When a musician leaves home, more than the address changes. Language changes. Thinking changes. Sometimes even the name. Emigration is not a geographical event but a slow inner process, and each musician lives through it differently.</p>
+      </div>
     </div>
-
-    <div class="morph-text">
-      <p data-ru>Когда музыкант покидает родину, меняется не только его адрес. Меняется язык. Меняется мышление. Иногда меняется и имя. Эмиграция — это не географическое событие, а длинный внутренний процесс, и каждый музыкант проходит его по-своему.</p>
-      <p data-en>When a musician leaves home, more than the address changes. Language changes. Thinking changes. Sometimes even the name. Emigration is not a geographical event but a slow inner process, and each musician lives through it differently.</p>
-    </div>
-  </div>
+  </section>
 </div>
 
 <!-- ============================================================ -->
@@ -1570,21 +1566,7 @@ footer a:hover { color: var(--gold); }
   </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- COVERS (dark, no headings)                                     -->
-<!-- ============================================================ -->
-<section class="covers-section">
-  <div class="covers-grid reveal-stagger">
-    <div class="cover">
-      <img src="images/lp1.png" alt="Between Names — Cover and double LP" loading="lazy" />
-    </div>
-    <div class="cover">
-      <img src="images/lp2.png" alt="Between Names — Gatefold inner" loading="lazy" />
-    </div>
-  </div>
-</section>
-
-<!-- portrait band 1 -->
+<!-- portrait band 1 (Alex at the piano) -->
 <div class="portrait-full reveal">
   <img src="images/photo-01.jpg" alt="Alex Pudmann at the piano" loading="lazy" />
 </div>
@@ -1635,6 +1617,20 @@ footer a:hover { color: var(--gold); }
 </div>
 
 <!-- ============================================================ -->
+<!-- COVERS (dark, no headings)                                     -->
+<!-- ============================================================ -->
+<section class="covers-section">
+  <div class="covers-grid reveal-stagger">
+    <div class="cover">
+      <img src="images/lp1.png" alt="Between Names — Cover and double LP" loading="lazy" />
+    </div>
+    <div class="cover">
+      <img src="images/lp2.png" alt="Between Names — Gatefold inner" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
 <!-- ARTIST (dark)                                                  -->
 <!-- ============================================================ -->
 <section id="artist">
@@ -1669,11 +1665,11 @@ footer a:hover { color: var(--gold); }
 <div class="light-band" id="beyond">
   <div class="light-band-inner">
     <div class="section-label reveal">
-      <span data-ru>Концерты и дискуссии</span><span data-en>Concerts and talks</span>
+      <span data-ru>За пределами альбома</span><span data-en>Beyond the record</span>
     </div>
     <h2 class="section-title reveal">
-      <span data-ru>Не запись, <em>а программа</em>.</span>
-      <span data-en>Not just a recording. <em>A programme</em>.</span>
+      <span data-ru>Концерты <em>и дискуссии</em>.</span>
+      <span data-en>Concerts <em>and talks</em>.</span>
     </h2>
 
     <div class="beyond-grid">
@@ -1926,7 +1922,7 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
 
-document.querySelectorAll('.reveal, .reveal-stagger, .portrait-full, .morph-section')
+document.querySelectorAll('.reveal, .reveal-stagger, .portrait-full')
   .forEach(el => io.observe(el));
 
 /* ============================================================
