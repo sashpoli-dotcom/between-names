@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="images/favicon.png" />
 
 <!-- preload only fonts visible on the first screen -->
-<link rel="preload" href="fonts/bluu/BluuNext-Bold.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/fraunces/Fraunces-Variable.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/eb-garamond/EBGaramond-Regular.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/karrik/Karrik-Regular.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -75,37 +75,39 @@
   font-display: swap;
 }
 
-/* --- Display composite: Bluu Next for latin, EB Garamond SemiBold for cyrillic ---
-   Bluu Next кириллицы не содержит, поэтому через unicode-range разводим:
-   латиница → Bluu Next, кириллица → EB Garamond SemiBold того же визуального веса. */
+/* --- Fraunces — display (variable: opsz / wght / SOFT / WONK) ---
+   Fraunces кириллицы не содержит, поэтому через unicode-range разводим:
+   латиница → Fraunces, кириллица → EB Garamond SemiBold того же визуального веса. */
 @font-face {
-  font-family: 'Display';
-  src: url('fonts/bluu/BluuNext-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-family: 'Fraunces';
+  src: url('fonts/fraunces/Fraunces-Variable.woff2') format('woff2-variations'),
+       url('fonts/fraunces/Fraunces-Variable.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: normal;
   unicode-range: U+0020-024F, U+1E00-1EFF, U+2000-206F;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Display';
-  src: url('fonts/bluu/BluuNext-BoldItalic.woff2') format('woff2');
-  font-weight: 700;
+  font-family: 'Fraunces';
+  src: url('fonts/fraunces/Fraunces-Italic-Variable.woff2') format('woff2-variations'),
+       url('fonts/fraunces/Fraunces-Italic-Variable.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: italic;
   unicode-range: U+0020-024F, U+1E00-1EFF, U+2000-206F;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Display';
+  font-family: 'Fraunces';
   src: url('fonts/eb-garamond/EBGaramond-SemiBold.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: 100 900;
   font-style: normal;
   unicode-range: U+0400-04FF, U+0500-052F;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Display';
+  font-family: 'Fraunces';
   src: url('fonts/eb-garamond/EBGaramond-SemiBoldItalic.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: 100 900;
   font-style: italic;
   unicode-range: U+0400-04FF, U+0500-052F;
   font-display: swap;
@@ -132,8 +134,8 @@
   --ink-dark-muted: #8a8273;
   --gold-dark: #8a6a2c;
 
-  --display: 'Display', Georgia, 'Times New Roman', serif;     /* Bluu Next + EB Garamond cyrillic */
-  --logo: 'Display', Georgia, 'Times New Roman', serif;        /* hero «Between Names» — тот же Display */
+  --display: 'Fraunces', Georgia, 'Times New Roman', serif;    /* Fraunces (variable) + EB Garamond cyrillic */
+  --logo: 'Fraunces', Georgia, 'Times New Roman', serif;       /* hero «Between Names» — тот же Fraunces */
   --body: 'EB Garamond', Georgia, 'Times New Roman', serif;
   --mono: 'Karrik', 'Helvetica Neue', Arial, sans-serif;        /* UI; cyrillic → system sans */
 
@@ -363,7 +365,8 @@ a { color: inherit; text-decoration: none; }
 
 .hero-title {
   font-family: var(--logo);
-  font-weight: 700;  /* Bluu Next Bold */
+  font-weight: 700;
+  font-optical-sizing: auto;
   font-size: clamp(56px, 9vw, 140px);
   line-height: 0.95;
   letter-spacing: -0.02em;
@@ -383,7 +386,7 @@ a { color: inherit; text-decoration: none; }
 
 .hero-title em {
   font-style: italic;
-  font-weight: 300;
+  font-weight: 600;
   color: var(--gold);
 }
 
@@ -739,7 +742,8 @@ section {
 
 h2.section-title {
   font-family: var(--display);
-  font-weight: 700;  /* Bluu Next Bold */
+  font-weight: 700;
+  font-optical-sizing: auto;
   font-size: clamp(40px, 6.5vw, 88px);
   line-height: 1.02;
   letter-spacing: -0.02em;
@@ -748,6 +752,7 @@ h2.section-title {
 }
 h2.section-title em {
   font-style: italic;
+  font-weight: 600;
   color: var(--gold);
 }
 
@@ -772,6 +777,7 @@ h2.section-title em {
 .name-display {
   font-family: var(--display);
   font-weight: 700;
+  font-optical-sizing: auto;
   line-height: 1;
   letter-spacing: -0.02em;
   display: flex;
@@ -799,6 +805,7 @@ h2.section-title em {
 }
 .name-to em {
   font-style: italic;
+  font-weight: 600;
   color: var(--gold-dark);
 }
 .name-text p {
