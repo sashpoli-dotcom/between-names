@@ -8,42 +8,106 @@
 <link rel="icon" type="image/png" href="images/favicon.png" />
 <link rel="apple-touch-icon" href="images/favicon.png" />
 
+<!-- preload only fonts visible on the first screen -->
+<link rel="preload" href="fonts/bluu/BluuNext-Bold.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/eb-garamond/EBGaramond-Regular.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/karrik/Karrik-Regular.woff2" as="font" type="font/woff2" crossorigin />
+
 <style>
 /* ================================================================
-   LOCAL FONTS (Velvetyne)
-   Basteleur Moonlight — hero logo и заголовки секций (один серифный голос)
-   Grotesk             — body (Mince/200) и мелкие caps-лейблы (Extrafin/100)
+   LOCAL FONTS
+   Bluu Next   — display (большие заголовки, hero, имена композиторов)
+   EB Garamond — body (длинные тексты, абзацы); также cyrillic fallback
+                 для Display (Bluu Next кириллицы не имеет)
+   Karrik      — UI (нав, лейблы, кнопки)
 ================================================================ */
+
+/* --- EB Garamond — body --- */
 @font-face {
-  font-family: 'Basteleur Moonlight';
-  font-style: normal;
-  font-weight: normal;
-  src: url('fonts/basteleur-master/fonts/webfonts/Basteleur-Moonlight.woff2') format('woff2'),
-       url('fonts/basteleur-master/fonts/webfonts/Basteleur-Moonlight.woff') format('woff');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Grotesk';
-  font-style: normal;
-  font-weight: 100;
-  src: url('fonts/grotesk-master/fonts/_web/Grotesk-01Extrafin.woff2') format('woff2'),
-       url('fonts/grotesk-master/fonts/_web/Grotesk-01Extrafin.woff') format('woff');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Grotesk';
-  font-style: normal;
-  font-weight: 200;
-  src: url('fonts/grotesk-master/fonts/_web/Grotesk-02Mince.woff2') format('woff2'),
-       url('fonts/grotesk-master/fonts/_web/Grotesk-02Mince.woff') format('woff');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Grotesk';
-  font-style: normal;
+  font-family: 'EB Garamond';
+  src: url('fonts/eb-garamond/EBGaramond-Regular.woff2') format('woff2');
   font-weight: 400;
-  src: url('fonts/grotesk-master/fonts/_web/Grotesk-03Regular.woff2') format('woff2'),
-       url('fonts/grotesk-master/fonts/_web/Grotesk-03Regular.woff') format('woff');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('fonts/eb-garamond/EBGaramond-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('fonts/eb-garamond/EBGaramond-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('fonts/eb-garamond/EBGaramond-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('fonts/eb-garamond/EBGaramond-SemiBoldItalic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- Karrik — UI (latin only; cyrillic falls through font-family chain) --- */
+@font-face {
+  font-family: 'Karrik';
+  src: url('fonts/karrik/Karrik-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Karrik';
+  src: url('fonts/karrik/Karrik-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- Display composite: Bluu Next for latin, EB Garamond SemiBold for cyrillic ---
+   Bluu Next кириллицы не содержит, поэтому через unicode-range разводим:
+   латиница → Bluu Next, кириллица → EB Garamond SemiBold того же визуального веса. */
+@font-face {
+  font-family: 'Display';
+  src: url('fonts/bluu/BluuNext-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  unicode-range: U+0020-024F, U+1E00-1EFF, U+2000-206F;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Display';
+  src: url('fonts/bluu/BluuNext-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  unicode-range: U+0020-024F, U+1E00-1EFF, U+2000-206F;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Display';
+  src: url('fonts/eb-garamond/EBGaramond-SemiBold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  unicode-range: U+0400-04FF, U+0500-052F;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Display';
+  src: url('fonts/eb-garamond/EBGaramond-SemiBoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  unicode-range: U+0400-04FF, U+0500-052F;
   font-display: swap;
 }
 
@@ -68,10 +132,10 @@
   --ink-dark-muted: #8a8273;
   --gold-dark: #8a6a2c;
 
-  --display: 'Basteleur Moonlight', 'Times New Roman', serif;
-  --logo: 'Basteleur Moonlight', 'Times New Roman', serif;
-  --mono: 'Grotesk', 'Helvetica Neue', Arial, sans-serif;
-  --body: 'Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --display: 'Display', Georgia, 'Times New Roman', serif;     /* Bluu Next + EB Garamond cyrillic */
+  --logo: 'Display', Georgia, 'Times New Roman', serif;        /* hero «Between Names» — тот же Display */
+  --body: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --mono: 'Karrik', 'Helvetica Neue', Arial, sans-serif;        /* UI; cyrillic → system sans */
 
   --max: 1380px;
   --gutter: clamp(20px, 4vw, 56px);
@@ -86,9 +150,11 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--body);
-  font-weight: 200;  /* Grotesk Mince */
-  font-size: 17px;
-  line-height: 1.55;
+  font-weight: 400;  /* EB Garamond Regular */
+  font-size: 18px;
+  line-height: 1.6;
+  font-feature-settings: 'liga' 1, 'kern' 1;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -297,10 +363,10 @@ a { color: inherit; text-decoration: none; }
 
 .hero-title {
   font-family: var(--logo);
-  font-weight: normal;
+  font-weight: 700;  /* Bluu Next Bold */
   font-size: clamp(56px, 9vw, 140px);
   line-height: 0.95;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   margin-bottom: 0.3em;
 }
 .hero-title .line {
@@ -673,10 +739,10 @@ section {
 
 h2.section-title {
   font-family: var(--display);
-  font-weight: normal;
+  font-weight: 700;  /* Bluu Next Bold */
   font-size: clamp(40px, 6.5vw, 88px);
   line-height: 1.02;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   max-width: 18ch;
   margin-bottom: 0.6em;
 }
@@ -705,9 +771,9 @@ h2.section-title em {
 }
 .name-display {
   font-family: var(--display);
-  font-weight: normal;
+  font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
@@ -1317,10 +1383,9 @@ footer a:hover { color: var(--gold); }
 [data-lang="en"] [data-ru] { display: none; }
 
 /* ================================================================
-   FONT-WEIGHT NORMALIZATION
-   Все маленькие uppercase-теги/лейблы/нав — Grotesk Extrafin (100).
-   Эта правила перебивает индивидуальные веса, которые остались от
-   старой типографики под Fraunces/JetBrains Mono.
+   UI WEIGHT NORMALIZATION
+   Маленькие uppercase-теги/лейблы/нав — Karrik Regular (400 — единственный
+   вес Karrik). Правило держим как «source of truth» для UI-веса.
 ================================================================ */
 .mono,
 .nav, .nav-brand, .nav-links a, .lang-switch button,
@@ -1335,7 +1400,7 @@ footer a:hover { color: var(--gold); }
 .beyond-card .num, .mie-credit-label,
 .support-cell .num, .support-bottom,
 footer {
-  font-weight: 100;
+  font-weight: 400;
 }
 
 /* reduced motion */
