@@ -1509,17 +1509,26 @@ footer {
 @media (max-width: 760px) {
   /* HERO: переставляем порядок text → диск → кнопки.
      Используем display:contents на .hero-text, чтобы её дети
-     стали прямыми детьми .hero и можно было управлять их order. */
+     стали прямыми детьми .hero и можно было управлять их order.
+     На мобильном уменьшаем горизонтальный padding и gap, title
+     делаем больше — чтобы прижался к левому краю, без «дыры». */
   .hero {
     display: flex;
     flex-direction: column;
-    gap: clamp(28px, 4vh, 44px);
-    padding-top: 100px;
-    padding-bottom: 56px;
+    gap: clamp(20px, 3vh, 32px);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 90px;
+    padding-bottom: 48px;
   }
   .hero-text { display: contents; }
-  .hero-title { order: 1; }
-  .hero-sub { order: 2; }
+  .hero-title {
+    order: 1;
+    text-align: left;
+    font-size: clamp(72px, 16vw, 110px);
+    margin-bottom: 0;
+  }
+  .hero-sub { order: 2; margin-top: 0; }
   .hero-audio-disc-wrap {
     order: 3;
     width: min(78vw, 380px);
