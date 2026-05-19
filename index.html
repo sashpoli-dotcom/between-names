@@ -1123,7 +1123,7 @@ h2.section-title em {
   margin-bottom: 1.1em;
 }
 .program-narrative strong {
-  color: var(--ink-dark);
+  color: var(--gold-dark);
   font-weight: 600;
   font-style: italic;
 }
@@ -1511,10 +1511,16 @@ footer a:hover { color: var(--gold); }
 ================================================================ */
 [data-lang="ru"] [data-en],
 [data-lang="ru"] [data-de],
+[data-lang="ru"] [data-fr],
 [data-lang="en"] [data-ru],
 [data-lang="en"] [data-de],
+[data-lang="en"] [data-fr],
 [data-lang="de"] [data-ru],
-[data-lang="de"] [data-en] { display: none; }
+[data-lang="de"] [data-en],
+[data-lang="de"] [data-fr],
+[data-lang="fr"] [data-ru],
+[data-lang="fr"] [data-en],
+[data-lang="fr"] [data-de] { display: none; }
 
 /* ================================================================
    UI WEIGHT NORMALIZATION
@@ -1683,12 +1689,12 @@ footer {
   </div>
   <div class="nav-right">
     <div class="nav-links">
-      <a href="#concept" data-ru>Концепция</a><a href="#concept" data-en>Concept</a><a href="#concept" data-de>Konzept</a>
-      <a href="#composers" data-ru>Композиторы</a><a href="#composers" data-en>Composers</a><a href="#composers" data-de>Komponisten</a>
-      <a href="#program" data-ru>Программа</a><a href="#program" data-en>Program</a><a href="#program" data-de>Programm</a>
-      <a href="#artist" data-ru>Артист</a><a href="#artist" data-en>Artist</a><a href="#artist" data-de>Künstler</a>
-      <a href="#beyond" data-ru>Концерты</a><a href="#beyond" data-en>Concerts</a><a href="#beyond" data-de>Konzerte</a>
-      <a href="#support" data-ru>Поддержка</a><a href="#support" data-en>Support</a><a href="#support" data-de>Förderung</a>
+      <a href="#concept" data-ru>Концепция</a><a href="#concept" data-en>Concept</a><a href="#concept" data-de>Konzept</a><a href="#concept" data-fr>Concept</a>
+      <a href="#composers" data-ru>Композиторы</a><a href="#composers" data-en>Composers</a><a href="#composers" data-de>Komponisten</a><a href="#composers" data-fr>Compositeurs</a>
+      <a href="#program" data-ru>Программа</a><a href="#program" data-en>Program</a><a href="#program" data-de>Programm</a><a href="#program" data-fr>Programme</a>
+      <a href="#artist" data-ru>Артист</a><a href="#artist" data-en>Artist</a><a href="#artist" data-de>Künstler</a><a href="#artist" data-fr>Artiste</a>
+      <a href="#beyond" data-ru>Концерты</a><a href="#beyond" data-en>Concerts</a><a href="#beyond" data-de>Konzerte</a><a href="#beyond" data-fr>Concerts</a>
+      <a href="#support" data-ru>Поддержка</a><a href="#support" data-en>Support</a><a href="#support" data-de>Förderung</a><a href="#support" data-fr>Soutien</a>
     </div>
     <div class="lang-switch" id="langSwitch">
       <button type="button" class="lang-trigger" aria-expanded="false" aria-haspopup="menu">
@@ -1701,8 +1707,8 @@ footer {
       <div class="lang-menu" role="menu">
         <button type="button" role="menuitem" data-set-lang="en" class="lang-item">English</button>
         <button type="button" role="menuitem" data-set-lang="de" class="lang-item">German</button>
+        <button type="button" role="menuitem" data-set-lang="fr" class="lang-item">French</button>
         <button type="button" role="menuitem" data-set-lang="ru" class="lang-item">Russian</button>
-        <button type="button" role="menuitem" disabled class="lang-item lang-item--soon">French <span>coming soon</span></button>
       </div>
     </div>
   </div>
@@ -1728,10 +1734,13 @@ footer {
       <p class="hero-lede" data-de>
         Ein Soloklavieralbum von <strong>Alex&nbsp;Pudmann</strong> über drei Komponisten — Rachmaninow, Ornstein und&nbsp;Bloch — die ihre Heimat verloren und in einem zweiten Land eine Stimme fanden. Eine Aufnahme darüber, wie Emigration einen Musiker von innen verändert.
       </p>
+      <p class="hero-lede" data-fr>
+        Un album solo de piano d'<strong>Alex&nbsp;Pudmann</strong> sur trois compositeurs — Rachmaninov, Ornstein et&nbsp;Bloch — qui ont perdu leur patrie et trouvé une voix dans un second pays. Une œuvre sur la manière dont l'émigration transforme un musicien de l'intérieur.
+      </p>
       <div class="hero-facts">
-        <span data-ru>Двойной винил и CD</span><span data-en>Double LP and CD</span><span data-de>Doppel-LP und CD</span>
+        <span data-ru>Двойной винил и CD</span><span data-en>Double LP and CD</span><span data-de>Doppel-LP und CD</span><span data-fr>Double LP et CD</span>
         <span class="dot" aria-hidden="true">·</span>
-        <span data-ru>Релиз 2027</span><span data-en>Release 2027</span><span data-de>Veröffentlichung 2027</span>
+        <span data-ru>Релиз 2027</span><span data-en>Release 2027</span><span data-de>Veröffentlichung 2027</span><span data-fr>Sortie 2027</span>
       </div>
     </div>
 
@@ -1740,11 +1749,13 @@ footer {
         <span data-ru>Поддержать запись</span>
         <span data-en>Support the recording</span>
         <span data-de>Aufnahme unterstützen</span>
+        <span data-fr>Soutenir l'enregistrement</span>
       </a>
       <a href="#concept" class="btn btn--ghost">
         <span data-ru>Концепция</span>
         <span data-en>Read the concept</span>
         <span data-de>Konzept lesen</span>
+        <span data-fr>Lire le concept</span>
       </a>
     </div>
   </div>
@@ -1755,28 +1766,29 @@ footer {
       <span data-ru>Наведите, чтобы послушать</span>
       <span data-en>Hover to listen</span>
       <span data-de>Zum Anhören bewegen</span>
+      <span data-fr>Passer la souris pour écouter</span>
     </div>
   </div>
 
   <div class="hero-scroll">
-    <span data-ru>Прокрутить</span><span data-en>Scroll</span><span data-de>Scrollen</span>
+    <span data-ru>Прокрутить</span><span data-en>Scroll</span><span data-de>Scrollen</span><span data-fr>Défiler</span>
   </div>
 </header>
 
 <!-- Sound toggle — fixed in bottom-right of viewport -->
 <div class="hero-audio-panel" id="audioPanel">
   <div class="hero-audio-panel-label">
-    <span data-ru>Звук</span><span data-en>Sound</span><span data-de>Ton</span>
+    <span data-ru>Звук</span><span data-en>Sound</span><span data-de>Ton</span><span data-fr>Son</span>
   </div>
   <div class="hero-audio-toggle" id="audioToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Sound on/off">
     <span class="hero-audio-toggle-label lbl-off">
-      <span data-ru>Выкл</span><span data-en>Off</span><span data-de>Aus</span>
+      <span data-ru>Выкл</span><span data-en>Off</span><span data-de>Aus</span><span data-fr>Arrêt</span>
     </span>
     <div class="hero-audio-toggle-track">
       <div class="hero-audio-toggle-knob"></div>
     </div>
     <span class="hero-audio-toggle-label lbl-on">
-      <span data-ru>Вкл</span><span data-en>On</span><span data-de>An</span>
+      <span data-ru>Вкл</span><span data-en>On</span><span data-de>An</span><span data-fr>Marche</span>
     </span>
   </div>
   <div class="hero-audio-wave" aria-hidden="true">
@@ -1796,6 +1808,7 @@ footer {
           <span data-ru>Алексей Пудинов</span>
           <span data-en>Alexey Pudinov</span>
           <span data-de>Alexey Pudinov</span>
+          <span data-fr>Alexey Pudinov</span>
         </span>
         <svg class="name-arrow" viewBox="0 0 64 16" aria-hidden="true">
           <line x1="2" y1="8" x2="56" y2="8" stroke="currentColor" stroke-width="1" />
@@ -1807,6 +1820,7 @@ footer {
         <p data-ru>Когда музыкант покидает родину, меняется не только его адрес. Меняется язык, меняется мышление. Иногда меняется и имя. Эмиграция — это не географическое событие, а длинный внутренний процесс, и каждый музыкант проходит его по-своему.</p>
         <p data-en>When a musician leaves home, more than the address changes. Language changes, thinking changes. Sometimes even the name. Emigration is not a geographical event but a slow inner process, and each musician lives through it differently.</p>
         <p data-de>Wenn ein Musiker seine Heimat verlässt, ändert sich mehr als nur die Adresse. Die Sprache ändert sich, das Denken ändert sich. Manchmal sogar der Name. Emigration ist kein geografisches Ereignis, sondern ein langer innerer Prozess — jeder Musiker durchlebt ihn auf seine eigene Weise.</p>
+        <p data-fr>Quand un musicien quitte sa patrie, ce n'est pas seulement son adresse qui change. La langue change, la pensée change. Parfois le nom aussi. L'émigration n'est pas un événement géographique, mais un long processus intérieur — chaque musicien le vit à sa propre manière.</p>
       </div>
     </div>
     <div class="name-photo reveal">
@@ -1823,6 +1837,7 @@ footer {
     <span data-ru>Альбом о том, как <em>эмиграция меняет</em> музыканта изнутри.</span>
     <span data-en>A recording about how emigration <em>changes a musician</em> from within.</span>
     <span data-de>Eine Aufnahme darüber, wie Emigration <em>einen Musiker</em> von innen verändert.</span>
+    <span data-fr>Un album sur la manière dont l'émigration <em>transforme un musicien</em> de l'intérieur.</span>
   </h2>
 
   <div class="concept-body reveal-stagger">
@@ -1847,13 +1862,22 @@ footer {
       Drei Biografien, drei verschiedene Antworten auf dieselbe Frage: was tut ein Musiker, wenn er keine Heimat mehr hat.
     </p>
 
+    <p data-fr>
+      En décembre 1917, Sergueï Rachmaninov a quitté la Russie et a cessé d'écrire de la musique pour piano solo pendant près de quatorze ans. Lev Hornstein, originaire de Krementchouk, est arrivé à New York vers 1907 avec sa famille et est devenu progressivement Leo Ornstein. En 1916, Ernest Bloch, compositeur genevois, est venu aux États-Unis pour diriger la tournée de la compagnie de danse de Maud Allan ; la compagnie s'est dissoute et Bloch est resté en Ohio — et finalement pour le reste de sa vie.
+    </p>
+    <p data-fr>
+      Trois biographies, trois réponses différentes à la même question : que fait un musicien quand il n'a plus de patrie.
+    </p>
+
     <blockquote class="quote">
       <span data-ru>«Сменить имя — значит на время замолчать. Этот альбом — способ поменять себя через эмиграцию Рахманинова, Блоха и Оренштайна».</span>
       <span data-en>"To change a name is to fall silent for a while. This album is a way of changing myself through the emigrations of Rachmaninoff, Bloch and Ornstein."</span>
       <span data-de>«Den Namen zu wechseln bedeutet, eine Zeitlang zu verstummen. Dieses Album ist mein Weg, mich durch die Emigration von Rachmaninow, Bloch und Ornstein selbst zu verstehen.»</span>
+      <span data-fr>«Changer de nom, c'est se taire un temps. Cet album est ma façon de me comprendre moi-même à travers l'émigration de Rachmaninov, Bloch et Ornstein.»</span>
       <span class="quote-caption" data-ru>Алекс Пудманн</span>
       <span class="quote-caption" data-en>Alex Pudmann</span>
       <span class="quote-caption" data-de>Alex Pudmann</span>
+      <span class="quote-caption" data-fr>Alex Pudmann</span>
     </blockquote>
 
     <p data-ru>
@@ -1864,6 +1888,9 @@ footer {
     </p>
     <p data-de>
       Alexey Pudinov lebte zwanzig Jahre in Deutschland. 2025 änderte er seinen Namen in Alex Pudmann — zuerst als Künstler, dann auch in den Dokumenten. <strong>Between Names</strong> ist sein erstes Soloalbum unter dem neuen Namen und die öffentliche Form dieser Entscheidung. Das Album erklärt diese Entscheidung nicht, sondern lebt sie.
+    </p>
+    <p data-fr>
+      Alexey Pudinov a vécu vingt ans en Allemagne. En 2025, il a changé son nom en Alex Pudmann — d'abord en tant qu'artiste, puis sur ses papiers. <strong>Between Names</strong> est son premier album solo sous le nouveau nom et la forme publique de cette décision. L'album ne l'explique pas ; il la vit.
     </p>
   </div>
 </section>
@@ -1878,11 +1905,13 @@ footer {
         <span data-ru>Каждый из них изменился<br><em>по-своему</em>.</span>
         <span data-en>Each of them changed<br>in&nbsp;<em>his own way</em>.</span>
         <span data-de>Jeder von ihnen veränderte sich<br>auf seine <em>eigene Weise</em>.</span>
+        <span data-fr>Chacun d'eux a changé<br>à <em>sa propre manière</em>.</span>
       </h2>
       <p class="composers-intro reveal">
         <span data-ru>Альбом построен на музыке трёх композиторов, родившихся в конце XIX века. Их зрелые годы пришлись на эпоху больших исторических разрывов — войн, революций, эмиграции, отрыва от прежней среды. Каждый из них в какой-то момент потерял свою страну и продолжал писать дальше. Программа альбома — не три биографии, а три разные формы эмиграционного опыта: разрыв, перерождение и возвращение голоса.</span>
         <span data-en>The album is built on the music of three composers born in the late nineteenth century. Their mature years fell on an era of historical rupture — wars, revolutions, emigration, the loss of a former world. Each of them, at some point, lost his country and went on writing. The programme is not three biographies but three forms of the emigrant experience: rupture, rebirth, and the return of a voice.</span>
         <span data-de>Das Album basiert auf der Musik dreier Komponisten, die im späten 19. Jahrhundert geboren wurden. Ihre Reifejahre fielen in eine Epoche großer historischer Umbrüche — Kriege, Revolutionen, Emigration, der Verlust der früheren Welt. Jeder von ihnen verlor irgendwann sein Land und schrieb weiter. Das Programm ist keine Aneinanderreihung dreier Biografien, sondern drei Formen der Emigrationserfahrung: Bruch, Wiedergeburt und Rückkehr der Stimme.</span>
+        <span data-fr>L'album est construit sur la musique de trois compositeurs nés à la fin du XIX<sup>e</sup> siècle. Leurs années de maturité ont coïncidé avec une époque de grandes ruptures historiques — guerres, révolutions, émigration, perte du monde d'avant. Chacun d'eux a, à un moment, perdu son pays et a continué d'écrire. Le programme n'est pas trois biographies, mais trois formes de l'expérience de l'exil : rupture, renaissance et retour de la voix.</span>
       </p>
     </div>
 
@@ -1899,6 +1928,7 @@ footer {
           <span data-ru>Сергей Рахманинов</span>
           <span data-en>Sergei Rachmaninoff</span>
           <span data-de>Sergei Rachmaninow</span>
+          <span data-fr>Sergueï Rachmaninov</span>
         </div>
         <div class="composer-dates">1873 — 1943</div>
         <div class="composer-bio">
@@ -1913,6 +1943,10 @@ footer {
           <p data-de>In Russland geboren. 1917 war er bereits eine Weltgröße — als Komponist und als Konzertvirtuose. Im Dezember 1917 verließ er Russland für immer.</p>
           <p data-de>Nach der Emigration schrieb er fast vierzehn Jahre lang kein einziges Soloklavierstück — genau jenes Genre, das ihn auf beiden Seiten des Atlantiks bekannt gemacht hatte. Das Schweigen dauerte bis zum Sommer 1931.</p>
           <p data-de>Es endete auf einem Grundstück, das er nahe Hertenstein am Vierwaldstättersee gekauft hatte. Er nannte die Villa <em>Senar</em>, nach den Anfangsbuchstaben von Sergei, Natalja und Rachmaninow. Das Album enthält sowohl sein letztes Jahr in Russland als auch seinen ersten Sommer in der Schweiz.</p>
+
+          <p data-fr>Né en Russie. En 1917, il était déjà une figure mondiale — à la fois compositeur et virtuose en tournée. En décembre 1917, il quitta la Russie pour toujours.</p>
+          <p data-fr>Pendant près de quatorze ans après l'émigration, il n'écrivit aucune pièce pour piano solo — précisément le genre qui l'avait rendu célèbre des deux côtés de l'Atlantique. Le silence dura jusqu'à l'été 1931.</p>
+          <p data-fr>Il prit fin sur un terrain qu'il avait acheté près de Hertenstein, sur le lac des Quatre-Cantons. Il nomma la villa <em>Senar</em>, d'après les premières lettres de Sergueï, Natalia et Rachmaninov. L'album inclut sa dernière année en Russie et son premier été en Suisse.</p>
         </div>
       </article>
 
@@ -1927,11 +1961,13 @@ footer {
           <span data-ru>Лев Горнштейн</span>
           <span data-en>Leo Ornstein</span>
           <span data-de>Leo Ornstein</span>
+          <span data-fr>Leo Ornstein</span>
         </div>
         <div class="composer-dates">
           <span data-ru>ок. 1893 — 2002</span>
           <span data-en>c. 1893 — 2002</span>
           <span data-de>ca. 1893 — 2002</span>
+          <span data-fr>env. 1893 — 2002</span>
         </div>
         <div class="composer-bio">
           <p data-ru>Родился в Кременчуге, в Полтавской губернии. Учился у Глазунова и Есиповой в Петербургской консерватории. Около 1907 года семья эмигрировала в США, спасаясь от погромов, — и Лев Горнштейн постепенно стал Leo&nbsp;Ornstein.</p>
@@ -1945,6 +1981,10 @@ footer {
           <p data-de>Geboren in Krementschuk, im Gouvernement Poltawa des Russischen Reiches. Er studierte bei Glasunow und Jessipowa am Sankt Petersburger Konservatorium. Um 1907 emigrierte die Familie in die USA, um den Pogromen zu entkommen — und Lew Hornstein wurde allmählich zu Leo&nbsp;Ornstein.</p>
           <p data-de>Mitte der 1910er war er der führende <em>enfant terrible</em> der transatlantischen Avantgarde — dichte Toncluster Jahrzehnte vor Cage. Sein Londoner Konzert im März 1914 endete fast in Aufruhr.</p>
           <p data-de>Anfang der 1920er wandte er sich in die entgegengesetzte Richtung — zu einer dichteren, romantischeren, innerlicheren Sprache. Mit vierzig zog er sich von der Konzertbühne zurück und komponierte bis 1990 weiter. Er wurde über hundert Jahre alt.</p>
+
+          <p data-fr>Né à Krementchouk, dans la province de Poltava de l'Empire russe. Il étudia avec Glazounov et Iessipova au Conservatoire de Saint-Pétersbourg. Vers 1907, la famille émigra aux États-Unis pour échapper aux pogroms — et Lev Hornstein devint progressivement Leo&nbsp;Ornstein.</p>
+          <p data-fr>Au milieu des années 1910, il était le principal <em>enfant terrible</em> de l'avant-garde transatlantique — écrivant des clusters denses des décennies avant Cage. Son concert londonien de mars 1914 faillit se terminer en émeute.</p>
+          <p data-fr>Au début des années 1920, il prit la direction inverse — vers un langage plus dense, plus romantique, plus intérieur. À quarante ans, il se retira de la scène et continua à composer jusqu'en 1990. Il vécut plus de cent ans.</p>
         </div>
       </article>
 
@@ -1959,6 +1999,7 @@ footer {
           <span data-ru>Эрнест Блох</span>
           <span data-en>Ernest Bloch</span>
           <span data-de>Ernest Bloch</span>
+          <span data-fr>Ernest Bloch</span>
         </div>
         <div class="composer-dates">1880 — 1959</div>
         <div class="composer-bio">
@@ -1973,6 +2014,10 @@ footer {
           <p data-de>Geboren in Genf. Er studierte bei Jaques-Dalcroze, Ysaÿe, später in Frankfurt und München. Ab 1911 war er Professor am Genfer Konservatorium.</p>
           <p data-de>1916 reiste er in die USA, um die Tanztournee von Maud Allan zu dirigieren. Die Kompanie zerfiel, und Bloch blieb in Ohio; 1920 übernahm er das Cleveland Institute of Music.</p>
           <p data-de>1923 war eine schöpferische Explosion — eine Reihe großer Klavierwerke, darunter zehn Miniaturen, die seinen Töchtern Suzanne und Lucienne gewidmet waren. 1930 kehrte er kurz in die Schweiz und nach Frankreich zurück, doch der Aufstieg des Nationalsozialismus zwang ihn zurück in die USA, wo er von 1939 bis zu seinem Tod lebte.</p>
+
+          <p data-fr>Né à Genève. Il étudia avec Jaques-Dalcroze, Ysaÿe, puis à Francfort et Munich. À partir de 1911, il fut professeur au Conservatoire de Genève.</p>
+          <p data-fr>En 1916, il se rendit aux États-Unis pour diriger la tournée de danse de Maud Allan. La compagnie se dissout et Bloch resta en Ohio ; en 1920, il prit la direction du Cleveland Institute of Music.</p>
+          <p data-fr>1923 fut une explosion créatrice — une série d'œuvres majeures pour piano, parmi lesquelles dix miniatures dédiées à ses filles Suzanne et Lucienne. En 1930, il rentra brièvement en Suisse et en France, mais la montée du nazisme l'obligea à retourner aux États-Unis, où il vécut de 1939 jusqu'à sa mort.</p>
         </div>
       </article>
 
@@ -1989,10 +2034,12 @@ footer {
       <span data-ru>Рахманинов, Оренштайн и&nbsp;Блох<br><em>в&nbsp;исполнении Алекса&nbsp;Пудмана</em>.</span>
       <span data-en>Rachmaninoff, Ornstein and&nbsp;Bloch<br><em>played by Alex&nbsp;Pudmann</em>.</span>
       <span data-de>Rachmaninow, Ornstein und&nbsp;Bloch<br><em>interpretiert von Alex&nbsp;Pudmann</em>.</span>
+      <span data-fr>Rachmaninov, Ornstein et&nbsp;Bloch<br><em>interprétés par Alex&nbsp;Pudmann</em>.</span>
     </h2>
     <p class="covers-sub" data-ru>Двойной винил и CD. Релиз 2027.</p>
     <p class="covers-sub" data-en>Double LP and CD. Release 2027.</p>
     <p class="covers-sub" data-de>Doppel-LP und CD. Veröffentlichung 2027.</p>
+    <p class="covers-sub" data-fr>Double LP et CD. Sortie 2027.</p>
   </div>
   <div class="covers-grid reveal-stagger">
     <div class="cover">
@@ -2013,39 +2060,31 @@ footer {
       <span data-ru>Композиция <em>альбома</em>.</span>
       <span data-en>The <em>composition</em> of the album.</span>
       <span data-de>Die Komposition <em>des Albums</em>.</span>
+      <span data-fr>La composition <em>de l'album</em>.</span>
     </h2>
 
     <div class="program-narrative reveal">
-      <div data-ru>
-        <p>Альбом устроен как путь через три внутренних состояния, через которые проходит музыкант в эмиграции. Сначала — последний год дома, ещё на своей земле, но уже с тяжёлым предчувствием отъезда. Этот этап мы называем <strong>дорастворение</strong>: ничего ещё не сломано, но всё уже звучит иначе.</p>
-        <p>Затем — первый крупный голос уже в эмиграции, написанный человеком, который точно знает, что обратного билета не будет. Это <strong>разрыв</strong>: момент, когда прежняя жизнь окончательно остаётся позади, а новая ещё не успела стать своей.</p>
-        <p>И, после многолетнего молчания, <strong>возвращение памяти</strong> — миниатюры, написанные эмигрантом в новой стране для его собственных детей. Не возвращение домой и не плач по нему, а попытка передать дальше то, что больше не существует ни в одном географическом смысле, но осталось внутри звуком.</p>
-        <p>Между этими тремя точками — потеря ориентации, тишина и постепенное узнавание себя в новых обстоятельствах. Альбом не выстроен как биография; он повторяет внутреннюю драматургию эмиграции, общую для всех трёх композиторов и для самого пианиста.</p>
-      </div>
-      <div data-en>
-        <p>The album is shaped as a passage through three inner states a musician inhabits in emigration. First — the last year at home, still on familiar ground but already heavy with the foreknowledge of departure. We call this stage <strong>the dissolution before</strong>: nothing is broken yet, but everything already sounds different.</p>
-        <p>Then — the first major voice made in exile, written by someone who already knows the return ticket will not exist. This is <strong>the rupture</strong>: the moment the old life is finally left behind, while the new one has not yet become his own.</p>
-        <p>And, after years of silence, <strong>the return of memory</strong> — miniatures written by an emigrant in a new country for his own children. Not a return home and not a lament for it, but an attempt to pass on something that no longer exists in any geographical sense and yet remains inside as sound.</p>
-        <p>Between these three points are disorientation, silence and the slow recognition of oneself in new circumstances. The album is not arranged as a biography; it follows the inner drama of emigration, the one shared by all three composers and by the pianist himself.</p>
-      </div>
-      <div data-de>
-        <p>Das Album ist als Weg durch drei innere Zustände aufgebaut, die ein Musiker in der Emigration durchlebt. Zuerst — das letzte Jahr zu Hause, noch auf vertrautem Boden, aber bereits schwer von der Vorahnung des Aufbruchs. Diese Phase nennen wir die <strong>«Vorauflösung»</strong>: noch ist nichts gebrochen, doch alles klingt schon anders.</p>
-        <p>Dann — die erste große Stimme bereits in der Emigration, geschrieben von jemandem, der genau weiß, dass es kein Rückfahrticket geben wird. Das ist <strong>der Bruch</strong>: der Moment, in dem das frühere Leben endgültig zurückbleibt, während das neue noch nicht eigen geworden ist.</p>
-        <p>Und nach Jahren des Schweigens <strong>die Rückkehr der Erinnerung</strong> — Miniaturen, die ein Emigrant in einem neuen Land für seine eigenen Kinder schreibt. Keine Rückkehr nach Hause und keine Klage darüber, sondern der Versuch, etwas weiterzugeben, das in keinem geografischen Sinne mehr existiert und doch im Innern als Klang bleibt.</p>
-        <p>Zwischen diesen drei Punkten liegen Orientierungsverlust, Stille und das langsame Wiedererkennen des eigenen Selbst unter neuen Umständen. Das Album ist nicht als Biografie angelegt; es folgt der inneren Dramaturgie der Emigration, die allen drei Komponisten und dem Pianisten selbst gemeinsam ist.</p>
-      </div>
+      <p data-ru lang="ru">Альбом устроен как путь через внутреннее состояние, через которое проходит музыкант в эмиграции. <strong>До.</strong> Ещё дома, ещё на своей земле; ничего ещё не сломано, но всё уже звучит так, будто прислушивается к чему-то снаружи. <strong>Растворение.</strong> Потеря ориентации — музыка, в которой эмиграция уже произошла, хотя сам музыкант, может быть, ещё этого не понимает. <strong>Разрыв.</strong> Первый уверенный голос уже в эмиграции, написанный человеком, который понимает, что он не вернётся; момент, когда прежняя жизнь остаётся позади, а новая ещё не успела стать своей. <strong>Возвращение.</strong> Произведение, написанное за рубежом, в обретённой второй родине; не возвращение домой и не плач по нему, а ощущение спокойствия, в котором голос наконец снова находит себя. <strong>Память.</strong> Миниатюры, написанные эмигрантом в новой стране для его собственных детей; не воспоминание о доме, а попытка передать дальше то, чего больше не существует ни в одном географическом смысле, но что осталось внутри звуком. Между этими пятью точками — тишина и постепенное узнавание себя нового. Альбом не выстроен как биография; он повторяет внутреннюю драматургию эмиграции, общую для всех трёх композиторов и для самого пианиста.</p>
+
+      <p data-en lang="en">The album is built as a path through an inner state that a musician lives through in exile. <strong>Before.</strong> Still at home, still on one's own ground; nothing is broken yet, but everything already sounds as if it is listening to something outside. <strong>Dissolution.</strong> A loss of bearings — music in which emigration has already happened, even if the musician himself does not yet realise it. <strong>Rupture.</strong> The first confident voice already in exile, written by someone who knows he will not return; the moment when the old life is left behind and the new one has not yet become one's own. <strong>Return.</strong> A work composed abroad, in a second homeland that has been found; not a return home, and not a lament for it, but a sense of calm in which the voice finally finds itself again. <strong>Memory.</strong> Miniatures written by an emigrant in his new country for his own children; not a recollection of home, but an attempt to pass on what no longer exists in any geographical sense, yet has remained inside as sound. Between these five points — silence and the slow recognition of one's new self. The album is not arranged as a biography; it follows the inner drama of exile, shared by all three composers and by the pianist himself.</p>
+
+      <p data-de lang="de">Das Album ist als ein Weg durch jenen inneren Zustand angelegt, den ein Musiker im Exil durchlebt. <strong>Davor.</strong> Noch zu Hause, noch auf eigenem Boden; nichts ist gebrochen, und doch klingt schon alles, als horche es auf etwas von draussen. <strong>Auflösung.</strong> Ein Verlust der Orientierung — Musik, in der das Exil bereits geschehen ist, auch wenn der Musiker selbst es vielleicht noch nicht begriffen hat. <strong>Bruch.</strong> Die erste sichere Stimme, geschrieben bereits im Exil, von jemandem, der weiss, dass er nicht zurückkehren wird; der Moment, in dem das alte Leben zurückbleibt und das neue noch nicht zum eigenen geworden ist. <strong>Rückkehr.</strong> Ein Werk, im Ausland entstanden, in einer wiedergefundenen zweiten Heimat; keine Heimkehr und keine Klage um sie, sondern eine Ruhe, in der die Stimme schliesslich wieder zu sich selbst findet. <strong>Erinnerung.</strong> Miniaturen, geschrieben von einem Emigranten im neuen Land für seine eigenen Kinder; keine Erinnerung an die Heimat, sondern der Versuch, weiterzugeben, was geographisch nirgends mehr existiert, aber als Klang im Inneren geblieben ist. Zwischen diesen fünf Punkten — Stille und das langsame Wiedererkennen seiner selbst. Das Album ist nicht als Biografie angelegt; es folgt der inneren Dramaturgie des Exils, wie sie alle drei Komponisten und auch der Pianist selbst kennen.</p>
+
+      <p data-fr lang="fr">L'album se construit comme une traversée de l'état intérieur que connaît un musicien en exil. <strong>Avant.</strong> Encore chez soi, encore sur sa propre terre ; rien n'est encore brisé, mais tout résonne déjà comme s'il prêtait l'oreille à quelque chose du dehors. <strong>Dissolution.</strong> Une perte de repères — une musique dans laquelle l'exil a déjà eu lieu, même si le musicien lui-même ne s'en est peut-être pas encore aperçu. <strong>Rupture.</strong> La première voix assurée, écrite déjà en exil, par quelqu'un qui sait qu'il ne reviendra pas ; le moment où la vie ancienne reste derrière et la nouvelle n'est pas encore devenue sienne. <strong>Retour.</strong> Une œuvre composée à l'étranger, dans une seconde patrie retrouvée ; non pas un retour au pays ni une plainte sur lui, mais un apaisement dans lequel la voix se retrouve enfin elle-même. <strong>Mémoire.</strong> Des miniatures écrites par un émigré dans son nouveau pays pour ses propres enfants ; non pas un souvenir du foyer, mais une tentative de transmettre ce qui n'existe plus en aucun sens géographique, mais demeure au-dedans comme un son. Entre ces cinq points — le silence et la lente reconnaissance de soi-même en tant qu'autre. L'album n'est pas construit comme une biographie ; il suit la dramaturgie intérieure de l'exil, partagée par les trois compositeurs et par le pianiste lui-même.</p>
     </div>
 
     <div class="program-meta reveal">
       <span>
         <span data-ru><strong>Общая длительность</strong> &nbsp; около 67 минут</span>
         <span data-en><strong>Total running time</strong> &nbsp; about 67 minutes</span>
-        <span data-de><strong>Gesamtspielzeit</strong> &nbsp; etwa 67 Minuten</span>
+        <span data-de><strong>Gesamtdauer</strong> &nbsp; etwa 67 Minuten</span>
+        <span data-fr><strong>Durée totale</strong> &nbsp; environ 67 minutes</span>
       </span>
       <span>
         <span data-ru>Произведения будут объявлены вместе с релизом альбома</span>
         <span data-en>The individual works will be announced with the release of the album</span>
-        <span data-de>Die einzelnen Werke werden mit der Albumveröffentlichung bekannt gegeben</span>
+        <span data-de>Die einzelnen Werke werden zur Veröffentlichung des Albums bekanntgegeben</span>
+        <span data-fr>Les œuvres seront annoncées lors de la sortie de l'album</span>
       </span>
     </div>
   </div>
@@ -2069,6 +2108,10 @@ footer {
       <p data-de>Alex Pudmann ist ein in Frankfurt am Main lebender Pianist. In Russland geboren, studierte er in Deutschland, im Vereinigten Königreich und in Russland. Bis 2025 trat er unter dem Namen Alexey Pudinov auf.</p>
       <p data-de>Seine erste Lehrerin in Russland war Ljudmila Selmanowna Smeljanskaja (Uraler Musikkolleg, Jekaterinburg). In Europa und den USA zählten unter anderen Norma Fisher, Elisabeth Leonskaja, Leon Fleisher, Hans‑Peter Stenzl, Bernhard Wetz, Angelika Merkle, Herbert Seidel und Paul Schenly zu seinen Lehrern. Solo-Alben erschienen bei Kaleidos und Naxos. Ensemble-Projekte umfassen TWO4PIANO und das Frankfurt Piano Trio; zu seinen Kammermusikpartnern gehören Johannes Moser, Benedict Klöckner, Michel Kann, Eliot Quartet und Malion Quartet.</p>
       <p data-de>Wiederkehrende Auftritte beim Rheingau Musik Festival, Pianofest in the Hamptons (artist in residence seit 2022), Toronto Summer Music, Thüringer Bachwochen und den Musikfestspielen Sanssouci. Konzerte mit dem BBC Philharmonic, dem Sinfonieorchester Gießen und dem RTV Slovenia Symphony Orchestra. Die Biografie bleibt nach der Namensänderung dieselbe; der neue Name markiert einen Ausgangspunkt für eine neue Aufnahme und ein neues Kapitel des Konzertlebens.</p>
+
+      <p data-fr>Alex Pudmann est un pianiste basé à Francfort-sur-le-Main. Né en Russie, il a étudié en Allemagne, au Royaume-Uni et en Russie. Jusqu'en 2025, il se produisait sous le nom d'Alexey Pudinov.</p>
+      <p data-fr>Sa première professeure en Russie fut Lyudmila Zelmanovna Smelyanskaya (Conservatoire de musique de l'Oural, Iekaterinbourg). En Europe et aux États-Unis, ses professeurs incluent Norma Fisher, Elisabeth Leonskaja, Leon Fleisher, Hans‑Peter Stenzl, Bernhard Wetz, Angelika Merkle, Herbert Seidel et Paul Schenly. Ses albums solo ont paru chez Kaleidos et Naxos. Parmi ses projets d'ensemble : TWO4PIANO et le Frankfurt Piano Trio ; parmi ses partenaires de musique de chambre : Johannes Moser, Benedict Klöckner, Michel Kann, l'Eliot Quartet et le Malion Quartet.</p>
+      <p data-fr>Apparitions régulières au Rheingau Musik Festival, au Pianofest in the Hamptons (artiste en résidence depuis 2022), au Toronto Summer Music, aux Thüringer Bachwochen et aux Musikfestspiele Sanssouci. Concerts avec la BBC Philharmonic, le Sinfonieorchester Gießen et le RTV Slovenia Symphony Orchestra. La biographie reste la même après le changement de nom ; le nouveau nom marque un point de départ pour un nouvel enregistrement et un nouveau chapitre de la vie de concert.</p>
     </div>
     <div class="two-col-image reveal">
       <img src="images/photo-03.jpg" alt="Portrait of Alex Pudmann" loading="lazy" />
@@ -2090,6 +2133,7 @@ footer {
       <span data-ru>Концерты <em>и дискуссии</em>.</span>
       <span data-en>Concerts <em>and talks</em>.</span>
       <span data-de>Konzerte <em>und Gespräche</em>.</span>
+      <span data-fr>Concerts <em>et discussions</em>.</span>
     </h2>
 
     <div class="beyond-grid">
@@ -2098,21 +2142,28 @@ footer {
           <strong>Between Names</strong> — не только альбом. Параллельно с выходом запланирована серия концертов в Германии, Швейцарии и Франции. Каждый концерт строится как разговор между музыкой и контекстом: перед концертом и после него — открытая дискуссия с приглашёнными музыковедами, историками культуры и музыкантами-эмигрантами разных поколений. К серии выйдет печатный буклет с эссе о композиторах программы и пианисте.
         </p>
         <p data-ru>
-          Тема концертов и дискуссий — не одна конкретная биография, а сама фигура музыкальной эмиграции: что значит сменить страну, язык, иногда имя — и продолжать делать то же дело. Между залами и эпохами эта фигура возвращается так часто, что её невозможно списать на политическую конъюнктуру.
+          Тема концертов и дискуссий — не одна конкретная биография, а сама фигура музыкальной эмиграции: что значит сменить страну, язык, иногда имя — и продолжать делать то же дело.
         </p>
 
         <p data-en>
           <strong>Between Names</strong> is not only a record. Alongside the release, a series of concerts is planned in Germany, Switzerland and France. Each concert is built as a conversation between the music and its context: before and after the performance, an open discussion with invited musicologists, cultural historians and emigrant musicians of different generations. The series will be accompanied by a printed booklet with essays on the composers of the programme and the pianist.
         </p>
         <p data-en>
-          The subject of these concerts and discussions is not any single biography, but the figure of musical emigration itself — what it means to change country, language, sometimes a name, and to keep doing the same work. Across halls and centuries this figure recurs too often to be reduced to a single political moment.
+          The subject of these concerts and discussions is not any single biography, but the figure of musical emigration itself — what it means to change country, language, sometimes a name, and to keep doing the same work.
         </p>
 
         <p data-de>
           <strong>Between Names</strong> ist nicht nur ein Album. Parallel zur Veröffentlichung ist eine Konzertreihe in Deutschland, der Schweiz und Frankreich geplant. Jedes Konzert ist als Gespräch zwischen der Musik und ihrem Kontext angelegt: vor und nach der Aufführung — eine offene Diskussion mit eingeladenen Musikwissenschaftlern, Kulturhistorikern und emigrierten Musikern verschiedener Generationen. Die Reihe wird von einem gedruckten Booklet mit Essays über die Komponisten des Programms und den Pianisten begleitet.
         </p>
         <p data-de>
-          Thema der Konzerte und Gespräche ist nicht eine einzelne Biografie, sondern die Figur der musikalischen Emigration selbst — was es heißt, das Land, die Sprache, manchmal den Namen zu wechseln und dieselbe Arbeit fortzusetzen. Über Säle und Jahrhunderte hinweg kehrt diese Figur so oft wieder, dass sie sich nicht auf einen einzelnen politischen Moment reduzieren lässt.
+          Thema der Konzerte und Gespräche ist nicht eine einzelne Biografie, sondern die Figur der musikalischen Emigration selbst — was es heißt, das Land, die Sprache, manchmal den Namen zu wechseln und dieselbe Arbeit fortzusetzen.
+        </p>
+
+        <p data-fr>
+          <strong>Between Names</strong> n'est pas seulement un album. Parallèlement à la sortie, une série de concerts est prévue en Allemagne, en Suisse et en France. Chaque concert est conçu comme un dialogue entre la musique et son contexte : avant et après la représentation — une discussion ouverte avec des musicologues, des historiens de la culture et des musiciens émigrés de différentes générations. La série sera accompagnée d'un livret imprimé avec des essais sur les compositeurs du programme et le pianiste.
+        </p>
+        <p data-fr>
+          Le sujet des concerts et des discussions n'est pas une biographie particulière, mais la figure même de l'émigration musicale : ce que cela signifie de changer de pays, de langue, parfois de nom — et de continuer à faire le même travail.
         </p>
       </div>
 
@@ -2122,34 +2173,40 @@ footer {
           <h4 data-ru>Концерты</h4>
           <h4 data-en>Concerts</h4>
           <h4 data-de>Konzerte</h4>
+          <h4 data-fr>Concerts</h4>
           <p data-ru>Германия, Швейцария, Франция · сезон 2027/28</p>
           <p data-en>Germany, Switzerland, France · season 2027/28</p>
           <p data-de>Deutschland, Schweiz, Frankreich · Saison 2027/28</p>
+          <p data-fr>Allemagne, Suisse, France · saison 2027/28</p>
         </div>
         <div class="beyond-card">
           <div class="num">02</div>
           <h4 data-ru>Дискуссии</h4>
           <h4 data-en>Discussions</h4>
           <h4 data-de>Gespräche</h4>
+          <h4 data-fr>Discussions</h4>
           <p data-ru>Приглашённые эксперты до и после программы</p>
           <p data-en>Invited experts before and after the programme</p>
           <p data-de>Eingeladene Experten vor und nach dem Programm</p>
+          <p data-fr>Experts invités avant et après le programme</p>
         </div>
         <div class="beyond-card">
           <div class="num">03</div>
           <h4 data-ru>Печатный буклет</h4>
           <h4 data-en>Printed booklet</h4>
           <h4 data-de>Gedrucktes Booklet</h4>
+          <h4 data-fr>Livret imprimé</h4>
           <p data-ru>Эссе о композиторах и пианисте</p>
           <p data-en>Essays on the composers and the pianist</p>
           <p data-de>Essays über die Komponisten und den Pianisten</p>
+          <p data-fr>Essais sur les compositeurs et le pianiste</p>
         </div>
       </div>
     </div>
 
     <div class="mie-credit">
       <div class="mie-credit-label">
-        <span data-ru>Куратор</span><span data-en>Curator</span><span data-de>Kurator</span>
+        <span data-ru>Куратор</span><span data-en>Curator</span><span data-de>Kurator</span><span data-fr>Curateur</span>
       </div>
       <div class="mie-credit-body">
         <p data-ru>
@@ -2160,6 +2217,9 @@ footer {
         </p>
         <p data-de>
           <strong>Sasha Polivanov</strong> ist Kurator und Chefredakteur des unabhängigen Online-Mediums <a href="https://musicinemigration.com/about" target="_blank" rel="noopener">Music in Emigration</a>, das sich der musikalischen Emigration widmet.
+        </p>
+        <p data-fr>
+          <strong>Sasha Polivanov</strong> est curateur et rédacteur en chef du média en ligne indépendant <a href="https://musicinemigration.com/about" target="_blank" rel="noopener">Music in Emigration</a>, consacré à l'émigration musicale.
         </p>
       </div>
     </div>
@@ -2174,6 +2234,7 @@ footer {
     <span data-ru>Независимое производство <em>в поиске партнёров</em>.</span>
     <span data-en>An independent recording <em>seeking partners</em>.</span>
     <span data-de>Eine unabhängige Produktion <em>auf der Suche nach Partnern</em>.</span>
+    <span data-fr>Une production indépendante <em>en quête de partenaires</em>.</span>
   </h2>
 
   <div class="concept reveal-stagger" style="margin-top: 40px;">
@@ -2181,47 +2242,55 @@ footer {
       <p data-ru style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">«Between Names» — независимый альбом и независимая программа. Мы открыты к разговору с фондами, частными меценатами и лейблами.</p>
       <p data-en style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">Between Names is an independent album and an independent programme. We are open to conversation with foundations, private patrons and labels.</p>
       <p data-de style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">«Between Names» ist ein unabhängiges Album und ein unabhängiges Programm. Wir sind offen für Gespräche mit Stiftungen, privaten Mäzenen und Labels.</p>
+      <p data-fr style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">«Between Names» est un album indépendant et un programme indépendant. Nous sommes ouverts au dialogue avec des fondations, des mécènes privés et des labels.</p>
     </div>
     <div class="concept-text">
       <p data-ru style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">Мы рассматриваем партнёрство как длительные отношения, выходящие за рамки одного альбома и одной концертной серии.</p>
       <p data-en style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">We see partnership as a long‑term relationship that goes beyond a single album and a single concert series.</p>
       <p data-de style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">Wir verstehen Partnerschaft als langfristige Beziehung, die über ein einzelnes Album und eine einzelne Konzertreihe hinausgeht.</p>
+      <p data-fr style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">Nous concevons le partenariat comme une relation durable, qui dépasse le cadre d'un seul album et d'une seule série de concerts.</p>
     </div>
   </div>
 
   <div class="support-grid reveal-stagger">
     <div class="support-cell">
       <div class="num">
-        <span data-ru>01 · Фонды</span><span data-en>01 · Foundations</span><span data-de>01 · Stiftungen</span>
+        <span data-ru>01 · Фонды</span><span data-en>01 · Foundations</span><span data-de>01 · Stiftungen</span><span data-fr>01 · Fondations</span>
       </div>
       <h3 data-ru>Институциональные гранты</h3>
       <h3 data-en>Institutional grants</h3>
       <h3 data-de>Institutionelle Förderung</h3>
+      <h3 data-fr>Subventions institutionnelles</h3>
       <p data-ru>Открыты к диалогу с культурными фондами Германии, Швейцарии и Франции, для которых тематика проекта совпадает с собственным фокусом.</p>
       <p data-en>We are open to conversations with cultural foundations in Germany, Switzerland and France whose thematic focus aligns with the project.</p>
       <p data-de>Wir sind offen für Gespräche mit Kulturstiftungen in Deutschland, der Schweiz und Frankreich, deren thematischer Fokus mit dem Projekt übereinstimmt.</p>
+      <p data-fr>Nous sommes ouverts au dialogue avec les fondations culturelles d'Allemagne, de Suisse et de France dont l'orientation thématique correspond au projet.</p>
     </div>
     <div class="support-cell">
       <div class="num">
-        <span data-ru>02 · Меценаты</span><span data-en>02 · Patrons</span><span data-de>02 · Mäzene</span>
+        <span data-ru>02 · Меценаты</span><span data-en>02 · Patrons</span><span data-de>02 · Mäzene</span><span data-fr>02 · Mécènes</span>
       </div>
       <h3 data-ru>Частная поддержка</h3>
       <h3 data-en>Private support</h3>
       <h3 data-de>Private Förderung</h3>
+      <h3 data-fr>Soutien privé</h3>
       <p data-ru>Один благотворитель или небольшой круг покрывает определённую часть производства. Благодарность — в сопроводительных материалах: внутреннем буклете, на сайте проекта, в программках концертной серии.</p>
       <p data-en>A single benefactor or a small circle covers a defined part of the production. Acknowledgement appears in the accompanying materials — the inner booklet, the project website and the printed programmes of the concert series.</p>
       <p data-de>Ein einzelner Mäzen oder ein kleiner Kreis übernimmt einen definierten Teil der Produktion. Die Würdigung erscheint in den begleitenden Materialien — im inneren Booklet, auf der Projektwebsite und in den gedruckten Programmen der Konzertreihe.</p>
+      <p data-fr>Un mécène unique ou un petit cercle couvre une partie définie de la production. La reconnaissance figure dans les supports d'accompagnement — le livret intérieur, le site du projet et les programmes imprimés de la série de concerts.</p>
     </div>
     <div class="support-cell">
       <div class="num">
-        <span data-ru>03 · Лейблы</span><span data-en>03 · Labels</span><span data-de>03 · Labels</span>
+        <span data-ru>03 · Лейблы</span><span data-en>03 · Labels</span><span data-de>03 · Labels</span><span data-fr>03 · Labels</span>
       </div>
       <h3 data-ru>Ко-продукция</h3>
       <h3 data-en>Co-production</h3>
       <h3 data-de>Ko-Produktion</h3>
+      <h3 data-fr>Co-production</h3>
       <p data-ru>Открыты к партнёрству с классическим лейблом по мастерингу, художественному оформлению, тиражу и международной дистрибуции физического издания.</p>
       <p data-en>Open to a classical label partnership for mastering, artwork, pressing and international distribution of the physical edition.</p>
       <p data-de>Offen für eine Partnerschaft mit einem klassischen Label für Mastering, Artwork, Pressung und internationalen Vertrieb der physischen Ausgabe.</p>
+      <p data-fr>Ouverts à un partenariat avec un label classique pour le mastering, la pochette, le pressage et la distribution internationale de l'édition physique.</p>
     </div>
   </div>
 
@@ -2229,6 +2298,7 @@ footer {
     <span data-ru>По всем вопросам — <a href="mailto:polivanov.projects@gmail.com">polivanov.projects@gmail.com</a></span>
     <span data-en>For enquiries — <a href="mailto:polivanov.projects@gmail.com">polivanov.projects@gmail.com</a></span>
     <span data-de>Für Anfragen — <a href="mailto:polivanov.projects@gmail.com">polivanov.projects@gmail.com</a></span>
+    <span data-fr>Pour toute demande — <a href="mailto:polivanov.projects@gmail.com">polivanov.projects@gmail.com</a></span>
   </div>
 </section>
 
@@ -2242,31 +2312,37 @@ footer {
         <span data-ru>Напишите <em>нам</em>.</span>
         <span data-en>Write to <em>us</em>.</span>
         <span data-de>Schreiben Sie <em>uns</em>.</span>
+        <span data-fr>Écrivez-<em>nous</em>.</span>
       </h2>
       <div class="contact-details">
         <strong data-ru>Продакшн</strong>
         <strong data-en>Production</strong>
         <strong data-de>Produktion</strong>
+        <strong data-fr>Production</strong>
         Polivanov Projects · polivanov.projects@gmail.com
         <strong data-ru>Куратор</strong>
         <strong data-en>Curator</strong>
         <strong data-de>Kurator</strong>
+        <strong data-fr>Curateur</strong>
         <span data-ru>Саша Поливанов · Music in Emigration · Берлин</span>
         <span data-en>Sasha Polivanov · Music in Emigration · Berlin</span>
         <span data-de>Sasha Polivanov · Music in Emigration · Berlin</span>
+        <span data-fr>Sasha Polivanov · Music in Emigration · Berlin</span>
         <strong data-ru>Пианист</strong>
         <strong data-en>Pianist</strong>
         <strong data-de>Pianist</strong>
+        <strong data-fr>Pianiste</strong>
         <span data-ru>Alex Pudmann · Франкфурт-на-Майне</span>
         <span data-en>Alex Pudmann · Frankfurt am Main</span>
         <span data-de>Alex Pudmann · Frankfurt am Main</span>
+        <span data-fr>Alex Pudmann · Francfort-sur-le-Main</span>
       </div>
     </div>
 
     <form class="contact-form reveal-stagger" id="form" novalidate>
       <div class="field">
         <label for="name">
-          <span data-ru>Ваше имя</span><span data-en>Your name</span><span data-de>Ihr Name</span>
+          <span data-ru>Ваше имя</span><span data-en>Your name</span><span data-de>Ihr Name</span><span data-fr>Votre nom</span>
         </label>
         <input id="name" name="name" type="text" required />
       </div>
@@ -2276,26 +2352,26 @@ footer {
       </div>
       <div class="field">
         <label for="role">
-          <span data-ru>Кто вы</span><span data-en>Writing as</span><span data-de>Ich schreibe als</span>
+          <span data-ru>Кто вы</span><span data-en>Writing as</span><span data-de>Ich schreibe als</span><span data-fr>J'écris en tant que</span>
         </label>
         <select id="role" name="role">
           <option value="">—</option>
-          <option value="foundation" data-label-ru="Фонд / институция" data-label-en="Foundation / institution" data-label-de="Stiftung / Institution">Фонд / институция</option>
-          <option value="patron" data-label-ru="Меценат" data-label-en="Private patron" data-label-de="Privater Mäzen">Меценат</option>
-          <option value="label" data-label-ru="Лейбл / издатель" data-label-en="Label / publisher" data-label-de="Label / Verlag">Лейбл / издатель</option>
-          <option value="press" data-label-ru="Пресса / медиа" data-label-en="Press / media" data-label-de="Presse / Medien">Пресса / медиа</option>
-          <option value="programmer" data-label-ru="Концертный директор" data-label-en="Concert programmer" data-label-de="Konzertveranstalter">Концертный директор</option>
-          <option value="other" data-label-ru="Другое" data-label-en="Other" data-label-de="Anderes">Другое</option>
+          <option value="foundation" data-label-ru="Фонд / институция" data-label-en="Foundation / institution" data-label-de="Stiftung / Institution" data-label-fr="Fondation / institution">Фонд / институция</option>
+          <option value="patron" data-label-ru="Меценат" data-label-en="Private patron" data-label-de="Privater Mäzen" data-label-fr="Mécène privé">Меценат</option>
+          <option value="label" data-label-ru="Лейбл / издатель" data-label-en="Label / publisher" data-label-de="Label / Verlag" data-label-fr="Label / éditeur">Лейбл / издатель</option>
+          <option value="press" data-label-ru="Пресса / медиа" data-label-en="Press / media" data-label-de="Presse / Medien" data-label-fr="Presse / médias">Пресса / медиа</option>
+          <option value="programmer" data-label-ru="Концертный директор" data-label-en="Concert programmer" data-label-de="Konzertveranstalter" data-label-fr="Programmateur de concerts">Концертный директор</option>
+          <option value="other" data-label-ru="Другое" data-label-en="Other" data-label-de="Anderes" data-label-fr="Autre">Другое</option>
         </select>
       </div>
       <div class="field">
         <label for="message">
-          <span data-ru>Сообщение</span><span data-en>Message</span><span data-de>Nachricht</span>
+          <span data-ru>Сообщение</span><span data-en>Message</span><span data-de>Nachricht</span><span data-fr>Message</span>
         </label>
         <textarea id="message" name="message" rows="4"></textarea>
       </div>
       <button type="button" class="submit-btn" id="submit">
-        <span data-ru>Отправить</span><span data-en>Send message</span><span data-de>Senden</span>
+        <span data-ru>Отправить</span><span data-en>Send message</span><span data-de>Senden</span><span data-fr>Envoyer</span>
       </button>
       <div class="form-status" id="status"></div>
     </form>
@@ -2345,8 +2421,8 @@ footer {
   const label = wrap.querySelector('.lang-label');
   const items = wrap.querySelectorAll('.lang-item[data-set-lang]');
   const STORAGE_KEY = 'between-names-lang';
-  const LABELS = { en: 'English', ru: 'Russian', de: 'German' };
-  const VALID = new Set(['en', 'ru', 'de']);
+  const LABELS = { en: 'English', ru: 'Russian', de: 'German', fr: 'French' };
+  const VALID = new Set(['en', 'ru', 'de', 'fr']);
 
   function applyLang(lang) {
     if (!VALID.has(lang)) lang = 'en';
@@ -2365,7 +2441,7 @@ footer {
   let initial = 'en';
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (VALID.has(saved)) initial = saved;
+    if (saved && VALID.has(saved)) initial = saved;
   } catch(e) {}
   applyLang(initial);
 
@@ -2502,7 +2578,8 @@ window.addEventListener('scroll', () => {
     const captions = {
       en: { off: 'Audio off — flip the switch', hover: 'Hover to listen', tap: 'Tap to listen', play: 'Preview playing' },
       ru: { off: 'Звук выключен — переключите тумблер', hover: 'Наведите, чтобы послушать', tap: 'Нажмите, чтобы послушать', play: 'Превью играет' },
-      de: { off: 'Ton aus — Schalter umlegen', hover: 'Zum Anhören bewegen', tap: 'Zum Anhören tippen', play: 'Vorschau läuft' }
+      de: { off: 'Ton aus — Schalter umlegen', hover: 'Zum Anhören bewegen', tap: 'Zum Anhören tippen', play: 'Vorschau läuft' },
+      fr: { off: 'Son désactivé — basculez l\'interrupteur', hover: 'Passer la souris pour écouter', tap: 'Toucher pour écouter', play: 'Aperçu en lecture' }
     };
     return (captions[lang] || captions.en)[state];
   }
@@ -2610,7 +2687,8 @@ const WEB3FORMS_KEY = '98181e7d-3689-4237-9743-618f87192dd2';
 const FORM_MSG = {
   en: { fill: 'Please fill in your name and email.', sending: 'Sending…', ok: 'Message sent. We will be in touch.', err: 'Could not send. Please write to polivanov.projects@gmail.com' },
   ru: { fill: 'Заполните имя и email.', sending: 'Отправляем…', ok: 'Сообщение отправлено. Мы свяжемся с вами.', err: 'Не удалось отправить. Напишите на polivanov.projects@gmail.com' },
-  de: { fill: 'Bitte Name und E-Mail ausfüllen.', sending: 'Wird gesendet…', ok: 'Nachricht gesendet. Wir melden uns.', err: 'Konnte nicht senden. Schreiben Sie an polivanov.projects@gmail.com' }
+  de: { fill: 'Bitte Name und E-Mail ausfüllen.', sending: 'Wird gesendet…', ok: 'Nachricht gesendet. Wir melden uns.', err: 'Konnte nicht senden. Schreiben Sie an polivanov.projects@gmail.com' },
+  fr: { fill: 'Veuillez remplir votre nom et e-mail.', sending: 'Envoi…', ok: 'Message envoyé. Nous vous contacterons.', err: 'Impossible d\'envoyer. Écrivez à polivanov.projects@gmail.com' }
 };
 
 submitBtn.addEventListener('click', async () => {
