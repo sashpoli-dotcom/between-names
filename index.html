@@ -786,10 +786,10 @@ h2.section-title em {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: clamp(40px, 6vw, 100px);
-  align-items: center;
+  align-items: end;
 }
 @media (max-width: 860px) {
-  .name-grid { grid-template-columns: 1fr; gap: 48px; }
+  .name-grid { grid-template-columns: 1fr; gap: 48px; align-items: start; }
 }
 .name-display {
   font-family: var(--display);
@@ -825,11 +825,15 @@ h2.section-title em {
   font-weight: 600;
   color: var(--gold-dark);
 }
+.name-text {
+  padding-top: clamp(40px, 6vh, 80px);
+  padding-bottom: clamp(16px, 2vh, 28px);
+}
 .name-text p {
-  font-size: clamp(19px, 1.4vw, 22px);
-  line-height: 1.65;
+  font-size: clamp(22px, 1.7vw, 26px);
+  line-height: 1.55;
   color: var(--ink-dark-dim);
-  max-width: 38ch;
+  max-width: 36ch;
 }
 .name-photo {
   margin-top: clamp(80px, 10vh, 140px);
@@ -851,26 +855,27 @@ h2.section-title em {
 }
 
 /* ================================================================
-   CONCEPT (на бумажном фоне)
+   CONCEPT — центрированная одна колонка
 ================================================================ */
-.concept {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 8vw, 140px);
-  align-items: start;
+#concept h2.section-title {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 22ch;
 }
-@media (max-width: 860px) { .concept { grid-template-columns: 1fr; } }
-
-.concept-text p {
+.concept-body {
+  max-width: 60ch;
+  margin: clamp(48px, 6vh, 80px) auto 0;
+}
+.concept-body p {
   color: var(--ink-dim);
-  font-size: 22px;
-  line-height: 1.6;
-  margin-bottom: 1.4em;
-  max-width: 42ch;
+  font-size: clamp(22px, 1.8vw, 26px);
+  line-height: 1.55;
+  margin-bottom: 1.3em;
 }
-.concept-text p strong {
+.concept-body p strong {
   color: var(--ink);
-  font-weight: 400;
+  font-weight: 500;
   font-style: italic;
 }
 
@@ -878,19 +883,18 @@ h2.section-title em {
   font-family: var(--body);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(19px, 1.6vw, 22px);
-  line-height: 1.55;
+  font-size: clamp(20px, 1.7vw, 24px);
+  line-height: 1.5;
   color: var(--ink);
   padding-left: 24px;
   border-left: 1px solid var(--gold-soft);
-  margin-top: 24px;
-  max-width: 36ch;
+  margin: 2em 0 2em;
 }
 .quote-caption {
   display: block;
   margin-top: 18px;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 11px;
   font-style: normal;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -902,13 +906,19 @@ h2.section-title em {
 ================================================================ */
 .composers-head {
   margin-bottom: 60px;
+  text-align: center;
+}
+.composers-head h2.section-title {
+  max-width: 22ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 .composers-intro {
-  max-width: 60ch;
-  font-size: 22px;
+  max-width: 56ch;
+  font-size: clamp(20px, 1.6vw, 24px);
   line-height: 1.55;
   color: var(--ink-dark-dim);
-  margin-top: 24px;
+  margin: 28px auto 0;
 }
 .composers-grid {
   display: grid;
@@ -958,8 +968,8 @@ h2.section-title em {
   margin-bottom: 22px;
 }
 .composer-bio {
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 19px;
+  line-height: 1.6;
   color: var(--ink-dark-dim);
 }
 .composer-bio p {
@@ -980,15 +990,16 @@ h2.section-title em {
   margin: 0 auto;
 }
 .covers-head {
-  margin-bottom: clamp(48px, 6vh, 80px);
-  max-width: 22ch;
+  margin: 0 auto clamp(48px, 6vh, 80px);
+  max-width: 38ch;
+  text-align: center;
 }
 .covers-title {
   font-family: var(--display);
   font-weight: 700;
   font-optical-sizing: auto;
   font-size: clamp(34px, 4.5vw, 60px);
-  line-height: 1.05;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--ink);
 }
@@ -998,7 +1009,7 @@ h2.section-title em {
   color: var(--gold);
 }
 .covers-sub {
-  margin-top: 18px;
+  margin-top: 20px;
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.18em;
@@ -1058,12 +1069,18 @@ h2.section-title em {
 /* ================================================================
    PROGRAM — на бумажном фоне
 ================================================================ */
+#program h2.section-title {
+  text-align: center;
+  max-width: 22ch;
+  margin-left: auto;
+  margin-right: auto;
+}
 .program-narrative {
-  max-width: 62ch;
-  margin-bottom: 60px;
+  max-width: 64ch;
+  margin: clamp(40px, 5vh, 64px) auto 60px;
 }
 .program-narrative p {
-  font-size: 22px;
+  font-size: clamp(22px, 1.7vw, 25px);
   line-height: 1.6;
   color: var(--ink-dark-dim);
   margin-bottom: 1.1em;
@@ -1072,6 +1089,11 @@ h2.section-title em {
   color: var(--ink-dark);
   font-weight: 600;
   font-style: italic;
+}
+.program-meta {
+  max-width: 64ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 .program-meta {
   font-family: var(--mono);
@@ -1097,15 +1119,21 @@ h2.section-title em {
 ================================================================ */
 .two-col {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 6vw, 96px);
-  align-items: center;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
 }
 @media (max-width: 860px) {
   .two-col { grid-template-columns: 1fr; }
 }
 .two-col-image {
   overflow: hidden;
+  max-width: 380px;
+  justify-self: end;
+  margin-top: clamp(80px, 8vh, 120px);
+}
+@media (max-width: 860px) {
+  .two-col-image { justify-self: stretch; max-width: none; margin-top: 0; }
 }
 .two-col-image img {
   width: 100%;
@@ -1115,10 +1143,10 @@ h2.section-title em {
 .two-col-image:hover img { transform: scale(1.04); }
 .two-col-body p {
   color: var(--ink-dim);
-  font-size: 20px;
-  line-height: 1.65;
+  font-size: clamp(20px, 1.5vw, 22px);
+  line-height: 1.6;
   margin-bottom: 1.2em;
-  max-width: 48ch;
+  max-width: 60ch;
 }
 
 /* ================================================================
@@ -1593,7 +1621,10 @@ footer {
   <section class="name-section reveal">
     <div class="name-grid">
       <div class="name-display">
-        <span class="name-from">Алексей Пудинов</span>
+        <span class="name-from">
+          <span data-ru>Алексей Пудинов</span>
+          <span data-en>Alexey Pudinov</span>
+        </span>
         <svg class="name-arrow" viewBox="0 0 64 16" aria-hidden="true">
           <line x1="2" y1="8" x2="56" y2="8" stroke="currentColor" stroke-width="1" />
           <polyline points="46,2 60,8 46,14" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1620,36 +1651,34 @@ footer {
     <span data-en>A recording about how emigration <em>changes a musician</em> from within.</span>
   </h2>
 
-  <div class="concept reveal-stagger">
-    <div class="concept-text">
-      <p data-ru>
-        В декабре 1917 года Сергей Рахманинов уехал из России и почти на четырнадцать лет перестал писать сольную фортепианную музыку. Тринадцатилетний Лев Оренштайн из Кременчуга оказался в Нью-Йорке около 1907 года и постепенно превратился в Leo Ornstein. В 1916-м Эрнест Блох, женевский композитор, приехал в США на гастроли с танцевальной труппой Мод Аллан; компания распалась, и он остался в Огайо — сначала на сезон, потом до конца жизни.
-      </p>
-      <p data-ru>
-        Три биографии — три разных ответа на один и тот же вопрос: что делает музыкант, когда у него больше нет родины. Каждый из них в итоге обрёл вторую: Швейцарию, Америку, новую Америку.
-      </p>
-      <p data-ru>
-        Алексей Пудинов прожил в Германии двадцать лет. В 2025 году он сменил имя на Alex Pudmann — сначала артистически, потом в документах. <strong>Between Names</strong> — его первый сольный альбом и публичное оформление этого решения. Альбом не объясняет это решение, а проживает его.
-      </p>
+  <div class="concept-body reveal-stagger">
+    <p data-ru>
+      В декабре 1917 года Сергей Рахманинов уехал из России и почти на четырнадцать лет перестал писать сольную фортепианную музыку. Тринадцатилетний Лев Горнштейн из Кременчуга оказался в Нью-Йорке около 1907 года и постепенно превратился в Leo Ornstein. В 1916-м Эрнест Блох, женевский композитор, приехал в США на гастроли с танцевальной труппой Мод Аллан; компания распалась, и он остался в Огайо — сначала на сезон, потом до конца жизни.
+    </p>
+    <p data-ru>
+      Три биографии — три разных ответа на один и тот же вопрос: что делает музыкант, когда у него больше нет родины. Каждый из них в итоге обрёл вторую: Швейцарию, Америку, новую Америку.
+    </p>
 
-      <p data-en>
-        In December 1917, Sergei Rachmaninoff left Russia and stopped writing solo piano music for almost fourteen years. The thirteen-year-old Lev Ornshteyn arrived in New York from Kremenchuk around 1907 and slowly became Leo Ornstein. In 1916, Ernest Bloch, a composer from Geneva, came to the United States to conduct a tour with Maud Allan's dance company; the company collapsed, and he stayed in Ohio — first for a season, then for the rest of his life.
-      </p>
-      <p data-en>
-        Three biographies, three different answers to the same question: what does a musician do when he no longer has a homeland. Each of them eventually found a second one: Switzerland, America, a new America.
-      </p>
-      <p data-en>
-        Alexey Pudinov has lived in Germany for twenty years. In 2025 he changed his name to Alex Pudmann — first as an artist, then on his passport. <strong>Between Names</strong> is his first solo album and the public form of that decision. The album does not explain the decision; it lives it.
-      </p>
-    </div>
-    <div class="concept-text">
-      <blockquote class="quote">
-        <span data-ru>«Сменить имя — значит на время замолчать. Этот альбом — способ поменять себя через эмиграцию Рахманинова, Блоха и Оренштайна».</span>
-        <span data-en>"To change a name is to fall silent for a while. This album is a way of changing myself through the emigrations of Rachmaninoff, Bloch and Ornstein."</span>
-        <span class="quote-caption" data-ru>Алекс Пудманн</span>
-        <span class="quote-caption" data-en>Alex Pudmann</span>
-      </blockquote>
-    </div>
+    <p data-en>
+      In December 1917, Sergei Rachmaninoff left Russia and stopped writing solo piano music for almost fourteen years. The thirteen-year-old Lev Hornstein arrived in New York from Kremenchuk around 1907 and slowly became Leo Ornstein. In 1916, Ernest Bloch, a composer from Geneva, came to the United States to conduct a tour with Maud Allan's dance company; the company collapsed, and he stayed in Ohio — first for a season, then for the rest of his life.
+    </p>
+    <p data-en>
+      Three biographies, three different answers to the same question: what does a musician do when he no longer has a homeland. Each of them eventually found a second one: Switzerland, America, a new America.
+    </p>
+
+    <blockquote class="quote">
+      <span data-ru>«Сменить имя — значит на время замолчать. Этот альбом — способ поменять себя через эмиграцию Рахманинова, Блоха и Оренштайна».</span>
+      <span data-en>"To change a name is to fall silent for a while. This album is a way of changing myself through the emigrations of Rachmaninoff, Bloch and Ornstein."</span>
+      <span class="quote-caption" data-ru>Алекс Пудманн</span>
+      <span class="quote-caption" data-en>Alex Pudmann</span>
+    </blockquote>
+
+    <p data-ru>
+      Алексей Пудинов прожил в Германии двадцать лет. В 2025 году он сменил имя на Alex Pudmann — сначала артистически, потом в документах. <strong>Between Names</strong> — его первый сольный альбом и публичное оформление этого решения. Альбом не объясняет это решение, а проживает его.
+    </p>
+    <p data-en>
+      Alexey Pudinov has lived in Germany for twenty years. In 2025 he changed his name to Alex Pudmann — first as an artist, then on his passport. <strong>Between Names</strong> is his first solo album and the public form of that decision. The album does not explain the decision; it lives it.
+    </p>
   </div>
 </section>
 
@@ -1702,7 +1731,7 @@ footer {
                loading="lazy" />
         </div>
         <div class="composer-name">
-          <span data-ru>Лев Оренштайн</span>
+          <span data-ru>Лев Горнштейн</span>
           <span data-en>Leo Ornstein</span>
         </div>
         <div class="composer-dates">
@@ -1710,11 +1739,11 @@ footer {
           <span data-en>c. 1893 — 2002</span>
         </div>
         <div class="composer-bio">
-          <p data-ru>Родился в Кременчуге, в Полтавской губернии. Учился у Глазунова и Есиповой в Петербургской консерватории. Около 1907 года семья эмигрировала в США, спасаясь от погромов, — и Лев Оренштайн постепенно стал Leo&nbsp;Ornstein.</p>
+          <p data-ru>Родился в Кременчуге, в Полтавской губернии. Учился у Глазунова и Есиповой в Петербургской консерватории. Около 1907 года семья эмигрировала в США, спасаясь от погромов, — и Лев Горнштейн постепенно стал Leo&nbsp;Ornstein.</p>
           <p data-ru>К середине 1910-х — главный enfant terrible трансатлантического авангарда: тонкие кластеры за десятилетия до Кейджа, концерт в Лондоне в марте 1914-го едва не закончился беспорядками.</p>
           <p data-ru>К началу 1920-х делает обратный поворот — к плотному, романтическому, более внутреннему языку. К сорока годам уходит со сцены и продолжает сочинять до 1990-го. Прожил больше ста лет.</p>
 
-          <p data-en>Born in Kremenchuk, in the Poltava Governorate of the Russian Empire. He studied with Glazunov and Yesipova at the Saint Petersburg Conservatory. Around 1907 the family emigrated to the United States, fleeing the pogroms — and Lev Ornshteyn gradually became Leo&nbsp;Ornstein.</p>
+          <p data-en>Born in Kremenchuk, in the Poltava Governorate of the Russian Empire. He studied with Glazunov and Yesipova at the Saint Petersburg Conservatory. Around 1907 the family emigrated to the United States, fleeing the pogroms — and Lev Hornstein gradually became Leo&nbsp;Ornstein.</p>
           <p data-en>By the mid-1910s he was the leading <em>enfant terrible</em> of the transatlantic avant-garde — writing dense tone-clusters decades before Cage. His March 1914 concert in London nearly ended in a riot.</p>
           <p data-en>In the early 1920s he turned in the opposite direction, toward a denser, more romantic, more interior language. He withdrew from the concert stage by forty and kept composing until 1990. He lived for more than a hundred years.</p>
         </div>
