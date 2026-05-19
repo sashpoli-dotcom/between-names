@@ -953,6 +953,9 @@ h2.section-title em {
   line-height: 1.5;
   color: var(--ink-dark-dim);
   margin: 32px auto 0;
+  text-align: justify;
+  text-align-last: center;     /* последняя строка по центру, чтобы не растягивалась */
+  hyphens: auto;
 }
 .composers-grid {
   display: grid;
@@ -1198,10 +1201,10 @@ h2.section-title em {
 }
 .beyond-text p {
   color: var(--ink-dark-dim);
-  font-size: 20px;
-  line-height: 1.6;
+  font-size: clamp(22px, 1.8vw, 26px);
+  line-height: 1.55;
   margin-bottom: 1.3em;
-  max-width: 52ch;
+  max-width: 64ch;
 }
 .beyond-text p strong {
   color: var(--ink-dark);
@@ -1266,14 +1269,14 @@ h2.section-title em {
 }
 .mie-credit-label {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 18px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold-dark);
 }
 .mie-credit-body {
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: clamp(20px, 1.6vw, 24px);
+  line-height: 1.55;
   color: var(--ink-dark-dim);
   max-width: 64ch;
 }
@@ -1304,30 +1307,30 @@ h2.section-title em {
 .support-cell:hover { background: var(--bg-soft); }
 .support-cell .num {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 18px;
   letter-spacing: 0.2em;
   color: var(--gold);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 .support-cell h3 {
   font-family: var(--display);
-  font-weight: 300;
-  font-size: 28px;
+  font-weight: 500;
+  font-size: clamp(28px, 2.4vw, 36px);
   line-height: 1.2;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   font-style: italic;
 }
 .support-cell p {
   color: var(--ink-dim);
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.55;
 }
 .support-bottom {
   margin-top: 40px;
   padding: 24px 0;
   border-top: 1px solid var(--line);
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 18px;
   letter-spacing: 0.14em;
   color: var(--ink-dim);
 }
@@ -1827,21 +1830,21 @@ footer {
       В декабре 1917 года Сергей Рахманинов уехал из России и почти на четырнадцать лет перестал писать сольную фортепианную музыку. Тринадцатилетний Лев Горнштейн из Кременчуга оказался в Нью-Йорке около 1907 года и постепенно превратился в Leo Ornstein. В 1916-м Эрнест Блох, женевский композитор, приехал в США на гастроли с танцевальной труппой Мод Аллан; компания распалась, и он остался в Огайо — сначала на сезон, потом до конца жизни.
     </p>
     <p data-ru>
-      Три биографии — три разных ответа на один и тот же вопрос: что делает музыкант, когда у него больше нет родины. Каждый из них в итоге обрёл вторую: Швейцарию, Америку, новую Америку.
+      Три биографии — три разных ответа на один и тот же вопрос: что делает музыкант, когда у него больше нет родины.
     </p>
 
     <p data-en>
       In December 1917, Sergei Rachmaninoff left Russia and stopped writing solo piano music for almost fourteen years. The thirteen-year-old Lev Hornstein arrived in New York from Kremenchuk around 1907 and slowly became Leo Ornstein. In 1916, Ernest Bloch, a composer from Geneva, came to the United States to conduct a tour with Maud Allan's dance company; the company collapsed, and he stayed in Ohio — first for a season, then for the rest of his life.
     </p>
     <p data-en>
-      Three biographies, three different answers to the same question: what does a musician do when he no longer has a homeland. Each of them eventually found a second one: Switzerland, America, a new America.
+      Three biographies, three different answers to the same question: what does a musician do when he no longer has a homeland.
     </p>
 
     <p data-de>
       Im Dezember 1917 verließ Sergei Rachmaninow Russland und hörte für fast vierzehn Jahre auf, Solo-Klaviermusik zu schreiben. Lew Hornstein aus Krementschuk kam um 1907 mit seiner Familie nach New York und wurde allmählich zu Leo Ornstein. 1916 reiste der Genfer Komponist Ernest Bloch mit der Tanztruppe von Maud Allan in die USA; die Kompanie zerfiel, und Bloch blieb in Ohio — und schließlich für den Rest seines Lebens.
     </p>
     <p data-de>
-      Drei Biografien, drei verschiedene Antworten auf dieselbe Frage: was tut ein Musiker, wenn er keine Heimat mehr hat. Jeder von ihnen fand schließlich eine zweite: die Schweiz, Amerika, ein neues Amerika.
+      Drei Biografien, drei verschiedene Antworten auf dieselbe Frage: was tut ein Musiker, wenn er keine Heimat mehr hat.
     </p>
 
     <blockquote class="quote">
@@ -1854,13 +1857,13 @@ footer {
     </blockquote>
 
     <p data-ru>
-      Алексей Пудинов прожил в Германии двадцать лет. В 2025 году он сменил имя на Alex Pudmann — сначала артистически, потом в документах. <strong>Between Names</strong> — его первый сольный альбом и публичное оформление этого решения. Альбом не объясняет это решение, а проживает его.
+      Алексей Пудинов прожил в Германии двадцать лет. В 2025 году он сменил имя на Alex Pudmann — сначала артистически, потом в документах. <strong>Between Names</strong> — его первый сольный альбом под новым именем и публичное оформление этого решения. Альбом не объясняет это решение, а проживает его.
     </p>
     <p data-en>
-      Alexey Pudinov has lived in Germany for twenty years. In 2025 he changed his name to Alex Pudmann — first as an artist, then on his passport. <strong>Between Names</strong> is his first solo album and the public form of that decision. The album does not explain the decision; it lives it.
+      Alexey Pudinov has lived in Germany for twenty years. In 2025 he changed his name to Alex Pudmann — first as an artist, then on his passport. <strong>Between Names</strong> is his first solo album under the new name and the public form of that decision. The album does not explain the decision; it lives it.
     </p>
     <p data-de>
-      Alexey Pudinov lebte zwanzig Jahre in Deutschland. 2025 änderte er seinen Namen in Alex Pudmann — zuerst als Künstler, dann auch in den Dokumenten. <strong>Between Names</strong> ist sein erstes Soloalbum und die öffentliche Form dieser Entscheidung. Das Album erklärt diese Entscheidung nicht, sondern lebt sie.
+      Alexey Pudinov lebte zwanzig Jahre in Deutschland. 2025 änderte er seinen Namen in Alex Pudmann — zuerst als Künstler, dann auch in den Dokumenten. <strong>Between Names</strong> ist sein erstes Soloalbum unter dem neuen Namen und die öffentliche Form dieser Entscheidung. Das Album erklärt diese Entscheidung nicht, sondern lebt sie.
     </p>
   </div>
 </section>
@@ -2175,14 +2178,14 @@ footer {
 
   <div class="concept reveal-stagger" style="margin-top: 40px;">
     <div class="concept-text">
-      <p data-ru style="color: var(--ink-dim);">«Between Names» — независимый альбом и независимая программа. Мы открыты к разговору с фондами, частными меценатами и лейблами.</p>
-      <p data-en style="color: var(--ink-dim);">Between Names is an independent album and an independent programme. We are open to conversation with foundations, private patrons and labels.</p>
-      <p data-de style="color: var(--ink-dim);">«Between Names» ist ein unabhängiges Album und ein unabhängiges Programm. Wir sind offen für Gespräche mit Stiftungen, privaten Mäzenen und Labels.</p>
+      <p data-ru style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">«Between Names» — независимый альбом и независимая программа. Мы открыты к разговору с фондами, частными меценатами и лейблами.</p>
+      <p data-en style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">Between Names is an independent album and an independent programme. We are open to conversation with foundations, private patrons and labels.</p>
+      <p data-de style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">«Between Names» ist ein unabhängiges Album und ein unabhängiges Programm. Wir sind offen für Gespräche mit Stiftungen, privaten Mäzenen und Labels.</p>
     </div>
     <div class="concept-text">
-      <p data-ru style="color: var(--ink-dim);">Мы рассматриваем партнёрство как длительные отношения, выходящие за рамки одного альбома и одной концертной серии.</p>
-      <p data-en style="color: var(--ink-dim);">We see partnership as a long‑term relationship that goes beyond a single album and a single concert series.</p>
-      <p data-de style="color: var(--ink-dim);">Wir verstehen Partnerschaft als langfristige Beziehung, die über ein einzelnes Album und eine einzelne Konzertreihe hinausgeht.</p>
+      <p data-ru style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">Мы рассматриваем партнёрство как длительные отношения, выходящие за рамки одного альбома и одной концертной серии.</p>
+      <p data-en style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">We see partnership as a long‑term relationship that goes beyond a single album and a single concert series.</p>
+      <p data-de style="color: var(--ink-dim); font-size: clamp(22px, 1.8vw, 26px); line-height: 1.55;">Wir verstehen Partnerschaft als langfristige Beziehung, die über ein einzelnes Album und eine einzelne Konzertreihe hinausgeht.</p>
     </div>
   </div>
 
