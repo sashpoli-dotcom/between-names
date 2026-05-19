@@ -814,8 +814,11 @@ h2.section-title em {
 }
 .name-grid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: clamp(40px, 5vw, 80px);
+  /* minmax(0, ...) разрешает имени «Alex Pudmann» с nowrap выходить
+     за пределы своей колонки в сторону правой — визуально «nn» Pudmann
+     заезжает на территорию правой колонки, где начинается абзац. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: clamp(32px, 4vw, 64px);
   align-items: start;
 }
 @media (max-width: 860px) {
@@ -846,7 +849,7 @@ h2.section-title em {
   align-self: center;
 }
 .name-to {
-  font-size: clamp(44px, 7vw, 100px);
+  font-size: clamp(48px, 8vw, 120px);
   color: var(--ink-dark);
   font-weight: 700;
   white-space: nowrap;
@@ -1556,8 +1559,13 @@ footer {
     text-align: left;
     font-size: clamp(72px, 16vw, 110px);
     margin-bottom: 0;
-    margin-left: -0.2em;        /* агрессивная компенсация бэринга Fraunces */
-    text-indent: -0.05em;       /* + сдвиг текста для надёжности */
+    /* Тройная компенсация бэринга Fraunces Bold: position relative + left,
+       плюс отрицательный margin и отрицательный text-indent. Combined
+       сдвиг ~0.5em = ~35-50px при 70-100px шрифте. */
+    position: relative;
+    left: -0.35em;
+    margin-left: -0.1em;
+    text-indent: -0.05em;
     letter-spacing: -0.04em;
   }
   .hero-sub,
