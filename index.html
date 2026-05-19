@@ -146,7 +146,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; overscroll-behavior-x: none; }
 
 body {
   background: var(--bg);
@@ -477,16 +477,17 @@ a { color: inherit; text-decoration: none; }
 .btn--ghost { border-color: var(--ink-muted); color: var(--ink-dim); }
 .btn--ghost::before { background: var(--ink-dim); }
 
-/* hero audio panel — fixed в правом нижнем углу viewport */
+/* hero audio panel — fixed в правом нижнем углу viewport, скруглённый */
 .hero-audio-panel {
   position: fixed;
   right: clamp(16px, 2.5vw, 36px);
   bottom: clamp(16px, 2.5vw, 28px);
-  padding: 12px 14px;
+  padding: 14px 18px;
   border: 1px solid var(--line);
-  background: rgba(20,17,15,0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border-radius: 24px;
+  background: rgba(20,17,15,0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   font-family: var(--mono);
   color: var(--ink-muted);
   opacity: 0;
@@ -591,13 +592,41 @@ a { color: inherit; text-decoration: none; }
   50%      { height: 12px; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 760px) {
+  /* Sound панель на мобиле — тумблер сверху и крупнее,
+     лейбл «SOUND» снизу, волну прячем */
   .hero-audio-panel {
     right: 14px;
     bottom: 14px;
-    padding: 8px 10px;
+    padding: 12px 16px;
+    border-radius: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
   }
+  .hero-audio-panel-label {
+    order: 3;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .hero-audio-toggle { order: 1; gap: 10px; }
   .hero-audio-wave { display: none; }
+  .hero-audio-toggle-track {
+    width: 54px;
+    height: 28px;
+    border-radius: 14px;
+  }
+  .hero-audio-toggle-knob {
+    width: 22px;
+    height: 22px;
+    top: 2px;
+    left: 2px;
+  }
+  .hero-audio-panel.is-on .hero-audio-toggle-knob {
+    left: calc(100% - 24px);
+  }
+  .hero-audio-toggle-label { font-size: 11px; }
 }
 
 .hero-audio-disc-wrap {
@@ -1527,6 +1556,8 @@ footer {
     text-align: left;
     font-size: clamp(72px, 16vw, 110px);
     margin-bottom: 0;
+    margin-left: -0.05em;       /* компенсация бокового бэринга Fraunces — */
+    letter-spacing: -0.03em;    /* чтобы B / N действительно стояли у левого края */
   }
   .hero-sub { order: 2; margin-top: 0; }
   .hero-audio-disc-wrap {
@@ -1534,7 +1565,16 @@ footer {
     width: min(78vw, 380px);
     margin: 8px auto 0;
   }
-  .hero-cta { order: 4; margin-top: 0; }
+  /* Кнопки CTA на мобиле — друг под другом, с воздухом сверху,
+     чтобы caption диска не наезжал */
+  .hero-cta {
+    order: 4;
+    margin-top: 28px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .hero-cta .btn { justify-content: center; }
   .hero-scroll { display: none; } /* убирает наложение с caption диска */
 
   /* NAME: убираем огромный gap, фото идёт между именем и абзацем */
@@ -2458,18 +2498,17 @@ window.addEventListener('scroll', () => {
     caption.textContent = getCaption(state);
   }
 
+  // audioOn и isPlaying синхронизированы: тумблер ON всегда играет,
+  // тумблер OFF всегда выключает. Клик на диск — то же самое, что
+  // переключить тумблер.
   function playPreview() {
-    targetSpeed = SPEED_HOVER;
-    // Включение по клику тянет за собой и тумблер: audioOn=true
-    if (!audioOn) {
-      audioOn = true;
-      panel.classList.add('is-on');
-      toggle.setAttribute('aria-checked', 'true');
-    }
     if (isPlaying) return;
     isPlaying = true;
+    audioOn = true;
     wrap.classList.add('is-playing');
-    panel.classList.add('is-playing');
+    panel.classList.add('is-playing', 'is-on');
+    toggle.setAttribute('aria-checked', 'true');
+    targetSpeed = SPEED_HOVER;
     refreshCaption();
     const p = audio.play();
     if (p && typeof p.catch === 'function') p.catch(() => {});
@@ -2479,28 +2518,19 @@ window.addEventListener('scroll', () => {
   function stopPreview() {
     if (!isPlaying) { refreshCaption(); return; }
     isPlaying = false;
+    audioOn = false;
     wrap.classList.remove('is-playing');
-    panel.classList.remove('is-playing');
+    panel.classList.remove('is-playing', 'is-on');
+    toggle.setAttribute('aria-checked', 'false');
     if (!wrap.matches(':hover')) targetSpeed = SPEED_IDLE;
     refreshCaption();
     fadeTo(0, FADE_OUT);
   }
 
   function setAudioOn(on) {
-    audioOn = on;
-    panel.classList.toggle('is-on', on);
-    toggle.setAttribute('aria-checked', on ? 'true' : 'false');
-    if (!on && isPlaying) {
-      // тумблер OFF при играющем треке — сразу гасим звук
-      isPlaying = false;
-      wrap.classList.remove('is-playing');
-      panel.classList.remove('is-playing');
-      if (!wrap.matches(':hover')) targetSpeed = SPEED_IDLE;
-      fadeTo(0, FADE_OUT);
-    }
-    // тумблер ON сам по себе не запускает воспроизведение —
-    // звук стартует только по клику на диск
-    refreshCaption();
+    // тумблер симметричен: ON → играет, OFF → выключает
+    if (on) playPreview();
+    else stopPreview();
   }
 
   toggle.addEventListener('click', (e) => {
