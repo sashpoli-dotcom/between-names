@@ -767,6 +767,7 @@ h2.section-title {
   letter-spacing: -0.02em;
   max-width: 18ch;
   margin-bottom: 0.6em;
+  text-wrap: balance;
 }
 h2.section-title em {
   font-style: italic;
@@ -778,7 +779,7 @@ h2.section-title em {
    NAME — двухколонный блок с именем и абзацем + photo с полями
 ================================================================ */
 .name-section {
-  padding: clamp(90px, 14vh, 160px) var(--gutter);
+  padding: clamp(70px, 10vh, 120px) var(--gutter) clamp(90px, 14vh, 160px);
   max-width: var(--max);
   margin: 0 auto;
 }
@@ -826,8 +827,8 @@ h2.section-title em {
   color: var(--gold-dark);
 }
 .name-text {
-  padding-top: clamp(40px, 6vh, 80px);
-  padding-bottom: clamp(16px, 2vh, 28px);
+  padding-top: clamp(120px, 16vh, 200px);
+  padding-bottom: clamp(8px, 1vh, 16px);
 }
 .name-text p {
   font-size: clamp(22px, 1.7vw, 26px);
@@ -864,13 +865,13 @@ h2.section-title em {
   max-width: 22ch;
 }
 .concept-body {
-  max-width: 60ch;
+  max-width: 84ch;
   margin: clamp(48px, 6vh, 80px) auto 0;
 }
 .concept-body p {
   color: var(--ink-dim);
-  font-size: clamp(22px, 1.8vw, 26px);
-  line-height: 1.55;
+  font-size: clamp(24px, 2vw, 30px);
+  line-height: 1.5;
   margin-bottom: 1.3em;
 }
 .concept-body p strong {
@@ -914,11 +915,11 @@ h2.section-title em {
   margin-right: auto;
 }
 .composers-intro {
-  max-width: 56ch;
-  font-size: clamp(20px, 1.6vw, 24px);
-  line-height: 1.55;
+  max-width: 76ch;
+  font-size: clamp(24px, 2vw, 30px);
+  line-height: 1.5;
   color: var(--ink-dark-dim);
-  margin: 28px auto 0;
+  margin: 32px auto 0;
 }
 .composers-grid {
   display: grid;
@@ -991,7 +992,7 @@ h2.section-title em {
 }
 .covers-head {
   margin: 0 auto clamp(48px, 6vh, 80px);
-  max-width: 38ch;
+  max-width: none;
   text-align: center;
 }
 .covers-title {
@@ -999,7 +1000,7 @@ h2.section-title em {
   font-weight: 700;
   font-optical-sizing: auto;
   font-size: clamp(34px, 4.5vw, 60px);
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--ink);
 }
@@ -1076,12 +1077,12 @@ h2.section-title em {
   margin-right: auto;
 }
 .program-narrative {
-  max-width: 64ch;
+  max-width: 84ch;
   margin: clamp(40px, 5vh, 64px) auto 60px;
 }
 .program-narrative p {
-  font-size: clamp(22px, 1.7vw, 25px);
-  line-height: 1.6;
+  font-size: clamp(24px, 1.9vw, 28px);
+  line-height: 1.55;
   color: var(--ink-dark-dim);
   margin-bottom: 1.1em;
 }
@@ -1091,7 +1092,7 @@ h2.section-title em {
   font-style: italic;
 }
 .program-meta {
-  max-width: 64ch;
+  max-width: 84ch;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1119,7 +1120,7 @@ h2.section-title em {
 ================================================================ */
 .two-col {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: clamp(40px, 6vw, 96px);
   align-items: start;
 }
@@ -1128,7 +1129,7 @@ h2.section-title em {
 }
 .two-col-image {
   overflow: hidden;
-  max-width: 380px;
+  max-width: 460px;
   justify-self: end;
   margin-top: clamp(80px, 8vh, 120px);
 }
@@ -1143,7 +1144,7 @@ h2.section-title em {
 .two-col-image:hover img { transform: scale(1.04); }
 .two-col-body p {
   color: var(--ink-dim);
-  font-size: clamp(20px, 1.5vw, 22px);
+  font-size: clamp(22px, 1.7vw, 25px);
   line-height: 1.6;
   margin-bottom: 1.2em;
   max-width: 60ch;
@@ -1689,8 +1690,8 @@ footer {
   <div class="light-band-inner">
     <div class="composers-head">
       <h2 class="section-title reveal">
-        <span data-ru>Каждый из них изменился <em>по-своему</em>.</span>
-        <span data-en>Each of them changed in <em>his own way</em>.</span>
+        <span data-ru>Каждый из них изменился<br><em>по-своему</em>.</span>
+        <span data-en>Each of them changed<br>in&nbsp;<em>his own way</em>.</span>
       </h2>
       <p class="composers-intro reveal">
         <span data-ru>Альбом построен на музыке трёх композиторов, родившихся в конце XIX века. Их зрелые годы пришлись на эпоху больших исторических разрывов — войн, революций, эмиграции, отрыва от прежней среды. Каждый из них в какой-то момент потерял свою страну и продолжал писать дальше. Программа альбома — не три биографии, а три разные формы эмиграционного опыта: разрыв, перерождение и возвращение голоса.</span>
@@ -1782,8 +1783,8 @@ footer {
 <section class="covers-section">
   <div class="covers-head reveal">
     <h2 class="covers-title">
-      <span data-ru>Рахманинов, Оренштайн и Блох <em>в исполнении</em> Алекса Пудмана.</span>
-      <span data-en>Rachmaninoff, Ornstein and Bloch <em>played by</em> Alex Pudmann.</span>
+      <span data-ru>Рахманинов, Оренштайн и&nbsp;Блох<br><em>в&nbsp;исполнении Алекса&nbsp;Пудмана</em>.</span>
+      <span data-en>Rachmaninoff, Ornstein and&nbsp;Bloch<br><em>played by Alex&nbsp;Pudmann</em>.</span>
     </h2>
     <p class="covers-sub" data-ru>Двойной винил и CD. Релиз 2027.</p>
     <p class="covers-sub" data-en>Double LP and CD. Release 2027.</p>
