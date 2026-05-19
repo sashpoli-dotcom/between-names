@@ -779,7 +779,7 @@ h2.section-title em {
    NAME — двухколонный блок с именем и абзацем + photo с полями
 ================================================================ */
 .name-section {
-  padding: clamp(70px, 10vh, 120px) var(--gutter) clamp(90px, 14vh, 160px);
+  padding: clamp(40px, 5vh, 64px) var(--gutter) clamp(100px, 14vh, 160px);
   max-width: var(--max);
   margin: 0 auto;
 }
@@ -787,10 +787,10 @@ h2.section-title em {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: clamp(40px, 6vw, 100px);
-  align-items: end;
+  align-items: start;
 }
 @media (max-width: 860px) {
-  .name-grid { grid-template-columns: 1fr; gap: 48px; align-items: start; }
+  .name-grid { grid-template-columns: 1fr; gap: 48px; }
 }
 .name-display {
   font-family: var(--display);
@@ -827,7 +827,7 @@ h2.section-title em {
   color: var(--gold-dark);
 }
 .name-text {
-  padding-top: clamp(120px, 16vh, 200px);
+  padding-top: clamp(200px, 26vh, 320px);
   padding-bottom: clamp(8px, 1vh, 16px);
 }
 .name-text p {
@@ -2058,6 +2058,31 @@ footer {
 </footer>
 
 <script>
+/* ============================================================
+   ORPHAN GUARD
+   Глобальное правило: 1- и 2-буквенные слова не должны оставаться
+   в конце строки. Склеиваем пробел перед коротким словом с предыдущим
+   через NBSP, поэтому короткое слово всегда переезжает на новую
+   строчку вместе со следующим (или закрывающей пунктуацией).
+   Прогон один раз по DOM на инициализации.
+============================================================ */
+(function fixOrphans() {
+  const RE = /( )(\S{1,2})(?=[\s.,;:!?)\]»}—–]|$)/g;
+  const SKIP = new Set(['SCRIPT','STYLE','CODE','PRE','TEXTAREA','INPUT','SELECT','OPTION','SVG','NOSCRIPT']);
+  function walk(node) {
+    if (node.nodeType === 3) {
+      const t = node.textContent;
+      if (t && /\S/.test(t)) {
+        const fixed = t.replace(RE, ' $2');
+        if (fixed !== t) node.textContent = fixed;
+      }
+    } else if (node.nodeType === 1 && !SKIP.has(node.tagName)) {
+      for (const c of Array.from(node.childNodes)) walk(c);
+    }
+  }
+  walk(document.body);
+})();
+
 /* ============================================================
    LANGUAGE SWITCH
 ============================================================ */
