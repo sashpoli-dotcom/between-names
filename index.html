@@ -1502,6 +1502,99 @@ footer {
   font-weight: 400;
 }
 
+/* ================================================================
+   MOBILE — только для узких экранов (макс. 760px).
+   Десктоп не трогается.
+================================================================ */
+@media (max-width: 760px) {
+  /* HERO: переставляем порядок text → диск → кнопки.
+     Используем display:contents на .hero-text, чтобы её дети
+     стали прямыми детьми .hero и можно было управлять их order. */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 4vh, 44px);
+    padding-top: 100px;
+    padding-bottom: 56px;
+  }
+  .hero-text { display: contents; }
+  .hero-title { order: 1; }
+  .hero-sub { order: 2; }
+  .hero-audio-disc-wrap {
+    order: 3;
+    width: min(78vw, 380px);
+    margin: 8px auto 0;
+  }
+  .hero-cta { order: 4; margin-top: 0; }
+  .hero-scroll { display: none; } /* убирает наложение с caption диска */
+
+  /* NAME: убираем огромный gap, фото идёт между именем и абзацем */
+  .name-section {
+    padding: 56px var(--gutter) 72px;
+  }
+  .name-grid { display: contents; }
+  .name-display { order: 1; }
+  .name-photo {
+    order: 2;
+    margin-top: 28px;
+    margin-bottom: 0;
+  }
+  .name-text {
+    order: 3;
+    padding-top: 28px;
+    padding-bottom: 0;
+  }
+  .name-text p { max-width: none; }
+
+  /* CONCEPT: левое выравнивание (вместо центра) */
+  #concept h2.section-title {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+  }
+  .concept-body {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+  }
+
+  /* COMPOSERS HEAD: левое выравнивание */
+  .composers-head { text-align: left; }
+  .composers-head h2.section-title {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+  }
+  .composers-intro {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+  }
+
+  /* COVERS: левое выравнивание */
+  .covers-head {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+  }
+
+  /* PROGRAM h2: левое выравнивание (текст программы и так слева) */
+  #program h2.section-title {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+  }
+  .program-narrative,
+  .program-meta {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
+  }
+}
+
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -2358,7 +2451,12 @@ window.addEventListener('scroll', () => {
 
   function playPreview() {
     targetSpeed = SPEED_HOVER;
-    if (!audioOn) { refreshCaption(); return; }
+    // Включение по клику тянет за собой и тумблер: audioOn=true
+    if (!audioOn) {
+      audioOn = true;
+      panel.classList.add('is-on');
+      toggle.setAttribute('aria-checked', 'true');
+    }
     if (isPlaying) return;
     isPlaying = true;
     wrap.classList.add('is-playing');
@@ -2370,11 +2468,11 @@ window.addEventListener('scroll', () => {
   }
 
   function stopPreview() {
-    targetSpeed = SPEED_IDLE;
     if (!isPlaying) { refreshCaption(); return; }
     isPlaying = false;
     wrap.classList.remove('is-playing');
     panel.classList.remove('is-playing');
+    if (!wrap.matches(':hover')) targetSpeed = SPEED_IDLE;
     refreshCaption();
     fadeTo(0, FADE_OUT);
   }
@@ -2384,13 +2482,15 @@ window.addEventListener('scroll', () => {
     panel.classList.toggle('is-on', on);
     toggle.setAttribute('aria-checked', on ? 'true' : 'false');
     if (!on && isPlaying) {
+      // тумблер OFF при играющем треке — сразу гасим звук
       isPlaying = false;
       wrap.classList.remove('is-playing');
       panel.classList.remove('is-playing');
+      if (!wrap.matches(':hover')) targetSpeed = SPEED_IDLE;
       fadeTo(0, FADE_OUT);
-    } else if (on && wrap.matches(':hover') && !isCoarse) {
-      playPreview();
     }
+    // тумблер ON сам по себе не запускает воспроизведение —
+    // звук стартует только по клику на диск
     refreshCaption();
   }
 
@@ -2412,22 +2512,17 @@ window.addEventListener('scroll', () => {
   refreshCaption();
 
   if (!isCoarse) {
-    wrap.addEventListener('mouseenter', playPreview);
-    wrap.addEventListener('mouseleave', stopPreview);
+    // hover только меняет скорость вращения, не трогает звук
+    wrap.addEventListener('mouseenter', () => { targetSpeed = SPEED_HOVER; });
+    wrap.addEventListener('mouseleave', () => { if (!isPlaying) targetSpeed = SPEED_IDLE; });
   }
   wrap.addEventListener('click', () => {
-    if (!audioOn) {
-      setAudioOn(true);
-      if (isCoarse) playPreview();
-      return;
-    }
     if (isPlaying) stopPreview();
     else playPreview();
   });
   wrap.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      if (!audioOn) { setAudioOn(true); playPreview(); return; }
       if (isPlaying) stopPreview(); else playPreview();
     }
   });
